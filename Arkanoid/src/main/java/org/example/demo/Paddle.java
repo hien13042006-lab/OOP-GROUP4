@@ -4,21 +4,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Paddle extends MoveableObject{
-    private Rectangle rect;
 
-    Paddle(double x, double y, double width, double height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    private double speed;
 
-        rect = new Rectangle(width, height, Color.DARKBLUE);
-        rect.setX(x);
-        rect.setY(y);
-    }
-
-    public Rectangle getNode() {
-        return rect;
+    public Paddle(double x, double y, double width, double height, double dx, double dy, double speed) {
+        super(x, y, width, height, dx, dy);
+        this.speed = speed;
     }
 
     void moveLeft(double dt) {
@@ -44,8 +35,7 @@ public class Paddle extends MoveableObject{
     }
 
     @Override
-    public void render() {
-        rect.setX(x);
-        rect.setY(y);
+    public void render(Renderer r) {
+        r.draw(this);
     }
 }

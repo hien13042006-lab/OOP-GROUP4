@@ -3,6 +3,12 @@ package org.example.demo;
 public class Brick extends GameObject {
     protected int hitPoints;
 
+    public Brick(){}
+
+    public Brick(double x, double y, double width, double height) {
+        super(x, y, width, height);
+    }
+
     protected void takeHit() {
         hitPoints--;
     }
@@ -20,7 +26,7 @@ public class Brick extends GameObject {
     }
 
     @Override
-    public void render() {
+    public void render(Renderer r) {
 
     }
 }
