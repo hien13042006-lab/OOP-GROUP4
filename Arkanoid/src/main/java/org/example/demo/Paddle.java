@@ -7,6 +7,14 @@ public class Paddle extends MoveableObject{
 
     private double speed;
 
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
     public Paddle(double x, double y, double width, double height, double dx, double dy, double speed) {
         super(x, y, width, height, dx, dy);
         this.speed = speed;

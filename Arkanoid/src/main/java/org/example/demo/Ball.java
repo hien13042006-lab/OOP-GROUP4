@@ -2,14 +2,12 @@ package org.example.demo;
 
 public class Ball extends MoveableObject{
     private int speed;
-    private double directionX;
-    private double directionY;
 
-    public Ball(double x, double y, double width, double height, int speed, double directionX, double directionY) {
+    public Ball(double x, double y, double width, double height, double dx, double dy, int speed) {
         super(x, y, width, height);
         this.speed = speed;
-        this.directionX = directionX;
-        this.directionY = directionY;
+        this.dx = dx;
+        this.dy = dy;
     }
 
     boolean checkCollision(GameObject gameObject) {
@@ -30,8 +28,8 @@ public class Ball extends MoveableObject{
 
     @Override
     public void move(double dt) {
-        x += directionX * speed * dt;
-        y += directionY * speed * dt;
+        x += dx * speed * dt;
+        y += dy * speed * dt;
     }
 
     @Override

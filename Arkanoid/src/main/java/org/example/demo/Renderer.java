@@ -26,16 +26,25 @@ public class Renderer {
         gc.fillRect(0, 0, width, height);
     }
 
-    //ve paddle
+    //draw paddle
     public void draw(Paddle paddle) {
         gc.setFill(Color.AQUAMARINE);
         gc.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
     }
 
-    //ve ball
+    //draw ball
     public void draw(Ball ball) {
         gc.setFill(Color.BLUE);
         gc.fillOval(ball.x, ball.y, ball.width, ball.height);
     }
+    //draw brick
+    public void draw(StrongBrick brick){
+        gc.setFill(Color.ORANGE);
+        gc.fillRect(brick.x, brick.y,brick.width, brick.height);
+    }
 
+    public void draw(NormalBrick brick){
+        gc.setFill(Color.RED);
+        gc.fillRect(brick.x, brick.y,brick.width, brick.height);
+    }
 }
