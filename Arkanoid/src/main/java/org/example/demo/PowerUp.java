@@ -1,6 +1,6 @@
 package org.example.demo;
 
-abstract class PowerUp extends GameObject{
+public class PowerUp extends GameObject{
     double duration;
 
 
@@ -12,4 +12,13 @@ abstract class PowerUp extends GameObject{
 
     }
 
+    @Override
+    public void update(double dt) {
+
+    }
+
+    @Override
+    public void render(Renderer r) {
+
+    }
 }

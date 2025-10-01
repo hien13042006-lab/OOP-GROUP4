@@ -8,19 +8,14 @@ public class Brick extends GameObject {
     }
 
     public boolean isDestroyed() {
-        if (hitPoints <= 0) {
-            return true;
-        }
-        return false;
+        return hitPoints<=0;
     }
 
     @Override
     public void update(double dt) {
-
     }
 
     @Override
-    public void render() {
-
+    public void render(Renderer r) {
     }
 }

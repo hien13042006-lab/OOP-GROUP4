@@ -21,10 +21,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Group root = new Group();
-        Scene scene = new Scene(root, Color.AQUAMARINE);
+        Scene scene = new Scene(root,800,600, Color.BLACK);
 
         stage.setTitle("Deo");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
 
         GameManager gameManager = new GameManager();
@@ -43,5 +44,6 @@ public class Main extends Application {
                 lastTime = now;
             }
         };
+        gameLoop.start();
     }
 }
