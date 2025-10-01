@@ -1,8 +1,11 @@
 package org.example.demo;
 
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +21,16 @@ public class GameManager {
     Ball ball;
     List<Brick> bricks;
 
+
     void startGame(Group root) {
+
         //THONG SO PADDLE
         int paddleWidth = 100;
         int paddleHeight = 20;
         int marginBottom = 30; //khoang cach den mep duoi
         int paddleDx = 0;
         int paddleDy = 0;
-        int paddleSpeed = 0;
+        int paddleSpeed = 300;
         paddle = new Paddle((WINDOW_WIDTH - paddleWidth) / 2,
                 WINDOW_HEIGHT - paddleHeight - marginBottom,
                 paddleWidth, paddleHeight, paddleDx, paddleDy, paddleSpeed);
@@ -34,7 +39,7 @@ public class GameManager {
         int ballRadius = 10;
         int ballDx = 1;
         int ballDy = 1;
-        int ballSpeed = 100;
+        int ballSpeed = 10;
 
         ball = new Ball(WINDOW_WIDTH / 2 - ballRadius, paddle.y - ballRadius,
                 ballRadius * 2, ballRadius * 2,
@@ -61,12 +66,16 @@ public class GameManager {
             }
         }
         canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
+        canvas.setFocusTraversable(true);
+        canvas.setOnKeyPressed(paddle.getKeyPressHandler());
+        canvas.setOnKeyReleased(paddle.getKeyReleaseHandler());
         root.getChildren().add(canvas);
+        canvas.requestFocus();
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         r = new Renderer(gc);
-
     }
+
 
     void updateGame(double dt) {
         paddle.update(dt);
