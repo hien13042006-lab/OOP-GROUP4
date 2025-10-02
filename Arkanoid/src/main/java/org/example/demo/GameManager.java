@@ -80,16 +80,19 @@ public class GameManager {
     void updateGame(double dt) {
         ball.checkCollision(paddle);
         for (int i = 0; i < bricks.size(); i++) {
-            if(ball.checkCollision(bricks.get(i)))
-            {
+            if (ball.checkCollision(bricks.get(i))) {
                 ball.bounceOffBrick(bricks.get(i));
+                bricks.get(i).takeHit();
+            }
+        }
+        for (int i = 0; i < bricks.size(); i++) {
+            if (bricks.get(i).isDestroyed()) {
                 bricks.remove(i);
             }
         }
         paddle.update(dt);
         ball.update(dt);
-        if(ball.checkCollision(paddle))
-        {
+        if (ball.checkCollision(paddle)) {
             ball.bounceOffPaddle(paddle);
         }
     }

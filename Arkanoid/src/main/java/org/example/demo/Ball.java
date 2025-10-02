@@ -48,14 +48,14 @@ public class Ball extends MoveableObject {
         dy = -dy;
 
         // Tính toán vị trí va chạm (0.0 trái → 1.0 phải)
-        double hitPos = (x - brick.getX() + width / 2.0) / brick.getWidth();
-        dx = (hitPos - 0.5) * 8; // càng xa giữa thì dx càng lớn
-
+//        double hitPos = (x - brick.getX() + width / 2.0) / brick.getWidth();
+//        dx = (hitPos - 0.5) * 8; // càng xa giữa thì dx càng lớn
+        dx = -dx;
         // Chuẩn hóa tốc độ để bóng không chậm/nhanh bất thường
-        double speed = Math.sqrt(dx * dx + dy * dy);
-        double desiredSpeed = 5;
-        dx = dx / speed * desiredSpeed;
-        dy = dy / speed * desiredSpeed;
+//        double speed = Math.sqrt(dx * dx + dy * dy);
+//        double desiredSpeed = 5;
+//        dx = dx / speed * desiredSpeed;
+//        dy = dy / speed * desiredSpeed;
     }
 
 
