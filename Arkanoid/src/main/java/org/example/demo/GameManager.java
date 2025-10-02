@@ -30,7 +30,7 @@ public class GameManager {
         int marginBottom = 30; //khoang cach den mep duoi
         int paddleDx = 0;
         int paddleDy = 0;
-        int paddleSpeed = 300;
+        int paddleSpeed = 800;
         paddle = new Paddle((WINDOW_WIDTH - paddleWidth) / 2,
                 WINDOW_HEIGHT - paddleHeight - marginBottom,
                 paddleWidth, paddleHeight, paddleDx, paddleDy, paddleSpeed);
@@ -39,7 +39,7 @@ public class GameManager {
         int ballRadius = 10;
         int ballDx = 1;
         int ballDy = 1;
-        int ballSpeed = 10;
+        int ballSpeed = 200;
 
         ball = new Ball(WINDOW_WIDTH / 2 - ballRadius, paddle.y - ballRadius,
                 ballRadius * 2, ballRadius * 2,
@@ -78,8 +78,20 @@ public class GameManager {
 
 
     void updateGame(double dt) {
+        ball.checkCollision(paddle);
+        for (int i = 0; i < bricks.size(); i++) {
+            if(ball.checkCollision(bricks.get(i)))
+            {
+                ball.bounceOffBrick(bricks.get(i));
+                bricks.remove(i);
+            }
+        }
         paddle.update(dt);
         ball.update(dt);
+        if(ball.checkCollision(paddle))
+        {
+            ball.bounceOffPaddle(paddle);
+        }
     }
 
     void render() {
