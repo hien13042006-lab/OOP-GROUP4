@@ -1,5 +1,7 @@
 package org.example.demo;
 
+import javafx.scene.image.Image;
+
 import java.net.PasswordAuthentication;
 
 public class Ball extends MoveableObject {
@@ -10,6 +12,7 @@ public class Ball extends MoveableObject {
         this.speed = speed;
         this.dx = dx;
         this.dy = dy;
+        image = new Image(getClass().getResourceAsStream("/asset/ball.png"));
     }
 
 
@@ -41,21 +44,10 @@ public class Ball extends MoveableObject {
 
 
     void bounceOffBrick(Brick brick) {
-        // Đặt bóng ngay trên paddle để tránh kẹt
         y = brick.getY() + this.height;
-
         // Đảo chiều dọc
         dy = -dy;
-
-        // Tính toán vị trí va chạm (0.0 trái → 1.0 phải)
-//        double hitPos = (x - brick.getX() + width / 2.0) / brick.getWidth();
-//        dx = (hitPos - 0.5) * 8; // càng xa giữa thì dx càng lớn
         dx = -dx;
-        // Chuẩn hóa tốc độ để bóng không chậm/nhanh bất thường
-//        double speed = Math.sqrt(dx * dx + dy * dy);
-//        double desiredSpeed = 5;
-//        dx = dx / speed * desiredSpeed;
-//        dy = dy / speed * desiredSpeed;
     }
 
 
@@ -95,6 +87,6 @@ public class Ball extends MoveableObject {
 
     @Override
     public void render(Renderer r) {
-        r.draw(this);
+        r.draw(this, image);
     }
 }

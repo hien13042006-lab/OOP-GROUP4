@@ -1,15 +1,18 @@
 package org.example.demo;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 import java.security.PublicKey;
 
 public class Renderer {
     private GraphicsContext gc;
+    private Image background;
 
     public Renderer(GraphicsContext gc) {
         this.gc = gc;
+        background = new Image(getClass().getResourceAsStream("/asset/background.png"));
     }
 
     public GraphicsContext getGc() {
@@ -22,29 +25,12 @@ public class Renderer {
 
     //Xoa man hinh
     public void clear(double width, double height) {
-        gc.setFill(Color.BLACK); // nền
-        gc.fillRect(0, 0, width, height);
+        gc.drawImage(background, 0, 0, width, height);
     }
 
-    //draw paddle
-    public void draw(Paddle paddle) {
-        gc.setFill(Color.AQUAMARINE);
-        gc.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+    //draw gameObject
+    public void draw(GameObject object, Image image) {
+        gc.drawImage(image, object.x, object.y, object.width, object.height);
     }
 
-    //draw ball
-    public void draw(Ball ball) {
-        gc.setFill(Color.BLUE);
-        gc.fillOval(ball.x, ball.y, ball.width, ball.height);
-    }
-    //draw brick
-    public void draw(StrongBrick brick){
-        gc.setFill(Color.ORANGE);
-        gc.fillRect(brick.x, brick.y,brick.width, brick.height);
-    }
-
-    public void draw(NormalBrick brick){
-        gc.setFill(Color.RED);
-        gc.fillRect(brick.x, brick.y,brick.width, brick.height);
-    }
 }

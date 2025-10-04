@@ -36,13 +36,14 @@ public class GameManager {
                 paddleWidth, paddleHeight, paddleDx, paddleDy, paddleSpeed);
 
         //THONG SO BALL
-        int ballRadius = 10;
+        int ballHeight = 13;
+        int ballWidth = 12;
         int ballDx = 1;
         int ballDy = 1;
-        int ballSpeed = 200;
+        int ballSpeed = 100;
 
-        ball = new Ball(WINDOW_WIDTH / 2 - ballRadius, paddle.y - ballRadius,
-                ballRadius * 2, ballRadius * 2,
+        ball = new Ball(WINDOW_WIDTH / 2 - ballWidth, paddle.y - ballHeight,
+                ballWidth, ballHeight,
                 ballDx, ballDy, ballSpeed);
 
 
@@ -78,18 +79,18 @@ public class GameManager {
 
 
     void updateGame(double dt) {
-        ball.checkCollision(paddle);
         for (int i = 0; i < bricks.size(); i++) {
             if (ball.checkCollision(bricks.get(i))) {
                 ball.bounceOffBrick(bricks.get(i));
                 bricks.get(i).takeHit();
+
+                if (bricks.get(i).isDestroyed()) {
+                    bricks.remove(i);
+                    i--;
+                }
             }
         }
-        for (int i = 0; i < bricks.size(); i++) {
-            if (bricks.get(i).isDestroyed()) {
-                bricks.remove(i);
-            }
-        }
+
         paddle.update(dt);
         ball.update(dt);
         if (ball.checkCollision(paddle)) {
@@ -105,5 +106,4 @@ public class GameManager {
             t.render(r);
         }
     }
-
 }
