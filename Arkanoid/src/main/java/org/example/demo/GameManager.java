@@ -100,7 +100,7 @@ public class GameManager {
                 //có tỉ lệ rơi ra powerUp
                 double chance = rand.nextDouble();
                 if(chance < bricks.get(i).getPowerUpDropChance()) {
-                    fallingPowerUps.add((PowerUp)bricks.get(i).makePowerUp());
+                    fallingPowerUps.add(bricks.get(i).makePowerUp());
                 }
                 // xóa khỏi list bricks
                 bricks.remove(i);
@@ -108,13 +108,28 @@ public class GameManager {
         }
         //update fallingPowerUps
         for(int i = 0; i < fallingPowerUps.size(); i++) {
-            fallingPowerUps.get(i).update(dt);
+            PowerUp powerUp =  fallingPowerUps.get(i);
+
+            //check va chạm với paddle
+            if(powerUp.checkCollision(paddle)) {
+                powerUp.applyEffect(paddle);
+                activePowerUps.add(powerUp);
+                fallingPowerUps.remove(powerUp);
+                i--;
+                continue;
+            }
+            powerUp.update(dt);
         }
 
         //update activePowerUps
+        System.out.println("size: " + activePowerUps.size());
         for(int i = 0; i < activePowerUps.size(); i++) {
-            if(activePowerUps.get(i).getDuration() <= 0) {
-                activePowerUps.get(i).removeEffect(paddle);
+            PowerUp powerUp = activePowerUps.get(i);
+            powerUp.update(dt);
+            
+            //xóa powerUp nếu hết thời gian
+            if(powerUp.getDuration() <= 0) {
+                powerUp.removeEffect(paddle);
                 activePowerUps.remove(i);
                 i--;
             }

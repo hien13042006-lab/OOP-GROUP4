@@ -35,7 +35,7 @@ public class PowerUp extends GameObject{
         }
 
         if(isActive){
-            setDuration(this.getDuration() - dt);
+            this.setDuration(this.getDuration() - dt);
         }
     }
 
@@ -43,4 +43,13 @@ public class PowerUp extends GameObject{
     public void render(Renderer r) {
         r.draw(this);
     }
+
+    // check va chạm với paddle để kích hoạt
+    public boolean checkCollision(Paddle paddle) {
+        return this.x < paddle.getX() + paddle.getWidth() &&
+                this.x + this.width > paddle.getX() &&
+                this.y < paddle.getY() + paddle.getHeight() &&
+                this.y + this.height > paddle.getY();
+    }
+
 }
