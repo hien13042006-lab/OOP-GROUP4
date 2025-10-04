@@ -20,7 +20,7 @@ public class NormalBrick extends Brick {
     }
 
     @Override
-    public void render(Renderer renderer) {
-        renderer.draw(this);
+    public void render(Renderer r) {
+        r.draw(this);
     }
 }
