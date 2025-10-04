@@ -47,4 +47,10 @@ public class Renderer {
         gc.setFill(Color.RED);
         gc.fillRect(brick.x, brick.y,brick.width, brick.height);
     }
+
+    //draw powerUp
+    public void draw(PowerUp powerUp) {
+        gc.setFill(Color.WHITE);
+        gc.fillRect(powerUp.x, powerUp.y, powerUp.width, powerUp.height);
+    }
 }

@@ -9,6 +9,7 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class GameManager {
@@ -20,17 +21,21 @@ public class GameManager {
     Canvas canvas;
     Ball ball;
     List<Brick> bricks;
+    List<PowerUp> activePowerUps; //các powerUp đang áp dụng
+    List<PowerUp> fallingPowerUps; //các powerUp đang rơi
 
+    Random rand = new Random(); // random
 
     void startGame(Group root) {
 
         //THONG SO PADDLE
-        int paddleWidth = 100;
-        int paddleHeight = 20;
-        int marginBottom = 30; //khoang cach den mep duoi
-        int paddleDx = 0;
-        int paddleDy = 0;
-        int paddleSpeed = 800;
+        double paddleWidth = Paddle.PADDLE_WIDTH;
+        double paddleHeight = Paddle.PADDLE_HEIGHT;
+        double marginBottom = Paddle.MARGIN_BOTTOM; //khoang cach den mep duoi
+        double paddleDx = Paddle.PADDLE_DX;
+        double paddleDy = Paddle.PADDLE_DY;
+        double paddleSpeed = Paddle.PADDLE_SPEED;
+
         paddle = new Paddle((WINDOW_WIDTH - paddleWidth) / 2,
                 WINDOW_HEIGHT - paddleHeight - marginBottom,
                 paddleWidth, paddleHeight, paddleDx, paddleDy, paddleSpeed);
@@ -65,6 +70,11 @@ public class GameManager {
                 }
             }
         }
+
+        //powerUp
+        activePowerUps = new ArrayList<>();// các powerUp đang rơi
+        fallingPowerUps = new ArrayList<>();// các powerUp đang tác dụng
+
         canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
         canvas.setFocusTraversable(true);
         canvas.setOnKeyPressed(paddle.getKeyPressHandler());
@@ -87,9 +97,29 @@ public class GameManager {
         }
         for (int i = 0; i < bricks.size(); i++) {
             if (bricks.get(i).isDestroyed()) {
+                //có tỉ lệ rơi ra powerUp
+                double chance = rand.nextDouble();
+                if(chance < bricks.get(i).getPowerUpDropChance()) {
+                    fallingPowerUps.add((PowerUp)bricks.get(i).makePowerUp());
+                }
+                // xóa khỏi list bricks
                 bricks.remove(i);
             }
         }
+        //update fallingPowerUps
+        for(int i = 0; i < fallingPowerUps.size(); i++) {
+            fallingPowerUps.get(i).update(dt);
+        }
+
+        //update activePowerUps
+        for(int i = 0; i < activePowerUps.size(); i++) {
+            if(activePowerUps.get(i).getDuration() <= 0) {
+                activePowerUps.get(i).removeEffect(paddle);
+                activePowerUps.remove(i);
+                i--;
+            }
+        }
+
         paddle.update(dt);
         ball.update(dt);
         if (ball.checkCollision(paddle)) {
@@ -101,6 +131,9 @@ public class GameManager {
         r.clear(WINDOW_WIDTH, WINDOW_HEIGHT);
         paddle.render(r);
         ball.render(r);
+        for(PowerUp powerUp : fallingPowerUps) {
+            powerUp.render(r);
+        }
         for (Brick t : bricks) {
             t.render(r);
         }
