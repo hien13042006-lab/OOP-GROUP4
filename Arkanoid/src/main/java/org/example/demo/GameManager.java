@@ -106,6 +106,7 @@ public class GameManager {
                 bricks.remove(i);
             }
         }
+        System.out.println(fallingPowerUps.size());
         //update fallingPowerUps
         for(int i = 0; i < fallingPowerUps.size(); i++) {
             PowerUp powerUp =  fallingPowerUps.get(i);
@@ -118,15 +119,23 @@ public class GameManager {
                 i--;
                 continue;
             }
+
+            //xóa khi rớt ra khỏi màn hình
+            if(powerUp.getY() > WINDOW_HEIGHT) {
+                fallingPowerUps.remove(powerUp);
+                i--;
+                continue;
+            }
+            //update
             powerUp.update(dt);
         }
 
         //update activePowerUps
-        System.out.println("size: " + activePowerUps.size());
+        //System.out.println("size: " + activePowerUps.size());
         for(int i = 0; i < activePowerUps.size(); i++) {
             PowerUp powerUp = activePowerUps.get(i);
             powerUp.update(dt);
-            
+
             //xóa powerUp nếu hết thời gian
             if(powerUp.getDuration() <= 0) {
                 powerUp.removeEffect(paddle);
