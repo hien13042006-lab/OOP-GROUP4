@@ -38,6 +38,12 @@ public class PlayingState implements GameState {
                 gameManager.getBall().bounceOffBrick(brick);
                 brick.takeHit();
                 if (brick.isDestroyed()) {
+                    // random xac suat ra powerup hay khong
+                    double chance = gameManager.getRand().nextDouble();
+                    if(chance < gameManager.getBricks().get(i).getPowerUpDropChance()) {
+                        gameManager.getFallingPowerUps().add(gameManager.getBricks().get(i).makePowerUp());
+                    }
+
                     gameManager.getBricks().remove(i);
                     gameManager.addScore(10);
                 }
@@ -68,6 +74,41 @@ public class PlayingState implements GameState {
                 gameManager.resetBallAndPaddle();
             }
         }
+
+
+        //update fallingPowerUps
+        for(int i = gameManager.getFallingPowerUps().size() - 1; i>=0; i--) {
+            PowerUp powerUp =  gameManager.getFallingPowerUps().get(i);
+
+            //check va chạm với paddle
+            if(powerUp.checkCollision(gameManager.getPaddle())) {
+                powerUp.applyEffect(gameManager.getPaddle());
+                gameManager.getActivePowerUps().add(powerUp);
+                gameManager.getFallingPowerUps().remove(i);
+                continue;
+            }
+
+            //xóa khi rớt ra khỏi màn hình
+            if(powerUp.getY() > GameManager.WINDOW_HEIGHT) {
+                gameManager.getFallingPowerUps().remove(powerUp);
+                continue;
+            }
+            //update
+            powerUp.update(dt);
+        }
+
+        //update activePowerUps
+        for(int i = gameManager.getActivePowerUps().size() - 1; i >=0; i--) {
+            PowerUp powerUp = gameManager.getActivePowerUps().get(i);
+            powerUp.update(dt);
+
+            //xóa powerUp nếu hết thời gian
+            if(powerUp.getDuration() <= 0) {
+                powerUp.removeEffect(gameManager.getPaddle());
+                gameManager.getActivePowerUps().remove(i);
+            }
+        }
+
     }
 
     @Override

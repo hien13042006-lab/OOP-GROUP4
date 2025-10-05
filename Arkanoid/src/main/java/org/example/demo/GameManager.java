@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameManager {
     public static final int WINDOW_WIDTH = 800;
@@ -18,11 +19,15 @@ public class GameManager {
     private Canvas canvas;
     private Ball ball;
     private List<Brick> bricks;
+    private List<PowerUp> activePowerUps; //các powerUp đang áp dụng
+    private List<PowerUp> fallingPowerUps; //các powerUp đang rơi
     private GameState currentState;
 
     private int score;
     private int lives;
     private int currentLevel;
+
+    private Random rand = new Random(); // random
 
     void startGame(Group root) {
         // Khởi tạo game state
@@ -72,6 +77,10 @@ public class GameManager {
                 ballRadius * 2, ballRadius * 2, 1, 1, 200);
 
         createBricks();
+
+        //powerUp
+        activePowerUps = new ArrayList<>();// các powerUp đang rơi
+        fallingPowerUps = new ArrayList<>();// các powerUp đang tác dụng
 
         // Thiết lập input handler cho paddle
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -160,4 +169,16 @@ public class GameManager {
     public int getLives() { return lives; }
     public int getCurrentLevel() { return currentLevel; }
     public Renderer getRenderer() { return renderer; }
+
+    public List<PowerUp> getFallingPowerUps() {
+        return fallingPowerUps;
+    }
+
+    public List<PowerUp> getActivePowerUps() {
+        return activePowerUps;
+    }
+
+    public Random getRand() {
+        return rand;
+    }
 }

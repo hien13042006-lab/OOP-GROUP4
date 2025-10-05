@@ -48,6 +48,14 @@ public class Renderer {
         gc.setFill(Color.RED);
         gc.fillRect(brick.x, brick.y,brick.width, brick.height);
     }
+
+    //draw powerUp
+    public void draw(PowerUp powerUp) {
+        gc.setFill(Color.GREEN);
+        gc.fillRect(powerUp.x, powerUp.y, powerUp.width, powerUp.height);
+    }
+
+
     public void draw(MenuState menu, GameManager gameManager){
         // Vẽ nền
         clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
@@ -89,7 +97,9 @@ public class Renderer {
         for (Brick brick : gameManager.getBricks()) {
             brick.render(this);
         }
-
+        for(PowerUp powerUp : gameManager.getFallingPowerUps()) {
+            powerUp.render(this);
+        }
         // Vẽ HUD
         drawHUD(this, gameManager);
     }
@@ -130,4 +140,6 @@ public class Renderer {
         gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 50, GameManager.WINDOW_HEIGHT / 2);
         gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 140, GameManager.WINDOW_HEIGHT / 2 + 50);
     }
+
+
 }

@@ -7,6 +7,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class Paddle extends MoveableObject {
+    //cac thong so toan cuc cua paddle
+    public static final double PADDLE_WIDTH = 100;
+    public static final double PADDLE_HEIGHT = 20;
+    public static final double PADDLE_DX = 0;
+    public static final double PADDLE_DY = 0;
+    public static final double PADDLE_SPEED = 800;
+    public static final double MARGIN_BOTTOM = 30;
 
     private double speed;
     private boolean movingRight = false;
