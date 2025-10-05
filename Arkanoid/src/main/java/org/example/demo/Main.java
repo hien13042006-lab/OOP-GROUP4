@@ -27,7 +27,6 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-
         GameManager gameManager = new GameManager();
         gameManager.startGame(root);
 
