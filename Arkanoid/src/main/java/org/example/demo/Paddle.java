@@ -83,11 +83,6 @@ public class Paddle extends MoveableObject {
 
     @Override
     public void move(double dt) {
-
-    }
-
-    @Override
-    public void update(double dt) {
         if (movingLeft) {
             moveLeft(dt);
         }
@@ -98,6 +93,11 @@ public class Paddle extends MoveableObject {
         // Clamp to screen
         if (x < 0) x = 0;
         if (x + width > 800) x = 800 - width;
+    }
+
+    @Override
+    public void update(double dt) {
+        move(dt);
     }
 
     @Override
