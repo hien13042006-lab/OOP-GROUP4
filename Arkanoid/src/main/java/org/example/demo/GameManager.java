@@ -34,12 +34,11 @@ public class GameManager {
         score = 0;
         lives = 3;
         currentLevel = 1;
-
+        initializeCanvas(root);
+        initializeLevel();
         // Bắt đầu với menu state
         currentState = new MenuState();
         currentState.enter(this);
-
-        initializeCanvas(root);
     }
 
     private void initializeCanvas(Group root) {
@@ -179,13 +178,33 @@ public class GameManager {
     }
 
     // Getters
-    public Paddle getPaddle() { return paddle; }
-    public Ball getBall() { return ball; }
-    public List<Brick> getBricks() { return bricks; }
-    public int getScore() { return score; }
-    public int getLives() { return lives; }
-    public int getCurrentLevel() { return currentLevel; }
-    public Renderer getRenderer() { return renderer; }
+    public Paddle getPaddle() {
+        return paddle;
+    }
+
+    public Ball getBall() {
+        return ball;
+    }
+
+    public List<Brick> getBricks() {
+        return bricks;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public Renderer getRenderer() {
+        return renderer;
+    }
 
     public List<PowerUp> getFallingPowerUps() {
         return fallingPowerUps;
