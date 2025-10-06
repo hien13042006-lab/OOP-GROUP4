@@ -73,7 +73,7 @@ public class GameManager {
         // THONG SO BALL
         int ballRadius = 10;
         ball = new Ball(WINDOW_WIDTH / 2 - ballRadius, paddle.getY() - ballRadius * 2,
-                ballRadius * 2, ballRadius * 2, 1, 1, 200);
+                ballRadius * 2, ballRadius * 2, 1, 1, 500);
 
         createBricks();
 

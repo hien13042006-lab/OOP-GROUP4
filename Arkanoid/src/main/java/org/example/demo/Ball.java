@@ -23,39 +23,145 @@ public class Ball extends MoveableObject {
                 this.y + this.height > gameObject.getY();
     }
 
-
+    // Va chạm với paddle
     void bounceOffPaddle(Paddle paddle) {
-        // Đặt bóng ngay trên paddle để tránh kẹt
-        y = paddle.getY() - this.height;
+        // Chỉ xử lý khi đang rơi xuống
+        if (dy < 0) return;
 
-        // Đảo chiều dọc
-        dy = -dy;
+        // Không va chạm thì thôi
+        if (!checkCollision(paddle)) return;
 
-        // Tính toán vị trí va chạm (0.0 trái → 1.0 phải)
-        double hitPos = (x - paddle.getX() + width / 2.0) / paddle.getWidth();
-        dx = (hitPos - 0.5) * 8; // càng xa giữa thì dx càng lớn
+        // Tính overlap theo từng hướng
+        // Kiểm tra độ va chạm với các cạnh bên của paddle
+        double overlapLeft   = (this.x + this.width) - paddle.getX();
+        double overlapRight  = (paddle.getX() + paddle.getWidth()) - this.x;
+        double overlapTop    = (this.y + this.height) - paddle.getY();
+        double overlapBottom = (paddle.getY() + paddle.getHeight()) - this.y;
 
-        // Chuẩn hóa tốc độ để bóng không chậm/nhanh bất thường
-        double speed = Math.sqrt(dx * dx + dy * dy);
-        double desiredSpeed = 5;
-        dx = dx / speed * desiredSpeed;
-        dy = dy / speed * desiredSpeed;
+        // Tìm overlap nhỏ nhất
+        double minOverlap = Math.min(
+                Math.min(overlapLeft, overlapRight),
+                Math.min(overlapTop, overlapBottom)
+        );
+
+        // Ngưỡng để coi là "chạm góc"
+        double epsilon = 0.5;
+
+        // Kiểm tra chạm góc(chỉ góc trên bên phải or trên trái của paddle
+        boolean cornerTopLeft     = Math.abs(overlapTop - overlapLeft)   < epsilon;
+        boolean cornerTopRight    = Math.abs(overlapTop - overlapRight)  < epsilon;
+
+        if (cornerTopLeft || cornerTopRight ) {
+            // Va chạm góc → đảo cả dx, dy
+            dx = -dx;
+            dy = -dy;
+            return;
+        }
+
+        // Xử lý theo cạnh có overlap nhỏ nhất
+        if (minOverlap == overlapLeft) {
+            // Đụng cạnh trái của paddle → bật ngược trục X, vẫn rơi xuống
+            this.x = paddle.getX() - this.width;
+            dx = -Math.abs(dx);
+            dy = Math.abs(dy); // giữ đang rơi
+            return;
+        } else if (minOverlap == overlapRight) {
+            // Đụng cạnh phải của paddle → bật ngược trục X, vẫn rơi xuống
+            this.x = paddle.getX() + paddle.getWidth();
+            dx = Math.abs(dx);
+            dy = Math.abs(dy); // giữ đang rơi
+            return;
+        } else if (minOverlap == overlapTop) {
+            // Đụng mặt trên của paddle
+            // Đặt bóng ngay trên paddle để tránh kẹt
+            this.y = paddle.getY() - this.height;
+
+            // Tính tương quan vị trí chạm so với tâm paddle: [-1, 1]
+            double paddleCenter = paddle.getX() + paddle.getWidth() / 2.0;
+            double ballCenter   = this.x + this.width / 2.0;
+            double relative     = (ballCenter - paddleCenter) / (paddle.getWidth() / 2.0);
+            relative = clamp(relative, -1.0, 1.0);
+
+            // Góc nảy tối đa lệch ±60° so với phương thẳng đứng
+            double maxBounceAngle = Math.toRadians(60);
+            double angle = relative * maxBounceAngle; // âm: lệch trái, dương: lệch phải
+
+            // Giữ nguyên độ lớn vận tốc.
+                double v = Math.sqrt(dx * dx + dy * dy);
+
+            // Góc tính theo phương thẳng đứng: dx = v*sin(angle), dy = -v*cos(angle) (đi lên)
+            dx = v * Math.sin(angle);
+            dy = -Math.abs(v * Math.cos(angle)); // chắc chắn đi lên
+
+            return;
+        }
+
+    // kiểm tra cho độ chênh [min,max] = [1,1].
+    private double clamp(double val, double min, double max) {
+        return Math.max(min, Math.min(max, val));
     }
-
+}
 
     void bounceOffBrick(Brick brick) {
-        y = brick.getY() + this.height;
-        // Đảo chiều dọc
-        dy = -dy;
-        dx = -dx;
+        // Kiểm tra độ va chạm với các cạnh của Brick
+        // Tính overlap theo từng hướng
+        double overlapLeft   = (this.x + this.width) - brick.getX();
+        double overlapRight  = (brick.getX() + brick.getWidth()) - this.x;
+        double overlapTop    = (this.y + this.height) - brick.getY();
+        double overlapBottom = (brick.getY() + brick.getHeight()) - this.y;
+
+        // Tìm overlap nhỏ nhất
+        double minOverlap = Math.min(
+                Math.min(overlapLeft, overlapRight),
+                Math.min(overlapTop, overlapBottom)
+        );
+
+        // Ngưỡng để coi là "chạm góc"
+        double epsilon = 0.5;
+
+        // Kiểm tra chạm góc
+        boolean cornerTopLeft = Math.abs(overlapTop - overlapLeft) < epsilon;
+        boolean cornerTopRight = Math.abs(overlapTop - overlapRight) < epsilon;
+        boolean cornerBottomLeft = Math.abs(overlapBottom - overlapLeft) < epsilon;
+        boolean cornerBottomRight = Math.abs(overlapBottom - overlapRight) < epsilon;
+
+        if (cornerTopLeft || cornerTopRight || cornerBottomLeft || cornerBottomRight) {
+            // Va chạm góc → đảo cả dx, dy
+            dx = -dx;
+            dy = -dy;
+            return;
+        }
+
+        // Ngược lại thì va chạm cạnh
+        if (minOverlap == overlapLeft) {
+            // Bên trái
+            this.x = brick.getX() - this.width;
+            dx = -Math.abs(dx);
+        } else if (minOverlap == overlapRight) {
+            // Bên phải
+            this.x = brick.getX() + brick.getWidth();
+            dx = Math.abs(dx);
+        } else if (minOverlap == overlapTop) {
+            // Phía trên
+            this.y = brick.getY() - this.height;
+            dy = -Math.abs(dy);
+        } else if (minOverlap == overlapBottom) {
+            // Phía dưới
+            this.y = brick.getY() + brick.getHeight();
+            dy = Math.abs(dy);
+        }
     }
 
-
+    // Nảy khi chạm tường
     void bounceOffWall() {
+        //chạm trái
         if (x < 0) {
             x = 0;
             dx = -dx;
-        } else if (x > 800 - width) {
+        }
+
+        // chạm phải
+        else if (x > 800 - width) {
             x = 800 - width;
             dx = -dx;
         }

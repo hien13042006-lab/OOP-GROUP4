@@ -1,7 +1,6 @@
 package org.example.demo;
 
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -9,11 +8,9 @@ import java.security.PublicKey;
 
 public class Renderer {
     private GraphicsContext gc;
-    private Image background;
 
     public Renderer(GraphicsContext gc) {
         this.gc = gc;
-        background = new Image(getClass().getResourceAsStream("/asset/background.png"));
     }
 
     public GraphicsContext getGc() {
@@ -130,6 +127,4 @@ public class Renderer {
         gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 50, GameManager.WINDOW_HEIGHT / 2);
         gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 140, GameManager.WINDOW_HEIGHT / 2 + 50);
     }
-
-
 }
