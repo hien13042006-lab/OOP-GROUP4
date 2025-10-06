@@ -33,9 +33,9 @@ public class Ball extends MoveableObject {
 
         // Tính overlap theo từng hướng
         // Kiểm tra độ va chạm với các cạnh bên của paddle
-        double overlapLeft   = (this.x + this.width) - paddle.getX();
-        double overlapRight  = (paddle.getX() + paddle.getWidth()) - this.x;
-        double overlapTop    = (this.y + this.height) - paddle.getY();
+        double overlapLeft = (this.x + this.width) - paddle.getX();
+        double overlapRight = (paddle.getX() + paddle.getWidth()) - this.x;
+        double overlapTop = (this.y + this.height) - paddle.getY();
         double overlapBottom = (paddle.getY() + paddle.getHeight()) - this.y;
 
         // Tìm overlap nhỏ nhất
@@ -48,10 +48,10 @@ public class Ball extends MoveableObject {
         double epsilon = 0.5;
 
         // Kiểm tra chạm góc(chỉ góc trên bên phải or trên trái của paddle
-        boolean cornerTopLeft     = Math.abs(overlapTop - overlapLeft)   < epsilon;
-        boolean cornerTopRight    = Math.abs(overlapTop - overlapRight)  < epsilon;
+        boolean cornerTopLeft = Math.abs(overlapTop - overlapLeft) < epsilon;
+        boolean cornerTopRight = Math.abs(overlapTop - overlapRight) < epsilon;
 
-        if (cornerTopLeft || cornerTopRight ) {
+        if (cornerTopLeft || cornerTopRight) {
             // Va chạm góc → đảo cả dx, dy
             dx = -dx;
             dy = -dy;
@@ -78,8 +78,8 @@ public class Ball extends MoveableObject {
 
             // Tính tương quan vị trí chạm so với tâm paddle: [-1, 1]
             double paddleCenter = paddle.getX() + paddle.getWidth() / 2.0;
-            double ballCenter   = this.x + this.width / 2.0;
-            double relative     = (ballCenter - paddleCenter) / (paddle.getWidth() / 2.0);
+            double ballCenter = this.x + this.width / 2.0;
+            double relative = (ballCenter - paddleCenter) / (paddle.getWidth() / 2.0);
             relative = clamp(relative, -1.0, 1.0);
 
             // Góc nảy tối đa lệch ±60° so với phương thẳng đứng
@@ -87,7 +87,7 @@ public class Ball extends MoveableObject {
             double angle = relative * maxBounceAngle; // âm: lệch trái, dương: lệch phải
 
             // Giữ nguyên độ lớn vận tốc.
-                double v = Math.sqrt(dx * dx + dy * dy);
+            double v = Math.sqrt(dx * dx + dy * dy);
 
             // Góc tính theo phương thẳng đứng: dx = v*sin(angle), dy = -v*cos(angle) (đi lên)
             dx = v * Math.sin(angle);
@@ -95,12 +95,12 @@ public class Ball extends MoveableObject {
 
             return;
         }
-
-    // kiểm tra cho độ chênh [min,max] = [1,1].
-    private double clamp(double val, double min, double max) {
-        return Math.max(min, Math.min(max, val));
     }
-}
+        // kiểm tra cho độ chênh [min,max] = [1,1].
+        private double clamp ( double val, double min, double max){
+            return Math.max(min, Math.min(max, val));
+        }
+
 
     void bounceOffBrick(Brick brick) {
         // Kiểm tra độ va chạm với các cạnh của Brick

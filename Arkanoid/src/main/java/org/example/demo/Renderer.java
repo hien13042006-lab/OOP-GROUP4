@@ -1,6 +1,7 @@
 package org.example.demo;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -8,9 +9,10 @@ import java.security.PublicKey;
 
 public class Renderer {
     private GraphicsContext gc;
-
+    private Image background;
     public Renderer(GraphicsContext gc) {
         this.gc = gc;
+        background = new Image(getClass().getResourceAsStream("/asset/background.png"));
     }
 
     public GraphicsContext getGc() {
@@ -29,11 +31,6 @@ public class Renderer {
     //draw gameObject
     public void draw(GameObject object, Image image) {
         gc.drawImage(image, object.x, object.y, object.width, object.height);
-    }
-
-    public void draw(NormalBrick brick){
-        gc.setFill(Color.RED);
-        gc.fillRect(brick.x, brick.y,brick.width, brick.height);
     }
 
     //draw powerUp
