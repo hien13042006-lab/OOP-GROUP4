@@ -1,5 +1,7 @@
 package org.example.demo;
 
+import javafx.scene.image.Image;
+
 public class NormalBrick extends Brick {
     double DROP_CHANCE_NORMAL_BRICK = 0.9;
     public NormalBrick(double x, double y, double width, double height) {
@@ -8,6 +10,7 @@ public class NormalBrick extends Brick {
         this.y = y;
         this.width = width;
         this.height = height;
+        image = new Image(getClass().getResourceAsStream("/asset/normalBrick.png"));
         powerUpDropChance = DROP_CHANCE_NORMAL_BRICK;
     }
 
@@ -23,7 +26,7 @@ public class NormalBrick extends Brick {
 
     @Override
     public void render(Renderer r) {
-        r.draw(this);
+        r.draw(this, image);
     }
 
     @Override

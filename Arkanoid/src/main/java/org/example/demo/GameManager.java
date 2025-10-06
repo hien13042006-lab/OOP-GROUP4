@@ -34,12 +34,11 @@ public class GameManager {
         score = 0;
         lives = 3;
         currentLevel = 1;
-
+        initializeCanvas(root);
+        initializeLevel();
         // Bắt đầu với menu state
         currentState = new MenuState();
         currentState.enter(this);
-
-        initializeCanvas(root);
     }
 
     private void initializeCanvas(Group root) {
@@ -114,6 +113,23 @@ public class GameManager {
     }
 
     void updateGame(double dt) {
+        for (int i = 0; i < bricks.size(); i++) {
+            if (ball.checkCollision(bricks.get(i))) {
+                ball.bounceOffBrick(bricks.get(i));
+                bricks.get(i).takeHit();
+
+                if (bricks.get(i).isDestroyed()) {
+                    bricks.remove(i);
+                    i--;
+                }
+            }
+        }
+
+        paddle.update(dt);
+        ball.update(dt);
+        if (ball.checkCollision(paddle)) {
+            ball.bounceOffPaddle(paddle);
+        }
         currentState.update(dt, this);
     }
 
@@ -162,13 +178,33 @@ public class GameManager {
     }
 
     // Getters
-    public Paddle getPaddle() { return paddle; }
-    public Ball getBall() { return ball; }
-    public List<Brick> getBricks() { return bricks; }
-    public int getScore() { return score; }
-    public int getLives() { return lives; }
-    public int getCurrentLevel() { return currentLevel; }
-    public Renderer getRenderer() { return renderer; }
+    public Paddle getPaddle() {
+        return paddle;
+    }
+
+    public Ball getBall() {
+        return ball;
+    }
+
+    public List<Brick> getBricks() {
+        return bricks;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public Renderer getRenderer() {
+        return renderer;
+    }
 
     public List<PowerUp> getFallingPowerUps() {
         return fallingPowerUps;

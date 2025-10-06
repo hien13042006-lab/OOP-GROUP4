@@ -1,6 +1,7 @@
 package org.example.demo;
 
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -8,9 +9,10 @@ import java.security.PublicKey;
 
 public class Renderer {
     private GraphicsContext gc;
-
+    private Image background;
     public Renderer(GraphicsContext gc) {
         this.gc = gc;
+        background = new Image(getClass().getResourceAsStream("/asset/background.png"));
     }
 
     public GraphicsContext getGc() {
@@ -22,31 +24,13 @@ public class Renderer {
     }
 
     //Xoa man hinh
-    public void clear() {
-        gc.setFill(Color.BLACK); // nền
-        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH,GameManager.WINDOW_HEIGHT);
+    public void clear(double width, double height) {
+        gc.drawImage(background, 0, 0, width, height);
     }
 
-    //draw paddle
-    public void draw(Paddle paddle) {
-        gc.setFill(Color.AQUAMARINE);
-        gc.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
-    }
-
-    //draw ball
-    public void draw(Ball ball) {
-        gc.setFill(Color.BLUE);
-        gc.fillOval(ball.x, ball.y, ball.width, ball.height);
-    }
-    //draw brick
-    public void draw(StrongBrick brick){
-        gc.setFill(Color.ORANGE);
-        gc.fillRect(brick.x, brick.y,brick.width, brick.height);
-    }
-
-    public void draw(NormalBrick brick){
-        gc.setFill(Color.RED);
-        gc.fillRect(brick.x, brick.y,brick.width, brick.height);
+    //draw gameObject
+    public void draw(GameObject object, Image image) {
+        gc.drawImage(image, object.x, object.y, object.width, object.height);
     }
 
     //draw powerUp
@@ -58,7 +42,7 @@ public class Renderer {
 
     public void draw(MenuState menu, GameManager gameManager){
         // Vẽ nền
-        clear();
+        clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         // Vẽ tiêu đề
         gc.setFill(Color.WHITE);
@@ -77,7 +61,8 @@ public class Renderer {
                 GameManager.WINDOW_HEIGHT / 2 + 60);
     }
     public void draw(GameOverState gameOverState,GameManager gameManager){
-        clear();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         gc.setFill(Color.RED);
         gc.setFont(new Font("Arial", 36));
@@ -90,7 +75,7 @@ public class Renderer {
     }
 
     public void draw(PlayingState playingState,GameManager gameManager){
-        clear();
+        this.clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
         gameManager.getPaddle().render(this);
         gameManager.getBall().render(this);
         for (Brick brick : gameManager.getBricks()) {
@@ -127,7 +112,8 @@ public class Renderer {
         gc.fillText("Press ESC to Resume", GameManager.WINDOW_WIDTH / 2 - 100, GameManager.WINDOW_HEIGHT / 2 + 40);
     }
     public void draw (LevelCompleteState levelCompleteState, GameManager gameManager){
-        clear();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         gc.setFill(Color.GREEN);
         gc.setFont(new Font("Arial", 36));
