@@ -26,6 +26,4 @@ public class StrongBrick extends Brick {
     public void render(Renderer r) {
         r.draw(this, image);
     }
-
-
 }
