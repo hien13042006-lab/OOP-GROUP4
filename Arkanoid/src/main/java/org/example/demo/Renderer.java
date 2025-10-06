@@ -22,9 +22,9 @@ public class Renderer {
     }
 
     //Xoa man hinh
-    public void clear(double width, double height) {
+    public void clear() {
         gc.setFill(Color.BLACK); // nền
-        gc.fillRect(0, 0, width, height);
+        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH,GameManager.WINDOW_HEIGHT);
     }
 
     //draw paddle
@@ -58,7 +58,7 @@ public class Renderer {
 
     public void draw(MenuState menu, GameManager gameManager){
         // Vẽ nền
-        clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
+        clear();
 
         // Vẽ tiêu đề
         gc.setFill(Color.WHITE);
@@ -77,8 +77,7 @@ public class Renderer {
                 GameManager.WINDOW_HEIGHT / 2 + 60);
     }
     public void draw(GameOverState gameOverState,GameManager gameManager){
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
+        clear();
 
         gc.setFill(Color.RED);
         gc.setFont(new Font("Arial", 36));
@@ -91,7 +90,7 @@ public class Renderer {
     }
 
     public void draw(PlayingState playingState,GameManager gameManager){
-        this.clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
+        clear();
         gameManager.getPaddle().render(this);
         gameManager.getBall().render(this);
         for (Brick brick : gameManager.getBricks()) {
@@ -128,8 +127,7 @@ public class Renderer {
         gc.fillText("Press ESC to Resume", GameManager.WINDOW_WIDTH / 2 - 100, GameManager.WINDOW_HEIGHT / 2 + 40);
     }
     public void draw (LevelCompleteState levelCompleteState, GameManager gameManager){
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
+        clear();
 
         gc.setFill(Color.GREEN);
         gc.setFont(new Font("Arial", 36));
@@ -140,6 +138,4 @@ public class Renderer {
         gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 50, GameManager.WINDOW_HEIGHT / 2);
         gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 140, GameManager.WINDOW_HEIGHT / 2 + 50);
     }
-
-
 }
