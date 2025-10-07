@@ -57,7 +57,7 @@ public class PlayingState implements GameState {
                     brick.takeHit();
                     if (brick.isDestroyed()) {
                         // random xac suat ra powerup hay khong
-                        double chance = rand.nextDouble();
+                        int chance = rand.nextInt(100);
                         if(chance < bricks.get(i).getPowerUpDropChance()) {
                             fallingPowerUps.add(bricks.get(i).makePowerUp());
                         }

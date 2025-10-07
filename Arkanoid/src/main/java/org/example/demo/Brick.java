@@ -5,7 +5,8 @@ public class Brick extends GameObject {
     public static final int brickHeight = 30;
 
     protected int hitPoints;
-    protected double powerUpDropChance;
+    //ti le roi ra powerUp (theo %)
+    protected int powerUpDropChance;
 
     protected void takeHit() {
         hitPoints--;
