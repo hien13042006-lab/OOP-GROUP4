@@ -83,11 +83,16 @@ public class PlayingState implements GameState {
 
         // Cập nhật vật lý
         paddle.update(dt);
-        for(Ball ball : balls) {
-            ball.update(dt);
+        for(int i = balls.size() - 1; i >= 0; i--) {
+            balls.get(i).update(dt);
             // Kiểm tra va chạm với paddle
-            if (ball.checkCollision(paddle)) {
-                ball.bounceOffPaddle(paddle);
+            if (balls.get(i).checkCollision(paddle)) {
+                balls.get(i).bounceOffPaddle(paddle);
+            }
+
+            // kiểm tra rớt khỏi màn hình
+            if(balls.get(i).getY() > gameManager.WINDOW_HEIGHT) {
+                balls.remove(i);
             }
         }
 
@@ -109,10 +114,10 @@ public class PlayingState implements GameState {
             //check va chạm với paddle
             if(powerUp.checkCollision(paddle)) {
                 if(activePowerUps.contains(powerUp)) {
-                    powerUp.removeEffect(paddle);
+                    powerUp.removeEffect(paddle, balls);
                     activePowerUps.remove(powerUp);
                 }
-                powerUp.applyEffect(paddle);
+                powerUp.applyEffect(paddle, balls);
                 activePowerUps.add(powerUp);
                 fallingPowerUps.remove(i);
                 continue;
@@ -135,7 +140,7 @@ public class PlayingState implements GameState {
 
             //xóa powerUp nếu hết thời gian
             if(powerUp.getDuration() <= 0) {
-                powerUp.removeEffect(paddle);
+                powerUp.removeEffect(paddle, balls);
                 activePowerUps.remove(i);
             }
         }

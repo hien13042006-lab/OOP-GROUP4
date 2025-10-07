@@ -1,5 +1,7 @@
 package org.example.demo;
 
+import java.util.List;
+
 public class ExpandPaddlePowerUp extends PowerUp {
 
     public static final double EXPAND_DURATION = 7.0;
@@ -19,7 +21,7 @@ public class ExpandPaddlePowerUp extends PowerUp {
     }
 
     @Override
-    public void applyEffect(Paddle paddle){
+    public void applyEffect(Paddle paddle, List<Ball> balls){
         isFalling = false;
         isActive = true;
         //độ tăng chiều rộng paddle.
@@ -32,7 +34,7 @@ public class ExpandPaddlePowerUp extends PowerUp {
     }
 
     @Override
-    public void removeEffect(Paddle paddle){
+    public void removeEffect(Paddle paddle, List<Ball> balls){
         isActive = false;
         //độ giảm chiều rộng paddle.
         double paddleDecrement = Paddle.PADDLE_WIDTH;

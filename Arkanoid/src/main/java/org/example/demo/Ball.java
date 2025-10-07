@@ -199,4 +199,12 @@ public class Ball extends MoveableObject {
     public void render(Renderer r) {
         r.draw(this, image);
     }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
 }
