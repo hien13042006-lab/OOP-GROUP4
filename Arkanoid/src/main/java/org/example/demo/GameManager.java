@@ -146,7 +146,7 @@ public class GameManager {
         return ball;
     }
 
-    public List<Brick> getBricks() {
+    public List<Brick> bricks() {
         return bricks;
     }
 

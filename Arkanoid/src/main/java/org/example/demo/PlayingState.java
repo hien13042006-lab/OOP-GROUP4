@@ -1,17 +1,33 @@
 package org.example.demo;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+
+import java.util.List;
+import java.util.Random;
 
 public class PlayingState implements GameState {
+    private Renderer renderer ;
+    private Paddle paddle;
+    private Ball ball;
+    private List<Brick> bricks;
+    private List<PowerUp> activePowerUps; //các powerUp đang áp dụng
+    private List<PowerUp> fallingPowerUps; //các powerUp đang rơi
+    private Random rand;
 
     @Override
     public void enter(GameManager gameManager) {
         System.out.println("Entering Playing State");
+
         gameManager.initializeLevel();
+        renderer = gameManager.getRenderer();
+        paddle = gameManager.getPaddle();
+        ball = gameManager.getBall();
+        bricks = gameManager.bricks();
+        activePowerUps = gameManager.getActivePowerUps();
+        fallingPowerUps = gameManager.getFallingPowerUps();
+        rand = gameManager.getRand();
+
     }
 
     @Override
@@ -25,33 +41,33 @@ public class PlayingState implements GameState {
             gameManager.setState(new PausedState());
         } else {
             // Chuyển input cho paddle
-            gameManager.getPaddle().getKeyPressHandler().handle(event);
+            paddle.getKeyPressHandler().handle(event);
         }
     }
 
     @Override
     public void update(double dt, GameManager gameManager) {
         // Kiểm tra va chạm với gạch
-        for (int i = gameManager.getBricks().size() - 1; i >= 0; i--) {
-            Brick brick = gameManager.getBricks().get(i);
-            if (gameManager.getBall().checkCollision(brick)) {
-                gameManager.getBall().bounceOffBrick(brick);
+        for (int i = bricks.size() - 1; i >= 0; i--) {
+            Brick brick = bricks.get(i);
+            if (ball.checkCollision(brick)) {
+                ball.bounceOffBrick(brick);
                 brick.takeHit();
                 if (brick.isDestroyed()) {
                     // random xac suat ra powerup hay khong
-                    double chance = gameManager.getRand().nextDouble();
-                    if(chance < gameManager.getBricks().get(i).getPowerUpDropChance()) {
-                        gameManager.getFallingPowerUps().add(gameManager.getBricks().get(i).makePowerUp());
+                    double chance = rand.nextDouble();
+                    if(chance < bricks.get(i).getPowerUpDropChance()) {
+                        fallingPowerUps.add(gameManager.bricks().get(i).makePowerUp());
                     }
 
-                    gameManager.getBricks().remove(i);
+                    bricks.remove(i);
                     gameManager.addScore(10);
                 }
             }
         }
 
         // Kiểm tra hoàn thành level
-        if (gameManager.getBricks().isEmpty()) {
+        if (bricks.isEmpty()) {
             if (gameManager.getLevelManager().hasNextLevel()) {
                 gameManager.setState(new LevelCompleteState());
             } else {
@@ -62,16 +78,16 @@ public class PlayingState implements GameState {
         }
 
         // Cập nhật vật lý
-        gameManager.getPaddle().update(dt);
-        gameManager.getBall().update(dt);
+        paddle.update(dt);
+        ball.update(dt);
 
         // Kiểm tra va chạm với paddle
-        if (gameManager.getBall().checkCollision(gameManager.getPaddle())) {
-            gameManager.getBall().bounceOffPaddle(gameManager.getPaddle());
+        if (ball.checkCollision(paddle)) {
+            ball.bounceOffPaddle(paddle);
         }
 
         // Kiểm tra mất mạng
-        if (gameManager.getBall().getY() > GameManager.WINDOW_HEIGHT) {
+        if (ball.getY() > GameManager.WINDOW_HEIGHT) {
             gameManager.loseLife();
             if (gameManager.getLives() <= 0) {
                 gameManager.setState(new GameOverState());
@@ -82,35 +98,40 @@ public class PlayingState implements GameState {
 
 
         //update fallingPowerUps
-        for(int i = gameManager.getFallingPowerUps().size() - 1; i>=0; i--) {
-            PowerUp powerUp =  gameManager.getFallingPowerUps().get(i);
+        for(int i = fallingPowerUps.size() - 1; i>=0; i--) {
+            PowerUp powerUp =  fallingPowerUps.get(i);
 
             //check va chạm với paddle
-            if(powerUp.checkCollision(gameManager.getPaddle())) {
-                powerUp.applyEffect(gameManager.getPaddle());
-                gameManager.getActivePowerUps().add(powerUp);
-                gameManager.getFallingPowerUps().remove(i);
+            if(powerUp.checkCollision(paddle)) {
+                if(activePowerUps.contains(powerUp)) {
+                    powerUp.removeEffect(paddle);
+                    activePowerUps.remove(powerUp);
+                }
+                powerUp.applyEffect(paddle);
+                activePowerUps.add(powerUp);
+                fallingPowerUps.remove(i);
                 continue;
             }
 
             //xóa khi rớt ra khỏi màn hình
             if(powerUp.getY() > GameManager.WINDOW_HEIGHT) {
-                gameManager.getFallingPowerUps().remove(powerUp);
+                fallingPowerUps.remove(powerUp);
                 continue;
             }
             //update
             powerUp.update(dt);
         }
 
+        System.out.println("activePowerUps: " + activePowerUps.size());
         //update activePowerUps
-        for(int i = gameManager.getActivePowerUps().size() - 1; i >=0; i--) {
-            PowerUp powerUp = gameManager.getActivePowerUps().get(i);
+        for(int i = activePowerUps.size() - 1; i >=0; i--) {
+            PowerUp powerUp = activePowerUps.get(i);
             powerUp.update(dt);
 
             //xóa powerUp nếu hết thời gian
             if(powerUp.getDuration() <= 0) {
-                powerUp.removeEffect(gameManager.getPaddle());
-                gameManager.getActivePowerUps().remove(i);
+                powerUp.removeEffect(paddle);
+                activePowerUps.remove(i);
             }
         }
 

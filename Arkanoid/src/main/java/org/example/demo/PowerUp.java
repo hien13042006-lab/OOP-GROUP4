@@ -52,4 +52,17 @@ public class PowerUp extends GameObject{
                 this.y + this.height > paddle.getY();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof PowerUp)) {
+            return false;}
+
+        if(obj.getClass() == this.getClass()) {
+            return true;
+        }
+        return false;
+    }
 }
