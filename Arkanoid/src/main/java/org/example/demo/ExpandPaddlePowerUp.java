@@ -7,7 +7,7 @@ public class ExpandPaddlePowerUp extends PowerUp {
     public static final double EXPAND_DURATION = 7.0;
     public static final int EXPAND_SPEED = 200;
 
-    //khởi tạo duration.
+    //khởi tạo.
     public ExpandPaddlePowerUp(double x, double y, double width, double height) {
         super();
         duration = EXPAND_DURATION;
