@@ -70,7 +70,6 @@ public class GameManager {
                 WINDOW_HEIGHT - Paddle.PADDLE_HEIGHT - Paddle.MARGIN_BOTTOM,
                 Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 0, 0, 800);
 
-        // THONG SO BALL
         ball = new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
                 Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, 500);
 
