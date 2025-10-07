@@ -66,19 +66,13 @@ public class GameManager {
 
         Level currentLevel = levelManager.getCurrentLevel();
 
-        // THONG SO PADDLE
-        int paddleWidth = 100;
-        int paddleHeight = 20;
-        int marginBottom = 30;
-
-        paddle = new Paddle((WINDOW_WIDTH - paddleWidth) / 2,
-                WINDOW_HEIGHT - paddleHeight - marginBottom,
-                paddleWidth, paddleHeight, 0, 0, 800);
+        paddle = new Paddle((WINDOW_WIDTH - Paddle.PADDLE_WIDTH) / 2,
+                WINDOW_HEIGHT - Paddle.PADDLE_HEIGHT - Paddle.MARGIN_BOTTOM,
+                Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 0, 0, 800);
 
         // THONG SO BALL
-        int ballRadius = 10;
-        ball = new Ball(WINDOW_WIDTH / 2 - ballRadius, paddle.getY() - ballRadius * 2,
-                ballRadius * 2, ballRadius * 2, 1, 1, 500);
+        ball = new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
+                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, 500);
 
         bricks= currentLevel.createBricks();
 

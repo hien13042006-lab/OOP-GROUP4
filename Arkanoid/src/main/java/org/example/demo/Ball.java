@@ -5,6 +5,8 @@ import javafx.scene.image.Image;
 import java.net.PasswordAuthentication;
 
 public class Ball extends MoveableObject {
+    public static final int RADIUS = 11;
+
     private int speed;
 
     public Ball(double x, double y, double width, double height, double dx, double dy, int speed) {
@@ -96,18 +98,19 @@ public class Ball extends MoveableObject {
             return;
         }
     }
-        // kiểm tra cho độ chênh [min,max] = [1,1].
-        private double clamp ( double val, double min, double max){
-            return Math.max(min, Math.min(max, val));
-        }
+
+    // kiểm tra cho độ chênh [min,max] = [1,1].
+    private double clamp(double val, double min, double max) {
+        return Math.max(min, Math.min(max, val));
+    }
 
 
     void bounceOffBrick(Brick brick) {
         // Kiểm tra độ va chạm với các cạnh của Brick
         // Tính overlap theo từng hướng
-        double overlapLeft   = (this.x + this.width) - brick.getX();
-        double overlapRight  = (brick.getX() + brick.getWidth()) - this.x;
-        double overlapTop    = (this.y + this.height) - brick.getY();
+        double overlapLeft = (this.x + this.width) - brick.getX();
+        double overlapRight = (brick.getX() + brick.getWidth()) - this.x;
+        double overlapTop = (this.y + this.height) - brick.getY();
         double overlapBottom = (brick.getY() + brick.getHeight()) - this.y;
 
         // Tìm overlap nhỏ nhất

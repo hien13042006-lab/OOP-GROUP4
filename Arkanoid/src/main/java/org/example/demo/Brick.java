@@ -1,6 +1,9 @@
 package org.example.demo;
 
 public class Brick extends GameObject {
+    public static final int brickWidth = GameManager.WINDOW_WIDTH / 8;
+    public static final int brickHeight = 30;
+
     protected int hitPoints;
     protected double powerUpDropChance;
 

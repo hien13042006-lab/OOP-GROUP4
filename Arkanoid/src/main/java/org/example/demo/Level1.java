@@ -17,13 +17,13 @@ public class Level1 extends Level {
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                int x = col * brickWidth;
-                int y = row * brickHeight + 50;
+                int x = col * Brick.brickWidth;
+                int y = row * Brick.brickHeight + 50;
 
                 if ((row + col) % 2 == 0) {
-                    bricks.add(new NormalBrick(x, y, brickWidth, brickHeight));
+                    bricks.add(new NormalBrick(x, y, Brick.brickWidth, Brick.brickHeight));
                 } else {
-                    bricks.add(new StrongBrick(x, y, brickWidth, brickHeight));
+                    bricks.add(new StrongBrick(x, y, Brick.brickWidth, Brick.brickHeight));
                 }
             }
         }

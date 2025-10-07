@@ -44,6 +44,4 @@ public class ExpandPaddlePowerUp extends PowerUp {
         //tăng chiều rộng.
         paddle.setWidth(paddle.getWidth()-paddleDecrement);
     }
-
-
 }
