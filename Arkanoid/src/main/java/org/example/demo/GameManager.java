@@ -22,10 +22,10 @@ public class GameManager {
     private List<PowerUp> activePowerUps; //các powerUp đang áp dụng
     private List<PowerUp> fallingPowerUps; //các powerUp đang rơi
     private GameState currentState;
+    private LevelManager levelManager; // quản lí level
 
     private int score;
     private int lives;
-    private int currentLevel;
 
     private Random rand = new Random(); // random
 
@@ -33,7 +33,9 @@ public class GameManager {
         // Khởi tạo game state
         score = 0;
         lives = 3;
-        currentLevel = 1;
+
+        levelManager = new LevelManager();
+
         initializeCanvas(root);
         initializeLevel();
         // Bắt đầu với menu state
@@ -43,7 +45,7 @@ public class GameManager {
 
     private void initializeCanvas(Group root) {
         canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
-        canvas.setFocusTraversable(true);
+        canvas.setFocusTraversable(true); //Cho phép Canvas có thể nhận focus
 
         // Thiết lập input handler
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -54,13 +56,16 @@ public class GameManager {
         });
 
         root.getChildren().add(canvas);
-        canvas.requestFocus();
+        canvas.requestFocus(); //Yêu cầu lấy focus ngay lập tức
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
         renderer = new Renderer(gc);
     }
 
     public void initializeLevel() {
+
+        Level currentLevel = levelManager.getCurrentLevel();
+
         // THONG SO PADDLE
         int paddleWidth = 100;
         int paddleHeight = 20;
@@ -75,7 +80,7 @@ public class GameManager {
         ball = new Ball(WINDOW_WIDTH / 2 - ballRadius, paddle.getY() - ballRadius * 2,
                 ballRadius * 2, ballRadius * 2, 1, 1, 500);
 
-        createBricks();
+        bricks= currentLevel.createBricks();
 
         //powerUp
         activePowerUps = new ArrayList<>();// các powerUp đang rơi
@@ -91,45 +96,8 @@ public class GameManager {
         canvas.setOnKeyReleased(paddle.getKeyReleaseHandler());
     }
 
-    private void createBricks() {
-        bricks = new ArrayList<>();
-        int rows = 5;
-        int cols = 8;
-        int brickWidth = WINDOW_WIDTH / cols;
-        int brickHeight = 30;
-
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                int x = col * brickWidth;
-                int y = row * brickHeight + 50;
-
-                if ((row + col) % 2 == 0) {
-                    bricks.add(new NormalBrick(x, y, brickWidth, brickHeight));
-                } else {
-                    bricks.add(new StrongBrick(x, y, brickWidth, brickHeight));
-                }
-            }
-        }
-    }
 
     void updateGame(double dt) {
-        for (int i = 0; i < bricks.size(); i++) {
-            if (ball.checkCollision(bricks.get(i))) {
-                ball.bounceOffBrick(bricks.get(i));
-                bricks.get(i).takeHit();
-
-                if (bricks.get(i).isDestroyed()) {
-                    bricks.remove(i);
-                    i--;
-                }
-            }
-        }
-
-        paddle.update(dt);
-        ball.update(dt);
-        if (ball.checkCollision(paddle)) {
-            ball.bounceOffPaddle(paddle);
-        }
         currentState.update(dt, this);
     }
 
@@ -145,10 +113,11 @@ public class GameManager {
         currentState = newState;
         currentState.enter(this);
     }
-
     public GameState getCurrentState() {
         return currentState;
     }
+
+
 
     // Game management methods
     public void addScore(int points) {
@@ -170,12 +139,9 @@ public class GameManager {
     public void restartGame() {
         score = 0;
         lives = 3;
-        currentLevel = 1;
+        levelManager.resetLevel();
     }
 
-    public void nextLevel() {
-        currentLevel++;
-    }
 
     // Getters
     public Paddle getPaddle() {
@@ -198,14 +164,9 @@ public class GameManager {
         return lives;
     }
 
-    public int getCurrentLevel() {
-        return currentLevel;
-    }
-
     public Renderer getRenderer() {
         return renderer;
     }
-
     public List<PowerUp> getFallingPowerUps() {
         return fallingPowerUps;
     }
@@ -216,5 +177,9 @@ public class GameManager {
 
     public Random getRand() {
         return rand;
+    }
+
+    public LevelManager getLevelManager() {
+        return levelManager;
     }
 }

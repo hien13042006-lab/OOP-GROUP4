@@ -52,7 +52,12 @@ public class PlayingState implements GameState {
 
         // Kiểm tra hoàn thành level
         if (gameManager.getBricks().isEmpty()) {
-            gameManager.setState(new LevelCompleteState());
+            if (gameManager.getLevelManager().hasNextLevel()) {
+                gameManager.setState(new LevelCompleteState());
+            } else {
+                // ⭐ NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
+                gameManager.setState(new GameCompleteState());
+            }
             return;
         }
 

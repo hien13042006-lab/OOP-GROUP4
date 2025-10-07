@@ -6,38 +6,33 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-public class LevelCompleteState implements GameState {
+public class GameCompleteState implements GameState {
 
     @Override
     public void enter(GameManager gameManager) {
-        System.out.println("Entering Level Complete State");
+        System.out.println("Entering Game Complete State");
     }
 
     @Override
     public void exit(GameManager gameManager) {
-        System.out.println("Exiting Level Complete State");
+        System.out.println("Exiting Game Complete State");
     }
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
         if (event.getCode() == KeyCode.ENTER) {
-            LevelManager levelManager = gameManager.getLevelManager();
-            if (levelManager.hasNextLevel()) {
-                levelManager.nextLevel();
-                gameManager.setState(new PlayingState());
-            } else {
-                gameManager.setState(new GameCompleteState());
-            }
+            gameManager.restartGame();
+            gameManager.setState(new MenuState());
         }
     }
 
     @Override
     public void update(double dt, GameManager gameManager) {
-        // Không cập nhật gì khi level complete
+        // Không cập nhật gì khi game complete
     }
 
     @Override
     public void render(Renderer renderer, GameManager gameManager) {
-        renderer.draw(this,gameManager);
+        renderer.draw(this, gameManager);
     }
 }
