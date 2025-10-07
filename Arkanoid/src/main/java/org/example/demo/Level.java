@@ -3,9 +3,6 @@ package org.example.demo;
 import java.util.List;
 
 public abstract class Level {
-    public static final int brickWidth = GameManager.WINDOW_WIDTH / 8;
-    int brickHeight = 30;
-
     protected String difficulty;
     protected String levelName;
     protected int levelNumber;
