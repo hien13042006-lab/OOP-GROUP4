@@ -4,6 +4,8 @@ module org.example.demo {
     requires javafx.web;
     requires java.desktop;
     requires javafx.graphics;
+    requires java.logging;
+    requires java.sql;
 
 
     opens org.example.demo to javafx.fxml;
