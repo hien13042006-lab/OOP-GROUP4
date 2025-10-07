@@ -1,8 +1,8 @@
 package org.example.demo;
 
+import java.util.List;
+
 public class ExpandPaddlePowerUp extends PowerUp {
-    //tỉ lệ tăng kích cỡ.
-    public static final double EXPAND_AMOUNT = 20;
 
     public static final double EXPAND_DURATION = 7.0;
     public static final int EXPAND_SPEED = 200;
@@ -21,11 +21,11 @@ public class ExpandPaddlePowerUp extends PowerUp {
     }
 
     @Override
-    public void applyEffect(Paddle paddle){
+    public void applyEffect(Paddle paddle, List<Ball> balls){
         isFalling = false;
         isActive = true;
         //độ tăng chiều rộng paddle.
-        double paddleIncrement = EXPAND_AMOUNT;
+        double paddleIncrement = Paddle.PADDLE_WIDTH;
 
         //giảm tọa độ theo x đi 1/2 mức tăng.
         paddle.setX(paddle.getX()-paddleIncrement/2);
@@ -34,10 +34,10 @@ public class ExpandPaddlePowerUp extends PowerUp {
     }
 
     @Override
-    public void removeEffect(Paddle paddle){
+    public void removeEffect(Paddle paddle, List<Ball> balls){
         isActive = false;
-        //độ tăng chiều rộng paddle.
-        double paddleDecrement = EXPAND_AMOUNT;
+        //độ giảm chiều rộng paddle.
+        double paddleDecrement = Paddle.PADDLE_WIDTH;
 
         //giảm tọa độ theo x đi 1/2 mức tăng.
         paddle.setX(paddle.getX()+paddleDecrement/2);

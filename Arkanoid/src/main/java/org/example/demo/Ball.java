@@ -6,6 +6,7 @@ import java.net.PasswordAuthentication;
 
 public class Ball extends MoveableObject {
     public static final int RADIUS = 11;
+    public static final int SPEED = 500;
 
     private int speed;
 
@@ -197,5 +198,13 @@ public class Ball extends MoveableObject {
     @Override
     public void render(Renderer r) {
         r.draw(this, image);
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 }

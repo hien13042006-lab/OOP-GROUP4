@@ -17,7 +17,7 @@ public class GameManager {
     private Renderer renderer;
     private Paddle paddle;
     private Canvas canvas;
-    private Ball ball;
+    private List<Ball> balls;
     private List<Brick> bricks;
     private List<PowerUp> activePowerUps; //các powerUp đang áp dụng
     private List<PowerUp> fallingPowerUps; //các powerUp đang rơi
@@ -70,10 +70,12 @@ public class GameManager {
                 WINDOW_HEIGHT - Paddle.PADDLE_HEIGHT - Paddle.MARGIN_BOTTOM,
                 Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 0, 0, 800);
 
-        ball = new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
-                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, 500);
+        // THONG SO BALL
+        balls = new ArrayList<>();
+        balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
+                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED));
 
-        bricks= currentLevel.createBricks();
+        bricks = currentLevel.createBricks();
 
         //powerUp
         activePowerUps = new ArrayList<>();// các powerUp đang rơi
@@ -106,10 +108,10 @@ public class GameManager {
         currentState = newState;
         currentState.enter(this);
     }
+
     public GameState getCurrentState() {
         return currentState;
     }
-
 
 
     // Game management methods
@@ -123,10 +125,8 @@ public class GameManager {
 
     public void resetBallAndPaddle() {
         paddle.setX((WINDOW_WIDTH - paddle.getWidth()) / 2);
-        ball.setX(WINDOW_WIDTH / 2 - ball.getWidth() / 2);
-        ball.setY(paddle.getY() - ball.getHeight());
-        ball.dx = 1;
-        ball.dy = 1;
+        balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
+                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED));
     }
 
     public void restartGame() {
@@ -141,8 +141,8 @@ public class GameManager {
         return paddle;
     }
 
-    public Ball getBall() {
-        return ball;
+    public List<Ball> getBalls() {
+        return balls;
     }
 
     public List<Brick> getBricks() {
@@ -160,6 +160,7 @@ public class GameManager {
     public Renderer getRenderer() {
         return renderer;
     }
+
     public List<PowerUp> getFallingPowerUps() {
         return fallingPowerUps;
     }

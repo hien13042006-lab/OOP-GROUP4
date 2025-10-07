@@ -5,8 +5,6 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-import java.security.PublicKey;
-
 public class Renderer {
     private GraphicsContext gc;
     private Image background;
@@ -77,7 +75,9 @@ public class Renderer {
     public void draw(PlayingState playingState,GameManager gameManager){
         this.clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
         gameManager.getPaddle().render(this);
-        gameManager.getBall().render(this);
+        for(Ball ball : gameManager.getBalls()) {
+            ball.render(this);
+        }
         for (Brick brick : gameManager.getBricks()) {
             brick.render(this);
         }

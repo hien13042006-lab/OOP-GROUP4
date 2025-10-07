@@ -1,6 +1,8 @@
 package org.example.demo;
 
-public class PowerUp extends GameObject{
+import java.util.List;
+
+public abstract class PowerUp extends GameObject{
     protected double duration;
     protected boolean isFalling;
     protected boolean isActive;
@@ -12,11 +14,12 @@ public class PowerUp extends GameObject{
 
     }
 
-    public void applyEffect(Paddle paddle){
+    public void applyEffect(Paddle paddle, List<Ball> balls){
 
     }
 
-    public void removeEffect(Paddle paddle){
+
+    public void removeEffect(Paddle paddle, List<Ball> balls){
 
     }
 
@@ -52,4 +55,17 @@ public class PowerUp extends GameObject{
                 this.y + this.height > paddle.getY();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof PowerUp)) {
+            return false;}
+
+        if(obj.getClass() == this.getClass()) {
+            return true;
+        }
+        return false;
+    }
 }
