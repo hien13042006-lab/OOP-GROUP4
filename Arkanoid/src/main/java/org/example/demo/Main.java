@@ -11,7 +11,6 @@ import javafx.scene.paint.Color;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -23,7 +22,7 @@ public class Main extends Application {
         Group root = new Group();
         Scene scene = new Scene(root, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT, Color.BLACK);
 
-        stage.setTitle("Demo");
+        stage.setTitle("Arkanoid");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

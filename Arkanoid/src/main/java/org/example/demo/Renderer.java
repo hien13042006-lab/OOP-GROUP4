@@ -31,12 +31,6 @@ public class Renderer {
         gc.drawImage(image, object.x, object.y, object.width, object.height);
     }
 
-    //draw powerUp
-    public void draw(PowerUp powerUp) {
-        gc.setFill(Color.GREEN);
-        gc.fillRect(powerUp.x, powerUp.y, powerUp.width, powerUp.height);
-    }
-
 
     public void draw(MenuState menu, GameManager gameManager){
         // Vẽ nền

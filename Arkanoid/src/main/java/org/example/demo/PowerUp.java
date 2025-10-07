@@ -44,7 +44,7 @@ public abstract class PowerUp extends GameObject{
 
     @Override
     public void render(Renderer r) {
-        r.draw(this);
+        r.draw(this, this.getImage());
     }
 
     // check va chạm với paddle để kích hoạt

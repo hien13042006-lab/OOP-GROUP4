@@ -9,19 +9,21 @@ import javafx.scene.text.Font;
 public class PausedState implements GameState {
 
     @Override
-    public void enter(GameManager gameManager) {
-        System.out.println("Entering Paused State");
+    public boolean enter(GameManager gameManager) {
+        System.out.println("Entering Menu State");
+        return true;
     }
 
     @Override
-    public void exit(GameManager gameManager) {
-        System.out.println("Exiting Paused State");
+    public boolean exit(GameManager gameManager) {
+        System.out.println("Exiting Menu State");
+        return true;
     }
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
         if (event.getCode() == KeyCode.ESCAPE) {
-            gameManager.setState(new PlayingState());
+            gameManager.getGameStateMachine().popState(gameManager);
         }
     }
 
