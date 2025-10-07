@@ -94,6 +94,7 @@ public class Renderer {
         gc.fillText("Score: " + gameManager.getScore(), 10, 20);
         gc.fillText("Lives: " + gameManager.getLives(), 10, 40);
         gc.fillText("Level: " + gameManager.getLevelManager().getCurrentNumberLevel(), 10, 60);
+        gc.fillText("Difficulty: "+ gameManager.getLevelManager().getCurrentLevel().getDifficulty(),10,80);
     }
     public void draw(PausedState pausedState,GameManager gameManager){
         // Vẽ game ở trạng thái hiện tại (để làm nền)

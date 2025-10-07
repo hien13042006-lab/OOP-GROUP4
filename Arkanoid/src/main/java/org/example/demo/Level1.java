@@ -18,7 +18,7 @@ public class Level1 extends Level {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 int x = col * Brick.brickWidth;
-                int y = row * Brick.brickHeight + 50;
+                int y = row * Brick.brickHeight;
 
                 if ((row + col) % 2 == 0) {
                     bricks.add(new NormalBrick(x, y, Brick.brickWidth, Brick.brickHeight));
