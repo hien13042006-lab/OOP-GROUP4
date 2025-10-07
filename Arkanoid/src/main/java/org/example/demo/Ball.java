@@ -6,6 +6,7 @@ import java.net.PasswordAuthentication;
 
 public class Ball extends MoveableObject {
     public static final int RADIUS = 11;
+    public static final int SPEED = 500;
 
     private int speed;
 

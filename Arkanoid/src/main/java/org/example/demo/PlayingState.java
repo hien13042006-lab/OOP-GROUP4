@@ -9,7 +9,7 @@ import java.util.Random;
 public class PlayingState implements GameState {
     private Renderer renderer ;
     private Paddle paddle;
-    private Ball ball;
+    private List<Ball> balls;
     private List<Brick> bricks;
     private List<PowerUp> activePowerUps; //các powerUp đang áp dụng
     private List<PowerUp> fallingPowerUps; //các powerUp đang rơi
@@ -22,8 +22,8 @@ public class PlayingState implements GameState {
         gameManager.initializeLevel();
         renderer = gameManager.getRenderer();
         paddle = gameManager.getPaddle();
-        ball = gameManager.getBall();
-        bricks = gameManager.bricks();
+        balls = gameManager.getBalls();
+        bricks = gameManager.getBricks();
         activePowerUps = gameManager.getActivePowerUps();
         fallingPowerUps = gameManager.getFallingPowerUps();
         rand = gameManager.getRand();
@@ -50,20 +50,24 @@ public class PlayingState implements GameState {
         // Kiểm tra va chạm với gạch
         for (int i = bricks.size() - 1; i >= 0; i--) {
             Brick brick = bricks.get(i);
-            if (ball.checkCollision(brick)) {
-                ball.bounceOffBrick(brick);
-                brick.takeHit();
-                if (brick.isDestroyed()) {
-                    // random xac suat ra powerup hay khong
-                    double chance = rand.nextDouble();
-                    if(chance < bricks.get(i).getPowerUpDropChance()) {
-                        fallingPowerUps.add(gameManager.bricks().get(i).makePowerUp());
-                    }
+            for(Ball ball : balls)
+            {
+                if (ball.checkCollision(brick)) {
+                    ball.bounceOffBrick(brick);
+                    brick.takeHit();
+                    if (brick.isDestroyed()) {
+                        // random xac suat ra powerup hay khong
+                        double chance = rand.nextDouble();
+                        if(chance < bricks.get(i).getPowerUpDropChance()) {
+                            fallingPowerUps.add(bricks.get(i).makePowerUp());
+                        }
 
-                    bricks.remove(i);
-                    gameManager.addScore(10);
+                        bricks.remove(i);
+                        gameManager.addScore(10);
+                    }
                 }
             }
+
         }
 
         // Kiểm tra hoàn thành level
@@ -79,15 +83,16 @@ public class PlayingState implements GameState {
 
         // Cập nhật vật lý
         paddle.update(dt);
-        ball.update(dt);
-
-        // Kiểm tra va chạm với paddle
-        if (ball.checkCollision(paddle)) {
-            ball.bounceOffPaddle(paddle);
+        for(Ball ball : balls) {
+            ball.update(dt);
+            // Kiểm tra va chạm với paddle
+            if (ball.checkCollision(paddle)) {
+                ball.bounceOffPaddle(paddle);
+            }
         }
 
         // Kiểm tra mất mạng
-        if (ball.getY() > GameManager.WINDOW_HEIGHT) {
+        if (balls.isEmpty()) {
             gameManager.loseLife();
             if (gameManager.getLives() <= 0) {
                 gameManager.setState(new GameOverState());
