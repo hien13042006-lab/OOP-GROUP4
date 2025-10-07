@@ -1,5 +1,7 @@
 package org.example.demo;
 
+import javafx.scene.image.Image;
+
 import java.util.List;
 
 public class ExpandPaddlePowerUp extends PowerUp {
@@ -18,6 +20,7 @@ public class ExpandPaddlePowerUp extends PowerUp {
         this.height = height;
         isFalling = true;
         isActive = false;
+        image = new Image(getClass().getResourceAsStream("/asset/ball.png"));
     }
 
     @Override

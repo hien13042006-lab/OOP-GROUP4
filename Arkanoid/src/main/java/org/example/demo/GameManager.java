@@ -21,7 +21,7 @@ public class GameManager {
     private List<Brick> bricks;
     private List<PowerUp> activePowerUps; //các powerUp đang áp dụng
     private List<PowerUp> fallingPowerUps; //các powerUp đang rơi
-    private GameState currentState;
+    private GameStateMachine gameStateMachine; //quản lí state
     private LevelManager levelManager; // quản lí level
 
     private int score;
@@ -38,9 +38,11 @@ public class GameManager {
 
         initializeCanvas(root);
         initializeLevel();
+
         // Bắt đầu với menu state
-        currentState = new MenuState();
-        currentState.enter(this);
+        gameStateMachine = new GameStateMachine();
+        gameStateMachine.pushState(this, new MenuState());
+
     }
 
     private void initializeCanvas(Group root) {
@@ -51,7 +53,7 @@ public class GameManager {
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                currentState.handleInput(event, GameManager.this);
+                gameStateMachine.handleInput(event, GameManager.this);
             }
         });
 
@@ -85,7 +87,7 @@ public class GameManager {
         canvas.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                currentState.handleInput(event, GameManager.this);
+                gameStateMachine.handleInput(event, GameManager.this);
             }
         });
         canvas.setOnKeyReleased(paddle.getKeyReleaseHandler());
@@ -93,24 +95,11 @@ public class GameManager {
 
 
     void updateGame(double dt) {
-        currentState.update(dt, this);
+        gameStateMachine.update(this, dt);
     }
 
     void render() {
-        currentState.render(renderer, this);
-    }
-
-    // State management
-    public void setState(GameState newState) {
-        if (currentState != null) {
-            currentState.exit(this);
-        }
-        currentState = newState;
-        currentState.enter(this);
-    }
-
-    public GameState getCurrentState() {
-        return currentState;
+        gameStateMachine.render(this, renderer);
     }
 
 
@@ -171,6 +160,10 @@ public class GameManager {
 
     public Random getRand() {
         return rand;
+    }
+
+    public GameStateMachine getGameStateMachine() {
+        return gameStateMachine;
     }
 
     public LevelManager getLevelManager() {

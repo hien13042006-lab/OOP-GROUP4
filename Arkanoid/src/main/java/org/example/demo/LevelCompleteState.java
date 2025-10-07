@@ -9,13 +9,15 @@ import javafx.scene.text.Font;
 public class LevelCompleteState implements GameState {
 
     @Override
-    public void enter(GameManager gameManager) {
-        System.out.println("Entering Level Complete State");
+    public boolean enter(GameManager gameManager) {
+        System.out.println("Entering Menu State");
+        return true;
     }
 
-    @Override
-    public void exit(GameManager gameManager) {
-        System.out.println("Exiting Level Complete State");
+      @Override
+    public boolean exit(GameManager gameManager) {
+        System.out.println("Exiting Menu State");
+        return true;
     }
 
     @Override
@@ -24,9 +26,9 @@ public class LevelCompleteState implements GameState {
             LevelManager levelManager = gameManager.getLevelManager();
             if (levelManager.hasNextLevel()) {
                 levelManager.nextLevel();
-                gameManager.setState(new PlayingState());
+                gameManager.getGameStateMachine().pushState(gameManager, new PlayingState());
             } else {
-                gameManager.setState(new GameCompleteState());
+                gameManager.getGameStateMachine().pushState(gameManager, new GameCompleteState());
             }
         }
     }
