@@ -1,5 +1,7 @@
 package org.example.demo;
 
+import javafx.scene.image.Image;
+
 import java.util.List;
 
 //tách ball làm n lan
@@ -19,6 +21,7 @@ public class SplitBallPowerUp extends PowerUp{
         this.height = height;
         isFalling = true;
         isActive = false;
+        image = new Image(getClass().getResourceAsStream("/asset/nitro.png"));
     }
 
     @Override

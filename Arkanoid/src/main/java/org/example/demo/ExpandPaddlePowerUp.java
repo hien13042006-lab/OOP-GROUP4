@@ -20,7 +20,7 @@ public class ExpandPaddlePowerUp extends PowerUp {
         this.height = height;
         isFalling = true;
         isActive = false;
-        image = new Image(getClass().getResourceAsStream("/asset/ball.png"));
+        image = new Image(getClass().getResourceAsStream("/asset/nitro.png"));
     }
 
     @Override
