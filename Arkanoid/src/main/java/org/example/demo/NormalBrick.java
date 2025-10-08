@@ -2,8 +2,12 @@ package org.example.demo;
 
 import javafx.scene.image.Image;
 
+import java.util.Random;
+
 public class NormalBrick extends Brick {
-    double DROP_CHANCE_NORMAL_BRICK = 0.9;
+    int DROP_CHANCE_NORMAL_BRICK = 90;
+    int EXPEND_DROP_CHANCE = 50;
+    int FAST_BALL_DROP_CHANCE = 40;
     public NormalBrick(double x, double y, double width, double height) {
         this.hitPoints = 1;
         this.x = x;
@@ -26,6 +30,12 @@ public class NormalBrick extends Brick {
 
     @Override
     public PowerUp makePowerUp() {
-        return new ExpandPaddlePowerUp(this.getX(),this.getY(),this.getWidth(),this.getHeight());
+        Random rand = new Random();
+        int chance = rand.nextInt(powerUpDropChance);
+        if(chance < EXPEND_DROP_CHANCE) {
+            return new ExpandPaddlePowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        } else {
+            return new FastBallPowerUp(this.getX(),this.getY(),this.getWidth(),this.getHeight());
+        }
     }
 }

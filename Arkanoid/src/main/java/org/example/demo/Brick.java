@@ -11,7 +11,8 @@ public class Brick extends GameObject {
     protected Image onePoint = new Image(getClass().getResourceAsStream("/asset/normalBrick.png"));
 
     protected int hitPoints;
-    protected double powerUpDropChance;
+    //ti le roi ra powerUp (theo %)
+    protected int powerUpDropChance;
 
     protected void takeHit() {
         hitPoints--;

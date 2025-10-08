@@ -1,13 +1,16 @@
 package org.example.demo;
 
+import javafx.scene.image.Image;
+
 import java.util.List;
 
 //tăng tốc độ bóng
 public class FastBallPowerUp extends PowerUp{
     public static final double FAST_BALL_DURATION = 5.0;
     public static final int FAST_BALL_SPEED = 200;
+    protected int SPEED_INCREMENT = 300;
 
-    //khởi tạo duration.
+    //khởi tạo .
     public FastBallPowerUp(double x, double y, double width, double height) {
         super();
         duration = FAST_BALL_DURATION;
@@ -18,6 +21,7 @@ public class FastBallPowerUp extends PowerUp{
         this.height = height;
         isFalling = true;
         isActive = false;
+        image = new Image(getClass().getResourceAsStream("/asset/nitro.png"));
     }
 
     @Override
@@ -26,7 +30,7 @@ public class FastBallPowerUp extends PowerUp{
         isActive = true;
 
         for(Ball ball : balls) {
-            ball.setSpeed(ball.getSpeed() + FAST_BALL_SPEED);
+            ball.setSpeed(ball.getSpeed() + SPEED_INCREMENT);
         }
     }
 
@@ -35,7 +39,7 @@ public class FastBallPowerUp extends PowerUp{
         isActive = false;
 
         for(Ball ball : balls) {
-            ball.setSpeed(ball.getSpeed() - FAST_BALL_SPEED);
+            ball.setSpeed(ball.getSpeed() - SPEED_INCREMENT);
         }
     }
 }
