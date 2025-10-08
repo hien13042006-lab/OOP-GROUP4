@@ -16,7 +16,7 @@ public class PausedState implements GameState {
 
     @Override
     public boolean exit(GameManager gameManager) {
-        System.out.println("Exiting Menu State");
+        System.out.println("Exiting Paused State");
         return true;
     }
 

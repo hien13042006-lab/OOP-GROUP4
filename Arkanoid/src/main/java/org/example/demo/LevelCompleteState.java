@@ -26,7 +26,7 @@ public class LevelCompleteState implements GameState {
             LevelManager levelManager = gameManager.getLevelManager();
             if (levelManager.hasNextLevel()) {
                 levelManager.nextLevel();
-                gameManager.getGameStateMachine().pushState(gameManager, new PlayingState());
+                gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());
             } else {
                 gameManager.getGameStateMachine().pushState(gameManager, new GameCompleteState());
             }
