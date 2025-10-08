@@ -24,11 +24,6 @@ public class NormalBrick extends Brick {
     }
 
     @Override
-    public void update(double dt) {
-
-    }
-
-    @Override
     public void render(Renderer r) {
         r.draw(this, image);
     }

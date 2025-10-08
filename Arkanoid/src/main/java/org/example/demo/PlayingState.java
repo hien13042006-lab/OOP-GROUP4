@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Random;
 
 public class PlayingState implements GameState {
-    private Renderer renderer ;
+    private Renderer renderer;
     private Paddle paddle;
     private List<Ball> balls;
     private List<Brick> bricks;
@@ -16,7 +16,7 @@ public class PlayingState implements GameState {
     private Random rand;
 
     @Override
-    public void enter(GameManager gameManager) {
+    public boolean enter(GameManager gameManager) {
         System.out.println("Entering Playing State");
 
         gameManager.initializeLevel();
@@ -27,18 +27,20 @@ public class PlayingState implements GameState {
         activePowerUps = gameManager.getActivePowerUps();
         fallingPowerUps = gameManager.getFallingPowerUps();
         rand = gameManager.getRand();
+        return true;
 
     }
 
     @Override
-    public void exit(GameManager gameManager) {
+    public boolean exit(GameManager gameManager) {
         System.out.println("Exiting Playing State");
+        return true;
     }
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
         if (event.getCode() == KeyCode.ESCAPE) {
-            gameManager.setState(new PausedState());
+            gameManager.getGameStateMachine().pushState(gameManager, new PausedState());
         } else {
             // Chuyển input cho paddle
             paddle.getKeyPressHandler().handle(event);
@@ -49,9 +51,11 @@ public class PlayingState implements GameState {
     public void update(double dt, GameManager gameManager) {
         // Kiểm tra va chạm với gạch
         for (int i = bricks.size() - 1; i >= 0; i--) {
+            bricks.get(i).update(dt);
+        }
+        for (int i = bricks.size() - 1; i >= 0; i--) {
             Brick brick = bricks.get(i);
-            for(Ball ball : balls)
-            {
+            for (Ball ball : balls) {
                 if (ball.checkCollision(brick)) {
                     ball.bounceOffBrick(brick);
                     brick.takeHit();
@@ -73,17 +77,17 @@ public class PlayingState implements GameState {
         // Kiểm tra hoàn thành level
         if (bricks.isEmpty()) {
             if (gameManager.getLevelManager().hasNextLevel()) {
-                gameManager.setState(new LevelCompleteState());
+                gameManager.getGameStateMachine().pushState(gameManager, new LevelCompleteState());
             } else {
                 // ⭐ NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
-                gameManager.setState(new GameCompleteState());
+                gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
             }
             return;
         }
 
         // Cập nhật vật lý
         paddle.update(dt);
-        for(int i = balls.size() - 1; i >= 0; i--) {
+        for (int i = balls.size() - 1; i >= 0; i--) {
             balls.get(i).update(dt);
             // Kiểm tra va chạm với paddle
             if (balls.get(i).checkCollision(paddle)) {
@@ -91,7 +95,7 @@ public class PlayingState implements GameState {
             }
 
             // kiểm tra rớt khỏi màn hình
-            if(balls.get(i).getY() > gameManager.WINDOW_HEIGHT) {
+            if (balls.get(i).getY() > gameManager.WINDOW_HEIGHT) {
                 balls.remove(i);
             }
         }
@@ -100,7 +104,7 @@ public class PlayingState implements GameState {
         if (balls.isEmpty()) {
             gameManager.loseLife();
             if (gameManager.getLives() <= 0) {
-                gameManager.setState(new GameOverState());
+                gameManager.getGameStateMachine().pushState(gameManager, new GameOverState());
             } else {
                 gameManager.resetBallAndPaddle();
             }
@@ -108,12 +112,12 @@ public class PlayingState implements GameState {
 
 
         //update fallingPowerUps
-        for(int i = fallingPowerUps.size() - 1; i>=0; i--) {
-            PowerUp powerUp =  fallingPowerUps.get(i);
+        for (int i = fallingPowerUps.size() - 1; i >= 0; i--) {
+            PowerUp powerUp = fallingPowerUps.get(i);
 
             //check va chạm với paddle
-            if(powerUp.checkCollision(paddle)) {
-                if(activePowerUps.contains(powerUp)) {
+            if (powerUp.checkCollision(paddle)) {
+                if (activePowerUps.contains(powerUp)) {
                     powerUp.removeEffect(paddle, balls);
                     activePowerUps.remove(powerUp);
                 }
@@ -124,7 +128,7 @@ public class PlayingState implements GameState {
             }
 
             //xóa khi rớt ra khỏi màn hình
-            if(powerUp.getY() > GameManager.WINDOW_HEIGHT) {
+            if (powerUp.getY() > GameManager.WINDOW_HEIGHT) {
                 fallingPowerUps.remove(powerUp);
                 continue;
             }
@@ -134,12 +138,12 @@ public class PlayingState implements GameState {
 
         System.out.println("activePowerUps: " + activePowerUps.size());
         //update activePowerUps
-        for(int i = activePowerUps.size() - 1; i >=0; i--) {
+        for (int i = activePowerUps.size() - 1; i >= 0; i--) {
             PowerUp powerUp = activePowerUps.get(i);
             powerUp.update(dt);
 
             //xóa powerUp nếu hết thời gian
-            if(powerUp.getDuration() <= 0) {
+            if (powerUp.getDuration() <= 0) {
                 powerUp.removeEffect(paddle, balls);
                 activePowerUps.remove(i);
             }

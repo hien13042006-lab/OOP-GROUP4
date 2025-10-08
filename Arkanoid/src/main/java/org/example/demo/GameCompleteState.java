@@ -9,20 +9,22 @@ import javafx.scene.text.Font;
 public class GameCompleteState implements GameState {
 
     @Override
-    public void enter(GameManager gameManager) {
+    public boolean enter(GameManager gameManager) {
         System.out.println("Entering Game Complete State");
+        return true;
     }
 
     @Override
-    public void exit(GameManager gameManager) {
+    public boolean exit(GameManager gameManager) {
         System.out.println("Exiting Game Complete State");
+        return true;
     }
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
         if (event.getCode() == KeyCode.ENTER) {
             gameManager.restartGame();
-            gameManager.setState(new MenuState());
+            gameManager.getGameStateMachine().changeState(gameManager, new MenuState());
         }
     }
 

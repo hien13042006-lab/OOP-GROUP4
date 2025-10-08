@@ -9,20 +9,22 @@ import javafx.scene.text.Font;
 public class GameOverState implements GameState {
 
     @Override
-    public void enter(GameManager gameManager) {
-        System.out.println("Entering Game Over State");
+    public boolean enter(GameManager gameManager) {
+        System.out.println("Entering Game Complete State");
+        return true;
     }
 
     @Override
-    public void exit(GameManager gameManager) {
-        System.out.println("Exiting Game Over State");
+    public boolean exit(GameManager gameManager) {
+        System.out.println("Exiting Game Complete State");
+        return true;
     }
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
         if (event.getCode() == KeyCode.ENTER) {
             gameManager.restartGame();
-            gameManager.setState(new MenuState());
+            gameManager.getGameStateMachine().changeState(gameManager, new MenuState());
         }
     }
 
@@ -33,6 +35,6 @@ public class GameOverState implements GameState {
 
     @Override
     public void render(Renderer renderer, GameManager gameManager) {
-        renderer.draw(this,gameManager);
+        renderer.draw(this, gameManager);
     }
 }

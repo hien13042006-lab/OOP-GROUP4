@@ -2,8 +2,6 @@ package org.example.demo;
 
 import javafx.scene.image.Image;
 
-import java.net.PasswordAuthentication;
-
 public class Ball extends MoveableObject {
     public static final int RADIUS = 11;
     public static final int SPEED = 500;
