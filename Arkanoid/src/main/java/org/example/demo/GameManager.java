@@ -36,6 +36,7 @@ public class GameManager {
 
         levelManager = new LevelManager();
 
+
         initializeCanvas(root);
         initializeLevel();
 

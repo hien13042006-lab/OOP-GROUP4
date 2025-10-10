@@ -20,12 +20,9 @@ public class StrongBrick extends Brick {
 
     StrongBrick() {
         this.hitPoints = 2;
+        image = new Image(getClass().getResourceAsStream("/asset/strongBrick.png"));
     }
 
-    @Override
-    public void update(double dt) {
-
-    }
 
     @Override
     public void render(Renderer r) {

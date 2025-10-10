@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Random;
 
 public class PlayingState implements GameState {
-    private Renderer renderer;
     private Paddle paddle;
     private List<Ball> balls;
     private List<Brick> bricks;
@@ -20,7 +19,6 @@ public class PlayingState implements GameState {
         System.out.println("Entering Playing State");
 
         gameManager.initializeLevel();
-        renderer = gameManager.getRenderer();
         paddle = gameManager.getPaddle();
         balls = gameManager.getBalls();
         bricks = gameManager.getBricks();
@@ -104,7 +102,7 @@ public class PlayingState implements GameState {
         if (balls.isEmpty()) {
             gameManager.loseLife();
             if (gameManager.getLives() <= 0) {
-                gameManager.getGameStateMachine().pushState(gameManager, new GameOverState());
+                gameManager.getGameStateMachine().changeState(gameManager, new GameOverState());
             } else {
                 gameManager.resetBallAndPaddle();
             }
@@ -148,7 +146,6 @@ public class PlayingState implements GameState {
                 activePowerUps.remove(i);
             }
         }
-
     }
 
     @Override

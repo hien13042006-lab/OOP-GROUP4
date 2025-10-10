@@ -18,10 +18,7 @@ public class Ball extends MoveableObject {
 
 
     boolean checkCollision(GameObject gameObject) {
-        return this.x < gameObject.getX() + gameObject.getWidth() &&
-                this.x + this.width > gameObject.getX() &&
-                this.y < gameObject.getY() + gameObject.getHeight() &&
-                this.y + this.height > gameObject.getY();
+        return this.x < gameObject.getX() + gameObject.getWidth() && this.x + this.width > gameObject.getX() && this.y < gameObject.getY() + gameObject.getHeight() && this.y + this.height > gameObject.getY();
     }
 
     // Va chạm với paddle
@@ -40,10 +37,7 @@ public class Ball extends MoveableObject {
         double overlapBottom = (paddle.getY() + paddle.getHeight()) - this.y;
 
         // Tìm overlap nhỏ nhất
-        double minOverlap = Math.min(
-                Math.min(overlapLeft, overlapRight),
-                Math.min(overlapTop, overlapBottom)
-        );
+        double minOverlap = Math.min(Math.min(overlapLeft, overlapRight), Math.min(overlapTop, overlapBottom));
 
         // Ngưỡng để coi là "chạm góc"
         double epsilon = 0.5;
@@ -113,10 +107,7 @@ public class Ball extends MoveableObject {
         double overlapBottom = (brick.getY() + brick.getHeight()) - this.y;
 
         // Tìm overlap nhỏ nhất
-        double minOverlap = Math.min(
-                Math.min(overlapLeft, overlapRight),
-                Math.min(overlapTop, overlapBottom)
-        );
+        double minOverlap = Math.min(Math.min(overlapLeft, overlapRight), Math.min(overlapTop, overlapBottom));
 
         // Ngưỡng để coi là "chạm góc"
         double epsilon = 0.5;
@@ -171,7 +162,8 @@ public class Ball extends MoveableObject {
         if (y < 0) {
             y = 0;
             dy = -dy;
-        } else if (y > 600 - height) {
+        }
+        else if (y > 600 - height) {
             y = 600 - height;
             dy = -dy;
         }
