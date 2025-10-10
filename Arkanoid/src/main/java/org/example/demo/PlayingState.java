@@ -102,7 +102,7 @@ public class PlayingState implements GameState {
         if (balls.isEmpty()) {
             gameManager.loseLife();
             if (gameManager.getLives() <= 0) {
-                gameManager.getGameStateMachine().pushState(gameManager, new GameOverState());
+                gameManager.getGameStateMachine().changeState(gameManager, new GameOverState());
             } else {
                 gameManager.resetBallAndPaddle();
             }
@@ -146,7 +146,6 @@ public class PlayingState implements GameState {
                 activePowerUps.remove(i);
             }
         }
-
     }
 
     @Override

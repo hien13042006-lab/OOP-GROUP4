@@ -2,7 +2,7 @@ package org.example.demo;
 
 import java.util.List;
 
-public abstract class PowerUp extends GameObject{
+public abstract class PowerUp extends GameObject {
     protected double duration;
     protected boolean isFalling;
     protected boolean isActive;
@@ -14,12 +14,12 @@ public abstract class PowerUp extends GameObject{
 
     }
 
-    public void applyEffect(Paddle paddle, List<Ball> balls){
+    public void applyEffect(Paddle paddle, List<Ball> balls) {
 
     }
 
 
-    public void removeEffect(Paddle paddle, List<Ball> balls){
+    public void removeEffect(Paddle paddle, List<Ball> balls) {
 
     }
 
@@ -33,11 +33,11 @@ public abstract class PowerUp extends GameObject{
 
     @Override
     public void update(double dt) {
-        if(isFalling){
-            y+=this.speed*dt;
+        if (isFalling) {
+            y += this.speed * dt;
         }
 
-        if(isActive){
+        if (isActive) {
             this.setDuration(this.getDuration() - dt);
         }
     }
@@ -61,9 +61,10 @@ public abstract class PowerUp extends GameObject{
             return true;
         }
         if (!(obj instanceof PowerUp)) {
-            return false;}
+            return false;
+        }
 
-        if(obj.getClass() == this.getClass()) {
+        if (obj.getClass() == this.getClass()) {
             return true;
         }
         return false;

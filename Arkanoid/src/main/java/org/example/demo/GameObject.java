@@ -59,6 +59,7 @@ public abstract class GameObject {
         this.height = height;
     }
 
+
     public abstract void update(double dt);
 
     public abstract void render(Renderer r);

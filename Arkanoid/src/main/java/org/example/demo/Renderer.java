@@ -66,7 +66,7 @@ public class Renderer {
         gc.fillText("Press ENTER for Main Menu", GameManager.WINDOW_WIDTH / 2 - 140, GameManager.WINDOW_HEIGHT / 2 + 50);
     }
 
-    public void draw(PlayingState playingState,GameManager gameManager){
+    public void draw(PlayingState playingState, GameManager gameManager){
         this.clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
         gameManager.getPaddle().render(this);
         for(Ball ball : gameManager.getBalls()) {
