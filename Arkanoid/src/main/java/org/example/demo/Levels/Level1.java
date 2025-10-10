@@ -1,4 +1,7 @@
-package org.example.demo;
+package org.example.demo.Levels;
+
+import org.example.demo.Objects.Brick;
+import org.example.demo.Objects.NormalBrick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +13,7 @@ public class Level1 extends Level {
     }
 
     @Override
-    protected List<Brick> createBricks() {
+    public List<Brick> createBricks() {
         List<Brick> bricks = new ArrayList<>();
         int rows = 5;
         int cols = 8;
@@ -21,9 +24,9 @@ public class Level1 extends Level {
                 int y = row * Brick.brickHeight;
 
                 if ((row + col) % 2 == 0) {
-                    bricks.add(new MovingBrick(x, y, Brick.brickWidth, Brick.brickHeight));
+                    bricks.add(new NormalBrick(x, y, Brick.brickWidth, Brick.brickHeight));
                 } else {
-                    bricks.add(new StrongBrick(x, y, Brick.brickWidth, Brick.brickHeight));
+                    bricks.add(new NormalBrick(x, y, Brick.brickWidth, Brick.brickHeight));
                 }
             }
         }

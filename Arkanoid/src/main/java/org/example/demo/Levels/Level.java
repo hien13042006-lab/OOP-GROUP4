@@ -1,4 +1,6 @@
-package org.example.demo;
+package org.example.demo.Levels;
+
+import org.example.demo.Objects.Brick;
 
 import java.util.List;
 
@@ -38,5 +40,5 @@ public abstract class Level {
         this.levelNumber = levelNumber;
     }
 
-    protected abstract List<Brick> createBricks();
+    public abstract List<Brick> createBricks();
 }

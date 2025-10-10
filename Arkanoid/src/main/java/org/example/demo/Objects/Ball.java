@@ -1,6 +1,7 @@
-package org.example.demo;
+package org.example.demo.Objects;
 
 import javafx.scene.image.Image;
+import org.example.demo.*;
 
 public class Ball extends MoveableObject {
     public static final int RADIUS = 11;
@@ -17,12 +18,12 @@ public class Ball extends MoveableObject {
     }
 
 
-    boolean checkCollision(GameObject gameObject) {
+    public boolean checkCollision(GameObject gameObject) {
         return this.x < gameObject.getX() + gameObject.getWidth() && this.x + this.width > gameObject.getX() && this.y < gameObject.getY() + gameObject.getHeight() && this.y + this.height > gameObject.getY();
     }
 
     // Va chạm với paddle
-    void bounceOffPaddle(Paddle paddle) {
+    public void bounceOffPaddle(Paddle paddle) {
         // Chỉ xử lý khi đang rơi xuống
         if (dy < 0) return;
 
@@ -98,7 +99,7 @@ public class Ball extends MoveableObject {
     }
 
 
-    void bounceOffBrick(Brick brick) {
+    public void bounceOffBrick(Brick brick) {
         // Kiểm tra độ va chạm với các cạnh của Brick
         // Tính overlap theo từng hướng
         double overlapLeft = (this.x + this.width) - brick.getX();
@@ -146,7 +147,7 @@ public class Ball extends MoveableObject {
     }
 
     // Nảy khi chạm tường
-    void bounceOffWall() {
+    public void bounceOffWall() {
         //chạm trái
         if (x < 0) {
             x = 0;

@@ -1,4 +1,6 @@
-package org.example.demo;
+package org.example.demo.Objects;
+
+import org.example.demo.Renderer;
 
 import java.util.List;
 

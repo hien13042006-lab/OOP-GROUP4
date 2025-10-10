@@ -10,4 +10,10 @@ module org.example.demo {
 
     opens org.example.demo to javafx.fxml;
     exports org.example.demo;
+    exports org.example.demo.States;
+    opens org.example.demo.States to javafx.fxml;
+    exports org.example.demo.Objects;
+    opens org.example.demo.Objects to javafx.fxml;
+    exports org.example.demo.Levels;
+    opens org.example.demo.Levels to javafx.fxml;
 }
