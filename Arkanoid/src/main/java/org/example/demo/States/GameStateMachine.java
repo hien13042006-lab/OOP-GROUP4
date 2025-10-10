@@ -1,6 +1,8 @@
-package org.example.demo;
+package org.example.demo.States;
 
 import javafx.scene.input.KeyEvent;
+import org.example.demo.GameManager;
+import org.example.demo.Renderer;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,11 +1,11 @@
-package org.example.demo;
+package org.example.demo.Objects;
 
 import javafx.scene.image.Image;
 
 import java.util.List;
 
 //tách ball làm n lan
-public class SplitBallPowerUp extends PowerUp{
+public class SplitBallPowerUp extends PowerUp {
     public static final int SPLIT_BALL_SPEED = 200;
     public static final double SPLIT_BALL_DURATION = 0.0;
     protected int SPLIT_NUMBER = 3;

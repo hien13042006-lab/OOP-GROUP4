@@ -1,10 +1,10 @@
-package org.example.demo;
+package org.example.demo.States;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import org.example.demo.GameManager;
+import org.example.demo.Levels.LevelManager;
+import org.example.demo.Renderer;
 
 public class LevelCompleteState implements GameState {
 
