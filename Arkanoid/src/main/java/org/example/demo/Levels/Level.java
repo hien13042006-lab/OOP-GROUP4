@@ -1,6 +1,6 @@
 package org.example.demo.Levels;
 
-import org.example.demo.Objects.Brick;
+import org.example.demo.Objects.Bricks.Brick;
 
 import java.util.List;
 

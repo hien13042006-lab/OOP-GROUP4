@@ -5,9 +5,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import org.example.demo.Objects.Ball;
-import org.example.demo.Objects.Brick;
+import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Objects.GameObject;
-import org.example.demo.Objects.PowerUp;
+import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.States.*;
 
 public class Renderer {

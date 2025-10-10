@@ -1,8 +1,8 @@
 package org.example.demo.Levels;
 
-import org.example.demo.Objects.Brick;
-import org.example.demo.Objects.NormalBrick;
-import org.example.demo.Objects.StrongBrick;
+import org.example.demo.Objects.Bricks.Brick;
+import org.example.demo.Objects.Bricks.NormalBrick;
+import org.example.demo.Objects.Bricks.StrongBrick;
 
 import java.util.ArrayList;
 import java.util.List;

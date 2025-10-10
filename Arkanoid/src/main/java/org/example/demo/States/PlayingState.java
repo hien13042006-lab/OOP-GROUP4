@@ -4,9 +4,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import org.example.demo.*;
 import org.example.demo.Objects.Ball;
-import org.example.demo.Objects.Brick;
+import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Objects.Paddle;
-import org.example.demo.Objects.PowerUp;
+import org.example.demo.Objects.PowerUps.PowerUp;
 
 import java.util.List;
 import java.util.Random;

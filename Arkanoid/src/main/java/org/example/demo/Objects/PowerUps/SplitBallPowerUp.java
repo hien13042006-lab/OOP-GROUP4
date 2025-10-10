@@ -1,6 +1,8 @@
-package org.example.demo.Objects;
+package org.example.demo.Objects.PowerUps;
 
 import javafx.scene.image.Image;
+import org.example.demo.Objects.Ball;
+import org.example.demo.Objects.Paddle;
 
 import java.util.List;
 
@@ -35,11 +37,11 @@ public class SplitBallPowerUp extends PowerUp {
             for(int j = 0; j < SPLIT_NUMBER; j++){
                 // 45 do sang trai
                 balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
-                        -ball.dy,ball.dx,ball.getSpeed()));
+                        -ball.getDy(),ball.getDx(),ball.getSpeed()));
 
                 //45 do sang phai
                 balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
-                        ball.dy,-ball.dx,ball.getSpeed()));
+                        ball.getDy(),-ball.getDx(),ball.getSpeed()));
             }
         }
     }
