@@ -2,6 +2,7 @@ package org.example.demo.Objects;
 
 import javafx.scene.image.Image;
 import org.example.demo.*;
+import org.example.demo.Objects.Bricks.Brick;
 
 public class Ball extends MoveableObject {
     public static final int RADIUS = 11;

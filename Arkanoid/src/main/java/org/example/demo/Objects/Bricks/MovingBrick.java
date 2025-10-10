@@ -1,4 +1,4 @@
-package org.example.demo.Objects;
+package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
 import org.example.demo.Renderer;

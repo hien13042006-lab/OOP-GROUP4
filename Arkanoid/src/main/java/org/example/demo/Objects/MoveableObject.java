@@ -13,6 +13,14 @@ public abstract class MoveableObject extends GameObject {
         this.dy = dy;
     }
 
+    public double getDx() {
+        return dx;
+    }
+
+    public double getDy() {
+        return dy;
+    }
+
     public MoveableObject(double x, double y, double width, double height) {
         super(x, y, width, height);
     }

@@ -8,9 +8,9 @@ import javafx.scene.input.KeyEvent;
 import org.example.demo.Levels.Level;
 import org.example.demo.Levels.LevelManager;
 import org.example.demo.Objects.Ball;
-import org.example.demo.Objects.Brick;
+import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Objects.Paddle;
-import org.example.demo.Objects.PowerUp;
+import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.States.GameStateMachine;
 import org.example.demo.States.MenuState;
 

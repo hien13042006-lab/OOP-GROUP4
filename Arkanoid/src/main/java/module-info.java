@@ -16,4 +16,8 @@ module org.example.demo {
     opens org.example.demo.Objects to javafx.fxml;
     exports org.example.demo.Levels;
     opens org.example.demo.Levels to javafx.fxml;
+    exports org.example.demo.Objects.PowerUps;
+    opens org.example.demo.Objects.PowerUps to javafx.fxml;
+    exports org.example.demo.Objects.Bricks;
+    opens org.example.demo.Objects.Bricks to javafx.fxml;
 }
