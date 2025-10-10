@@ -156,8 +156,8 @@ public class Ball extends MoveableObject {
         }
 
         // chạm phải
-        else if (x > 800 - width) {
-            x = 800 - width;
+        else if (x > GameManager.WINDOW_WIDTH - width) {
+            x = GameManager.WINDOW_WIDTH - width;
             dx = -dx;
         }
 
@@ -165,10 +165,10 @@ public class Ball extends MoveableObject {
             y = 0;
             dy = -dy;
         }
-        else if (y > 600 - height) {
-            y = 600 - height;
-            dy = -dy;
-        }
+//        else if (y > GameManager.WINDOW_HEIGHT - height) {
+//            y = GameManager.WINDOW_HEIGHT - height;
+//            dy = -dy;
+//        }
     }
 
 
