@@ -82,13 +82,17 @@ public class GameManager {
                 Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 0, 0, 800);
 
         // THONG SO BALL
+        if(balls!=null) balls.clear();
         balls = new ArrayList<>();
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
                 Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED));
 
+        if(bricks!=null) bricks.clear();
         bricks = currentLevel.createBricks();
 
         //powerUp
+        if(fallingPowerUps!=null) fallingPowerUps.clear();
+        if(activePowerUps!=null) activePowerUps.clear();
         activePowerUps = new ArrayList<>();// các powerUp đang rơi
         fallingPowerUps = new ArrayList<>();// các powerUp đang tác dụng
 
