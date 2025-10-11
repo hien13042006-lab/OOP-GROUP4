@@ -52,7 +52,7 @@ public class PlayingState implements GameState {
 
     @Override
     public void update(double dt, GameManager gameManager) {
-        System.out.println("GameStateMachine size: " + gameManager.getGameStateMachine().getGameStateList().size());
+        //System.out.println("GameStateMachine size: " + gameManager.getGameStateMachine().getGameStateList().size());
         //System.out.println("LevelManager size: " + gameManager.getLevelManager().getLevels().size());
         // Kiểm tra va chạm với gạch
         for (int i = bricks.size() - 1; i >= 0; i--) {
@@ -104,7 +104,6 @@ public class PlayingState implements GameState {
                 balls.remove(i);
             }
         }
-
         // Kiểm tra mất mạng
         if (balls.isEmpty()) {
             gameManager.loseLife();
@@ -114,7 +113,7 @@ public class PlayingState implements GameState {
                 gameManager.resetBallAndPaddle();
             }
         }
-
+        System.out.println("speed: " + balls.getFirst().getSpeed());
 
         //update fallingPowerUps
         for (int i = fallingPowerUps.size() - 1; i >= 0; i--) {
@@ -134,14 +133,14 @@ public class PlayingState implements GameState {
 
             //xóa khi rớt ra khỏi màn hình
             if (powerUp.getY() > GameManager.WINDOW_HEIGHT) {
-                fallingPowerUps.remove(powerUp);
+                fallingPowerUps.remove(i);
                 continue;
             }
             //update
             powerUp.update(dt);
         }
 
-        System.out.println("activePowerUps: " + activePowerUps.size());
+        //System.out.println("activePowerUps: " + activePowerUps.size());
         //update activePowerUps
         for (int i = activePowerUps.size() - 1; i >= 0; i--) {
             PowerUp powerUp = activePowerUps.get(i);
