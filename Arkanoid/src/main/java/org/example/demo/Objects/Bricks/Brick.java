@@ -18,8 +18,8 @@ public class Brick extends GameObject {
     //ti le roi ra powerUp (theo %)
     protected int powerUpDropChance;
 
-    public void takeHit() {
-        hitPoints--;
+    public void takeHit(int damage) {
+        hitPoints-=damage;
     }
 
     public boolean isDestroyed() {
@@ -50,5 +50,9 @@ public class Brick extends GameObject {
 
     public double getPowerUpDropChance() {
         return powerUpDropChance;
+    }
+
+    public int getHitPoints() {
+        return hitPoints;
     }
 }

@@ -23,7 +23,7 @@ public class UnbreakableBrick extends Brick {
     }
 
     @Override
-    public void takeHit() {
+    public void takeHit(int damage) {
         return;
     }
 }

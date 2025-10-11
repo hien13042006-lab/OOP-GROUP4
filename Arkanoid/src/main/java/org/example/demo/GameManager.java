@@ -85,7 +85,7 @@ public class GameManager {
         if(balls!=null) balls.clear();
         balls = new ArrayList<>();
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
-                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED));
+                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED, Ball.DAMAGE_DEFAULT));
 
         if(bricks!=null) bricks.clear();
         bricks = currentLevel.createBricks();
@@ -128,7 +128,7 @@ public class GameManager {
     public void resetBallAndPaddle() {
         paddle.setX((WINDOW_WIDTH - paddle.getWidth()) / 2);
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
-                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED));
+                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED, Ball.DAMAGE_DEFAULT));
     }
 
     public void restartGame() {

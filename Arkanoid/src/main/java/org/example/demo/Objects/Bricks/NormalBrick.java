@@ -1,9 +1,7 @@
 package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
-import org.example.demo.Objects.PowerUps.ExpandPaddlePowerUp;
-import org.example.demo.Objects.PowerUps.FastBallPowerUp;
-import org.example.demo.Objects.PowerUps.PowerUp;
+import org.example.demo.Objects.PowerUps.*;
 import org.example.demo.Renderer;
 
 import java.util.Random;
@@ -39,7 +37,7 @@ public class NormalBrick extends Brick {
         if(chance < EXPEND_DROP_CHANCE) {
             return new ExpandPaddlePowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         } else {
-            return new FastBallPowerUp(this.getX(),this.getY(),this.getWidth(),this.getHeight());
+            return new SplitBallPowerUp(this.getX(),this.getY(),this.getWidth(),this.getHeight());
         }
     }
 }

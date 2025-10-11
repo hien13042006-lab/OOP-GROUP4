@@ -1,12 +1,13 @@
 package org.example.demo.States;
 
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
-import org.example.demo.*;
+import javafx.scene.input.KeyEvent;
+import org.example.demo.GameManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Objects.PowerUps.PowerUp;
+import org.example.demo.Renderer;
 
 import java.util.List;
 import java.util.Random;
@@ -62,12 +63,17 @@ public class PlayingState implements GameState {
             Brick brick = bricks.get(i);
             for (Ball ball : balls) {
                 if (ball.checkCollision(brick)) {
-                    ball.bounceOffBrick(brick);
-                    brick.takeHit();
+                    //brick nhận damage
+                    brick.takeHit(ball.getDamage());
+                    //nếu mà ball mạnh quá làm máu brick tụt sâu thì ball không nảy mà đi xuyên
+                    if (brick.getHitPoints() >= -100) {
+                        ball.bounceOffBrick(brick);
+                    }
+                    //kiểm tra brick bị phá hủy
                     if (brick.isDestroyed()) {
                         // random xac suat ra powerup hay khong
                         int chance = rand.nextInt(100);
-                        if(chance < bricks.get(i).getPowerUpDropChance()) {
+                        if (chance < bricks.get(i).getPowerUpDropChance()) {
                             fallingPowerUps.add(bricks.get(i).makePowerUp());
                         }
 

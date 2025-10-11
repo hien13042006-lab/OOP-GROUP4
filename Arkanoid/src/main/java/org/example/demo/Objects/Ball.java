@@ -7,15 +7,18 @@ import org.example.demo.Objects.Bricks.Brick;
 public class Ball extends MoveableObject {
     public static final int RADIUS = 11;
     public static final int SPEED = 500;
+    public static final int DAMAGE_DEFAULT = 1;
 
     private int speed;
+    private int damage;
 
-    public Ball(double x, double y, double width, double height, double dx, double dy, int speed) {
+    public Ball(double x, double y, double width, double height, double dx, double dy, int speed, int damage) {
         super(x, y, width, height);
         this.speed = speed;
         this.dx = dx;
         this.dy = dy;
         image = new Image(getClass().getResourceAsStream("/asset/ball.png"));
+        this.damage = damage;
     }
 
 
@@ -198,5 +201,13 @@ public class Ball extends MoveableObject {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 }
