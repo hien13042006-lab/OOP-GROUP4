@@ -32,7 +32,7 @@ public class FastBallPowerUp extends PowerUp {
         isActive = true;
 
         for(Ball ball : balls) {
-            ball.setSpeed(ball.getSpeed() + SPEED_INCREMENT);
+            ball.setSpeed(Ball.SPEED + SPEED_INCREMENT);
         }
     }
 
@@ -41,7 +41,7 @@ public class FastBallPowerUp extends PowerUp {
         isActive = false;
 
         for(Ball ball : balls) {
-            ball.setSpeed(ball.getSpeed() - SPEED_INCREMENT);
+            ball.setSpeed(Ball.SPEED);
         }
     }
 }

@@ -9,7 +9,7 @@ import org.example.demo.Renderer;
 import java.util.Random;
 
 public class StrongBrick extends Brick {
-    int DROP_CHANCE_STRONG_BRICK = 90;
+    int DROP_CHANCE_STRONG_BRICK = 0;
     int SPLIT_BALL_DROP_CHANCE = 90;
 
     public StrongBrick(double x, double y, double width, double height) {

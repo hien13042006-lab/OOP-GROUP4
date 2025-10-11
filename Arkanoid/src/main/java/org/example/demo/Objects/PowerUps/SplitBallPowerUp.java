@@ -10,7 +10,6 @@ import java.util.List;
 public class SplitBallPowerUp extends PowerUp {
     public static final int SPLIT_BALL_SPEED = 200;
     public static final double SPLIT_BALL_DURATION = 0.0;
-    protected int SPLIT_NUMBER = 3;
 
     //khởi tạo.
     public SplitBallPowerUp(double x, double y, double width, double height) {
@@ -34,15 +33,12 @@ public class SplitBallPowerUp extends PowerUp {
         int n = balls.size();
         for(int i = 0; i < n; i++){
             Ball ball = balls.get(i);
-            for(int j = 0; j < SPLIT_NUMBER; j++){
-                // 45 do sang trai
-                balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
-                        -ball.getDy(),ball.getDx(),ball.getSpeed()));
-
-                //45 do sang phai
-                balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
-                        ball.getDy(),-ball.getDx(),ball.getSpeed()));
-            }
+            // 90 do sang trai
+            balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
+                    -ball.getDx(),ball.getDy(),ball.getSpeed()));
+            //90 do sang phai
+            balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
+                    ball.getDy(),-ball.getDx(),ball.getSpeed()));
         }
     }
 
