@@ -1,5 +1,6 @@
 package org.example.demo.Objects.Bricks;
 
+import java.security.PublicKey;
 import javafx.scene.image.Image;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Objects.PowerUps.SplitBallPowerUp;
@@ -21,7 +22,7 @@ public class StrongBrick extends Brick {
         powerUpDropChance = DROP_CHANCE_STRONG_BRICK;
     }
 
-    StrongBrick() {
+    public StrongBrick() {
         this.hitPoints = 2;
         image = new Image(getClass().getResourceAsStream("/asset/strongBrick.png"));
     }
