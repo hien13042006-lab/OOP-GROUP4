@@ -47,6 +47,8 @@ public class PlayingState implements GameState {
 
     @Override
     public void update(double dt, GameManager gameManager) {
+        System.out.println("GameStateMachine size: " + gameManager.getGameStateMachine().getGameStateList().size());
+        //System.out.println("LevelManager size: " + gameManager.getLevelManager().getLevels().size());
         // Kiểm tra va chạm với gạch
         for (int i = bricks.size() - 1; i >= 0; i--) {
             bricks.get(i).update(dt);
@@ -75,7 +77,7 @@ public class PlayingState implements GameState {
         // Kiểm tra hoàn thành level
         if (bricks.isEmpty()) {
             if (gameManager.getLevelManager().hasNextLevel()) {
-                gameManager.getGameStateMachine().pushState(gameManager, new LevelCompleteState());
+                gameManager.getGameStateMachine().changeState(gameManager, new LevelCompleteState());
             } else {
                 // ⭐ NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
                 gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
