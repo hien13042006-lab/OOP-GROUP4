@@ -1,6 +1,8 @@
-package org.example.demo;
+package org.example.demo.Objects.PowerUps;
 
 import javafx.scene.image.Image;
+import org.example.demo.Objects.Ball;
+import org.example.demo.Objects.Paddle;
 
 import java.util.List;
 

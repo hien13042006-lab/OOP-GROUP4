@@ -1,6 +1,10 @@
-package org.example.demo;
+package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
+import org.example.demo.GameManager;
+import org.example.demo.Objects.GameObject;
+import org.example.demo.Objects.PowerUps.PowerUp;
+import org.example.demo.Renderer;
 
 public class Brick extends GameObject {
     public static final int brickWidth = GameManager.WINDOW_WIDTH / 8;
@@ -14,7 +18,7 @@ public class Brick extends GameObject {
     //ti le roi ra powerUp (theo %)
     protected int powerUpDropChance;
 
-    protected void takeHit() {
+    public void takeHit() {
         hitPoints--;
     }
 

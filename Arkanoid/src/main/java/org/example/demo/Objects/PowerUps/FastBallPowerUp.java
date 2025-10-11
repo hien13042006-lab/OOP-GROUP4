@@ -1,11 +1,13 @@
-package org.example.demo;
+package org.example.demo.Objects.PowerUps;
 
 import javafx.scene.image.Image;
+import org.example.demo.Objects.Ball;
+import org.example.demo.Objects.Paddle;
 
 import java.util.List;
 
 //tăng tốc độ bóng
-public class FastBallPowerUp extends PowerUp{
+public class FastBallPowerUp extends PowerUp {
     public static final double FAST_BALL_DURATION = 5.0;
     public static final int FAST_BALL_SPEED = 200;
     protected int SPEED_INCREMENT = 300;

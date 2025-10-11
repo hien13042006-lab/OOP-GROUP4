@@ -4,6 +4,11 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import org.example.demo.Objects.Ball;
+import org.example.demo.Objects.Bricks.Brick;
+import org.example.demo.Objects.GameObject;
+import org.example.demo.Objects.PowerUps.PowerUp;
+import org.example.demo.States.*;
 
 public class Renderer {
     private GraphicsContext gc;
@@ -28,7 +33,7 @@ public class Renderer {
 
     //draw gameObject
     public void draw(GameObject object, Image image) {
-        gc.drawImage(image, object.x, object.y, object.width, object.height);
+        gc.drawImage(image, object.getX(), object.getY(), object.getWidth(), object.getHeight());
     }
 
 
@@ -52,7 +57,7 @@ public class Renderer {
                 GameManager.WINDOW_WIDTH / 2 - 140,
                 GameManager.WINDOW_HEIGHT / 2 + 60);
     }
-    public void draw(GameOverState gameOverState,GameManager gameManager){
+    public void draw(GameOverState gameOverState, GameManager gameManager){
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
@@ -90,7 +95,7 @@ public class Renderer {
         gc.fillText("Level: " + gameManager.getLevelManager().getCurrentNumberLevel(), 10, 60);
         gc.fillText("Difficulty: "+ gameManager.getLevelManager().getCurrentLevel().getDifficulty(),10,80);
     }
-    public void draw(PausedState pausedState,GameManager gameManager){
+    public void draw(PausedState pausedState, GameManager gameManager){
         // Vẽ game ở trạng thái hiện tại (để làm nền)
         PlayingState playingState = new PlayingState();
         playingState.render(this, gameManager);

@@ -1,6 +1,7 @@
-package org.example.demo;
+package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
+import org.example.demo.Renderer;
 
 public class UnbreakableBrick extends Brick {
     public UnbreakableBrick(double x, double y, double width, double height) {

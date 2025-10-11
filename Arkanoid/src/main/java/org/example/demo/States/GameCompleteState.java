@@ -1,35 +1,35 @@
-package org.example.demo;
+package org.example.demo.States;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
+import org.example.demo.GameManager;
+import org.example.demo.Renderer;
 
-public class MenuState implements GameState {
+public class GameCompleteState implements GameState {
 
     @Override
     public boolean enter(GameManager gameManager) {
-        System.out.println("Entering Menu State");
+        System.out.println("Entering Game Complete State");
         return true;
     }
 
     @Override
     public boolean exit(GameManager gameManager) {
-        System.out.println("Exiting Menu State");
+        System.out.println("Exiting Game Complete State");
         return true;
     }
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
         if (event.getCode() == KeyCode.ENTER) {
-            gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());
+            gameManager.restartGame();
+            gameManager.getGameStateMachine().changeState(gameManager, new MenuState());
         }
     }
 
     @Override
     public void update(double dt, GameManager gameManager) {
-        // Menu không cần update logic vật lý
+        // Không cập nhật gì khi game complete
     }
 
     @Override

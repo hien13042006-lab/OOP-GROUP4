@@ -1,11 +1,11 @@
-package org.example.demo;
+package org.example.demo.Objects;
 
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import org.example.demo.GameManager;
+import org.example.demo.Renderer;
 
 public class Paddle extends MoveableObject {
     //cac thong so toan cuc cua paddle
@@ -92,7 +92,7 @@ public class Paddle extends MoveableObject {
 
         // Clamp to screen
         if (x < 0) x = 0;
-        if (x + width > 800) x = 800 - width;
+        if (x + width > GameManager.WINDOW_WIDTH) x = GameManager.WINDOW_WIDTH - width;
     }
 
     @Override

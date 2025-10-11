@@ -1,4 +1,9 @@
-package org.example.demo;
+package org.example.demo.Objects.PowerUps;
+
+import org.example.demo.Objects.Ball;
+import org.example.demo.Objects.GameObject;
+import org.example.demo.Objects.Paddle;
+import org.example.demo.Renderer;
 
 import java.util.List;
 

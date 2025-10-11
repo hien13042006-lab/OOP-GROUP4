@@ -1,6 +1,8 @@
-package org.example.demo;
+package org.example.demo.Objects;
 
 import javafx.scene.image.Image;
+import org.example.demo.*;
+import org.example.demo.Objects.Bricks.Brick;
 
 public class Ball extends MoveableObject {
     public static final int RADIUS = 11;
@@ -17,12 +19,12 @@ public class Ball extends MoveableObject {
     }
 
 
-    boolean checkCollision(GameObject gameObject) {
+    public boolean checkCollision(GameObject gameObject) {
         return this.x < gameObject.getX() + gameObject.getWidth() && this.x + this.width > gameObject.getX() && this.y < gameObject.getY() + gameObject.getHeight() && this.y + this.height > gameObject.getY();
     }
 
     // Va chạm với paddle
-    void bounceOffPaddle(Paddle paddle) {
+    public void bounceOffPaddle(Paddle paddle) {
         // Chỉ xử lý khi đang rơi xuống
         if (dy < 0) return;
 
@@ -98,7 +100,7 @@ public class Ball extends MoveableObject {
     }
 
 
-    void bounceOffBrick(Brick brick) {
+    public void bounceOffBrick(Brick brick) {
         // Kiểm tra độ va chạm với các cạnh của Brick
         // Tính overlap theo từng hướng
         double overlapLeft = (this.x + this.width) - brick.getX();
@@ -146,7 +148,7 @@ public class Ball extends MoveableObject {
     }
 
     // Nảy khi chạm tường
-    void bounceOffWall() {
+    public void bounceOffWall() {
         //chạm trái
         if (x < 0) {
             x = 0;
@@ -154,8 +156,8 @@ public class Ball extends MoveableObject {
         }
 
         // chạm phải
-        else if (x > 800 - width) {
-            x = 800 - width;
+        else if (x > GameManager.WINDOW_WIDTH - width) {
+            x = GameManager.WINDOW_WIDTH - width;
             dx = -dx;
         }
 
@@ -163,10 +165,10 @@ public class Ball extends MoveableObject {
             y = 0;
             dy = -dy;
         }
-        else if (y > 600 - height) {
-            y = 600 - height;
-            dy = -dy;
-        }
+//        else if (y > GameManager.WINDOW_HEIGHT - height) {
+//            y = GameManager.WINDOW_HEIGHT - height;
+//            dy = -dy;
+//        }
     }
 
 

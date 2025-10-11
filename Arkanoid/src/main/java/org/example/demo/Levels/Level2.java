@@ -1,4 +1,8 @@
-package org.example.demo;
+package org.example.demo.Levels;
+
+import org.example.demo.Objects.Bricks.Brick;
+import org.example.demo.Objects.Bricks.NormalBrick;
+import org.example.demo.Objects.Bricks.StrongBrick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +13,7 @@ public class Level2 extends Level {
     }
 
     @Override
-    protected List<Brick> createBricks() {
+    public List<Brick> createBricks() {
         List<Brick> bricks = new ArrayList<>();
         int rows = 8;
         int cols = 8;

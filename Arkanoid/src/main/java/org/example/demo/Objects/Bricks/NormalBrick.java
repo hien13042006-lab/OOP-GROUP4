@@ -1,6 +1,10 @@
-package org.example.demo;
+package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
+import org.example.demo.Objects.PowerUps.ExpandPaddlePowerUp;
+import org.example.demo.Objects.PowerUps.FastBallPowerUp;
+import org.example.demo.Objects.PowerUps.PowerUp;
+import org.example.demo.Renderer;
 
 import java.util.Random;
 

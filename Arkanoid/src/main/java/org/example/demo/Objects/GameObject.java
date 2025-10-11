@@ -1,6 +1,7 @@
-package org.example.demo;
+package org.example.demo.Objects;
 
 import javafx.scene.image.Image;
+import org.example.demo.Renderer;
 
 public abstract class GameObject {
     protected double x;

@@ -1,6 +1,7 @@
-package org.example.demo;
+package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
+import org.example.demo.Renderer;
 
 import static org.example.demo.GameManager.WINDOW_WIDTH;
 

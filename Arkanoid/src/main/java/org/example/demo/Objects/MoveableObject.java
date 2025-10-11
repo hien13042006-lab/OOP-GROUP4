@@ -1,4 +1,4 @@
-package org.example.demo;
+package org.example.demo.Objects;
 
 public abstract class MoveableObject extends GameObject {
     protected double dx;
@@ -11,6 +11,14 @@ public abstract class MoveableObject extends GameObject {
         super(x, y, width, height);
         this.dx = dx;
         this.dy = dy;
+    }
+
+    public double getDx() {
+        return dx;
+    }
+
+    public double getDy() {
+        return dy;
     }
 
     public MoveableObject(double x, double y, double width, double height) {
