@@ -7,7 +7,7 @@ import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
 
 public class Brick extends GameObject {
-    public static final int brickWidth = GameManager.WINDOW_WIDTH / 8;
+    public static final int brickWidth = 80;
     public static final int brickHeight = 30;
 
     protected Image threePoint = new Image(getClass().getResourceAsStream("/asset/movingBrick.png"));

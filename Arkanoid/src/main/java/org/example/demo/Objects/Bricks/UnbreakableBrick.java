@@ -19,11 +19,16 @@ public class UnbreakableBrick extends Brick {
 
     @Override
     public void render(Renderer r) {
-        r.draw(this, image);
+        r.draw(this,image);
     }
 
     @Override
     public void takeHit() {
         return;
+    }
+
+    @Override
+    public void update(double dt) {
+        image = new Image(getClass().getResourceAsStream("/asset/unbreakableBrick.png"));
     }
 }
