@@ -53,4 +53,8 @@ public class GameStateMachine {
             gameStateList.getLast().handleInput(event, gameManager);
         }
     }
+
+    public List<GameState> getGameStateList() {
+        return gameStateList;
+    }
 }
