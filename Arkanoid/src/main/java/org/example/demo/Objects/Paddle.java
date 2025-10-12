@@ -70,16 +70,13 @@ public class Paddle extends MoveableObject {
     }
 
     void moveLeft(double dt) {
-        this.x -= this.speed * dt;
+        this.x -= this.speed * dx * dt;
     }
 
     void moveRight(double dt) {
-        this.x += this.speed * dt;
+        this.x += this.speed * dx * dt;
     }
 
-    void PowerUp() {
-
-    }
 
     @Override
     public void move(double dt) {

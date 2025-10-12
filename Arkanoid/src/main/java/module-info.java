@@ -6,6 +6,8 @@ module org.example.demo {
     requires javafx.graphics;
     requires java.logging;
     requires java.sql;
+    requires eu.hansolo.tilesfx;
+    //requires org.example.demo;
 
 
     opens org.example.demo to javafx.fxml;
