@@ -44,12 +44,12 @@ public class Ball extends MoveableObject {
         // Ngưỡng để coi là "chạm góc"
         double epsilon = 0.5;
 
-        // Kiểm tra chạm góc(chỉ góc trên bên phải or trên trái của paddle
-        boolean cornerTopLeft = Math.abs(overlapTop - overlapLeft) < epsilon;
-        boolean cornerTopRight = Math.abs(overlapTop - overlapRight) < epsilon;
+        // Kiểm tra chạm góc(chỉ góc trên bên phải or trên trái của paddle)
+        boolean cornerTopLeft = Math.abs(overlapTop - overlapLeft) <= epsilon && this.dx > 0;
+        boolean cornerTopRight = Math.abs(overlapTop - overlapRight) <= epsilon && this.dx < 0;
 
         if (cornerTopLeft || cornerTopRight) {
-            // Va chạm góc → đảo cả dx, dy
+            // Va chạm góc và bóng đang hướng tới cạnh paddle → đảo cả dx, dy
             dx = -dx;
             dy = -dy;
             return;
@@ -101,6 +101,9 @@ public class Ball extends MoveableObject {
 
 
     public void bounceOffBrick(Brick brick) {
+        // Không va chạm bỏ qua
+        if (!checkCollision(brick)) return;
+
         // Kiểm tra độ va chạm với các cạnh của Brick
         // Tính overlap theo từng hướng
         double overlapLeft = (this.x + this.width) - brick.getX();
@@ -115,13 +118,13 @@ public class Ball extends MoveableObject {
         double epsilon = 0.5;
 
         // Kiểm tra chạm góc
-        boolean cornerTopLeft = Math.abs(overlapTop - overlapLeft) < epsilon;
-        boolean cornerTopRight = Math.abs(overlapTop - overlapRight) < epsilon;
-        boolean cornerBottomLeft = Math.abs(overlapBottom - overlapLeft) < epsilon;
-        boolean cornerBottomRight = Math.abs(overlapBottom - overlapRight) < epsilon;
+        boolean cornerTopLeft = Math.abs(overlapTop - overlapLeft) <= epsilon && this.dx > 0 && this.dy > 0;
+        boolean cornerTopRight = Math.abs(overlapTop - overlapRight) <= epsilon && this.dx < 0 && this.dy > 0;
+        boolean cornerBottomLeft = Math.abs(overlapBottom - overlapLeft) <= epsilon && this.dx > 0 && this.dy < 0;
+        boolean cornerBottomRight = Math.abs(overlapBottom - overlapRight) <= epsilon && this.dx < 0 && this.dy < 0;
 
         if (cornerTopLeft || cornerTopRight || cornerBottomLeft || cornerBottomRight) {
-            // Va chạm góc → đảo cả dx, dy
+            // Va chạm góc và hướng cùng chiều với brick → đảo cả dx, dy
             dx = -dx;
             dy = -dy;
             return;

@@ -111,9 +111,9 @@ class BallTest {
     @Test
     void bounceOffBrick_RightSide() {
         //Cho vị trí bóng hơi lấn ở trên phải (minOverlap = overlapRight)
-        //Vị trí bóng phải gạch và sang phải (dx = abs(dx))
+        //Vị trí bóng phải gạch và sang phải (dx = -dx)
         NormalBrick brick = new NormalBrick(200, 100, 200, 100);
-        Ball ball = new Ball(400, 150, 20, 20, -1, 1, Ball.SPEED);
+        Ball ball = new Ball(390, 150, 20, 20, -1, 1, Ball.SPEED);
         ball.bounceOffBrick(brick);
 
         assertEquals(brick.getX() + brick.getWidth(), ball.getX());
@@ -126,11 +126,11 @@ class BallTest {
         //Cho overlapTop - overlapLeft = 0
         //Khi đó đổi chiều dx, dy
         NormalBrick brick = new NormalBrick(200, 100, 200, 100);
-        Ball ball = new Ball(190, 90, 20, 20, -1, 1, Ball.SPEED);
+        Ball ball = new Ball(190, 90, 20, 20, 1, 1, Ball.SPEED);
         ball.bounceOffBrick(brick);
 
-        assertEquals(1, ball.getDx());
-        assertEquals(-1, ball.getDy());
+        assertEquals(-1, ball.getDx());
+        assertEquals(1, ball.getDy());
     }
 
     @Test
@@ -178,10 +178,10 @@ class BallTest {
         //Cho overlapTop - overlapLeft = 0
         //Khi đó đổi chiều dx, dy
         Paddle paddle = new Paddle(200, 800, 100, 40, 10, 10, Paddle.PADDLE_SPEED);
-        Ball ball = new Ball(290, 790, 20, 20, 1, 1, Ball.SPEED);
+        Ball ball = new Ball(290, 790, 20, 20, -1, 1, Ball.SPEED);
         ball.bounceOffPaddle(paddle);
 
-        assertEquals(-1, ball.getDx());
+        assertEquals(1, ball.getDx());
         assertEquals(-1, ball.getDy());
     }
 
