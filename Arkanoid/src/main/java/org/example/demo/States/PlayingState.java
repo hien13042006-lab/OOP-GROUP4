@@ -5,6 +5,7 @@ import javafx.scene.input.KeyEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
+import org.example.demo.Objects.Bricks.UnbreakableBrick;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
@@ -86,7 +87,13 @@ public class PlayingState implements GameState {
         }
 
         // Kiểm tra hoàn thành level
-        if (bricks.isEmpty()) {
+        int countUnbreakableBrick = 0;
+        for(Brick brick : bricks) {
+            if(brick instanceof UnbreakableBrick) {
+                countUnbreakableBrick++;
+            }
+        }
+        if (countUnbreakableBrick == bricks.size()) {
             if (gameManager.getLevelManager().hasNextLevel()) {
                 gameManager.getGameStateMachine().changeState(gameManager, new LevelCompleteState());
             } else {
