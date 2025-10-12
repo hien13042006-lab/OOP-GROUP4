@@ -213,4 +213,6 @@ public class Ball extends MoveableObject {
     public void setDamage(int damage) {
         this.damage = damage;
     }
+
+
 }

@@ -33,6 +33,7 @@ public class FireBallPowerUp extends PowerUp {
 
         for(Ball ball : balls) {
             ball.setDamage(FIRE_DAMAGE);
+            ball.setImage(new Image(getClass().getResourceAsStream("/asset/fireball.png")));
         }
     }
 
@@ -41,6 +42,7 @@ public class FireBallPowerUp extends PowerUp {
         isActive = false;
         for(Ball ball : balls) {
             ball.setDamage(Ball.DAMAGE_DEFAULT);
+            ball.setImage(new Image(getClass().getResourceAsStream("/asset/ball.png")));
         }
     }
 }
