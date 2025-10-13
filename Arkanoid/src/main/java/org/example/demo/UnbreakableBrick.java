@@ -22,6 +22,11 @@ public class UnbreakableBrick extends Brick {
     }
 
     @Override
+    public void update(double dt) {
+        return;
+    }
+
+    @Override
     public void takeHit() {
         return;
     }

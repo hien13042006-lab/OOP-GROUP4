@@ -77,7 +77,6 @@ public class GameManager {
         balls = new ArrayList<>();
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
                 Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED));
-
         bricks = currentLevel.createBricks();
 
         //powerUp

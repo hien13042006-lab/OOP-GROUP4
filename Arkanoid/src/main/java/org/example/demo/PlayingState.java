@@ -47,6 +47,7 @@ public class PlayingState implements GameState {
 
     @Override
     public void update(double dt, GameManager gameManager) {
+        System.out.println(balls.size());
         // Kiểm tra va chạm với gạch
         for (int i = bricks.size() - 1; i >= 0; i--) {
             bricks.get(i).update(dt);
@@ -60,10 +61,9 @@ public class PlayingState implements GameState {
                     if (brick.isDestroyed()) {
                         // random xac suat ra powerup hay khong
                         int chance = rand.nextInt(100);
-                        if(chance < bricks.get(i).getPowerUpDropChance()) {
+                        if (chance < bricks.get(i).getPowerUpDropChance()) {
                             fallingPowerUps.add(bricks.get(i).makePowerUp());
                         }
-
                         bricks.remove(i);
                         gameManager.addScore(10);
                     }
@@ -134,7 +134,6 @@ public class PlayingState implements GameState {
             powerUp.update(dt);
         }
 
-        System.out.println("activePowerUps: " + activePowerUps.size());
         //update activePowerUps
         for (int i = activePowerUps.size() - 1; i >= 0; i--) {
             PowerUp powerUp = activePowerUps.get(i);

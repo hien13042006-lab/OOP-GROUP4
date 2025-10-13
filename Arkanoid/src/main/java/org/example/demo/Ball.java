@@ -13,7 +13,7 @@ public class Ball extends MoveableObject {
         this.speed = speed;
         this.dx = dx;
         this.dy = dy;
-        image = new Image(getClass().getResourceAsStream("/asset/ball.png"));
+        image = new Image(getClass().getResourceAsStream("/asset/fireBall.png"));
     }
 
 
@@ -172,8 +172,6 @@ public class Ball extends MoveableObject {
 
     @Override
     public void move(double dt) {
-        System.out.println("x: " + x);
-        System.out.println("y:" + y);
         x += dx * speed * dt;
         y += dy * speed * dt;
     }
