@@ -5,14 +5,23 @@ import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import org.example.demo.Levels.Level;
+import org.example.demo.Levels.*;
+import org.example.demo.Levels.LevelManager;
+import org.example.demo.Objects.Ball;
+import org.example.demo.Objects.Bricks.Brick;
+import org.example.demo.Objects.Paddle;
+import org.example.demo.Objects.PowerUps.PowerUp;
+import org.example.demo.States.GameStateMachine;
+import org.example.demo.States.MenuState;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class GameManager {
-    public static final int WINDOW_WIDTH = 800;
-    public static final int WINDOW_HEIGHT = 600;
+    public static final int WINDOW_WIDTH = 1040;
+    public static final int WINDOW_HEIGHT = 800;
 
     private Renderer renderer;
     private Paddle paddle;
@@ -71,15 +80,21 @@ public class GameManager {
 
         paddle = new Paddle((WINDOW_WIDTH - Paddle.PADDLE_WIDTH) / 2,
                 WINDOW_HEIGHT - Paddle.PADDLE_HEIGHT - Paddle.MARGIN_BOTTOM,
-                Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 0, 0, 800);
+                Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 1, 1, 800);
 
         // THONG SO BALL
+        if(balls!=null) balls.clear();
         balls = new ArrayList<>();
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
-                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED));
+                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED, Ball.DAMAGE_DEFAULT));
+
+
+        if(bricks!=null) bricks.clear();
         bricks = currentLevel.createBricks();
 
         //powerUp
+        if(fallingPowerUps!=null) fallingPowerUps.clear();
+        if(activePowerUps!=null) activePowerUps.clear();
         activePowerUps = new ArrayList<>();// các powerUp đang rơi
         fallingPowerUps = new ArrayList<>();// các powerUp đang tác dụng
 
@@ -115,7 +130,7 @@ public class GameManager {
     public void resetBallAndPaddle() {
         paddle.setX((WINDOW_WIDTH - paddle.getWidth()) / 2);
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
-                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED));
+                Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED, Ball.DAMAGE_DEFAULT));
     }
 
     public void restartGame() {
