@@ -19,19 +19,18 @@ public class Level1 extends Level {
         int rows = 5;
         int cols = 13;
 
-//        for (int row = 0; row < rows; row++) {
-//            for (int col = 0; col < cols; col++) {
-//                int x = col * Brick.brickWidth;
-//                int y = 50 + row * Brick.brickHeight;
-//
-//                if ((row + col) % 2 == 0) {
-//                    bricks.add(new NormalBrick(x, y, Brick.brickWidth, Brick.brickHeight));
-//                } else {
-//                    bricks.add(new StrongBrick(x, y, Brick.brickWidth, Brick.brickHeight));
-//                }
-//            }
-//        }
-        bricks.add(new NormalBrick(50, 50, Brick.brickWidth, Brick.brickHeight));
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                int x = col * Brick.brickWidth;
+                int y = 50 + row * Brick.brickHeight;
+
+                if ((row + col) % 2 == 0) {
+                    bricks.add(new NormalBrick(x, y, Brick.brickWidth, Brick.brickHeight));
+                } else {
+                    bricks.add(new StrongBrick(x, y, Brick.brickWidth, Brick.brickHeight));
+                }
+            }
+        }
         return bricks;
     }
 }
