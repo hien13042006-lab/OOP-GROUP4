@@ -44,8 +44,8 @@ public class Renderer {
         // Vẽ tiêu đề
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 36));
-        gc.fillText("BREAKOUT GAME",
-                GameManager.WINDOW_WIDTH / 2 - 150,
+        gc.fillText("ARKANOID",
+                GameManager.WINDOW_WIDTH / 2 - 100,
                 GameManager.WINDOW_HEIGHT / 2 - 50);
 
         // Vẽ hướng dẫn
