@@ -29,6 +29,6 @@ public class UnbreakableBrick extends Brick {
 
     @Override
     public void update(double dt) {
-        image = new Image(getClass().getResourceAsStream("/asset/unbreakableBrick.png"));
+        return;
     }
 }

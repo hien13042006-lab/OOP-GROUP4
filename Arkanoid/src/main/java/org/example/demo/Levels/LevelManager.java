@@ -23,7 +23,7 @@ public class LevelManager {
         if (currentNumberLevel - 1 < levels.size()) {
             return levels.get(currentNumberLevel - 1);
         }
-        return levels.get(levels.size() - 1); // Return last level nếu vượt quá
+        return null;
     }
 
     public void nextLevel() {

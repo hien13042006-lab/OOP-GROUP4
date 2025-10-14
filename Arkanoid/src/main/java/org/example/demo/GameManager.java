@@ -52,8 +52,9 @@ public class GameManager {
         // Bắt đầu với menu state
         gameStateMachine = new GameStateMachine();
         gameStateMachine.pushState(this, new MenuState());
-
     }
+
+
 
     private void initializeCanvas(Group root) {
         canvas = new Canvas(WINDOW_WIDTH, WINDOW_HEIGHT);
