@@ -27,6 +27,8 @@ public class ExpandPaddlePowerUp extends PowerUp {
 
     @Override
     public void applyEffect(Paddle paddle, List<Ball> balls) {
+
+        super.applyEffect(paddle, balls);
         isFalling = false;
         isActive = true;
         //độ tăng chiều rộng paddle.

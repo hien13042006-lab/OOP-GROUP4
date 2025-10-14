@@ -8,6 +8,7 @@ import org.example.demo.GameManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Objects.Bricks.UnbreakableBrick;
+import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
@@ -25,6 +26,7 @@ public class PlayingState implements GameState {
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Playing State");
 
+        //GameObject.soundManager.stopSoundEffect("BackgroundSoundtrack");
         gameManager.initializeLevel();
         paddle = gameManager.getPaddle();
         balls = gameManager.getBalls();
