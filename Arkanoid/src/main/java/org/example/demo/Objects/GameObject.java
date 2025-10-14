@@ -2,6 +2,7 @@ package org.example.demo.Objects;
 
 import javafx.scene.image.Image;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public abstract class GameObject {
     protected double x;
@@ -9,6 +10,7 @@ public abstract class GameObject {
     protected double width;
     protected double height;
     protected Image image;
+    public static final SoundManager soundManager = new SoundManager();
 
     public GameObject() {
     }

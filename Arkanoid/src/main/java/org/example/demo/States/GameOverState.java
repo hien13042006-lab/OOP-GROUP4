@@ -3,6 +3,7 @@ package org.example.demo.States;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import org.example.demo.GameManager;
+import org.example.demo.Objects.GameObject;
 import org.example.demo.Renderer;
 
 public class GameOverState implements GameState {
@@ -10,6 +11,7 @@ public class GameOverState implements GameState {
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Game Complete State");
+        GameObject.soundManager.stopSoundEffect("BackgroundSoundtrack");
         return true;
     }
 

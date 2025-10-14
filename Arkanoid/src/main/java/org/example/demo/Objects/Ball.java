@@ -1,6 +1,7 @@
 package org.example.demo.Objects;
 
 import javafx.scene.image.Image;
+import javafx.scene.media.AudioClip;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Renderer;
@@ -15,8 +16,7 @@ public class Ball extends MoveableObject {
     private int damage;
     private boolean isWaiting = true;
 
-    public Ball(double x, double y, double width, double height, double dx, double dy, int speed,
-            int damage) {
+    public Ball(double x, double y, double width, double height, double dx, double dy, int speed, int damage) {
         super(x, y, width, height);
         this.speed = speed;
         this.dx = dx;
@@ -35,6 +35,7 @@ public class Ball extends MoveableObject {
 
     // Va chạm với paddle
     public void bounceOffPaddle(Paddle paddle) {
+        soundManager.playSoundEffect("paddleAndBall");
         // Chỉ xử lý khi đang rơi xuống
         if (dy < 0) {
             return;
@@ -116,6 +117,7 @@ public class Ball extends MoveableObject {
 
 
     public void bounceOffBrick(Brick brick) {
+        soundManager.playSoundEffect("BrickAndBall");
         // Không va chạm bỏ qua
         if (!checkCollision(brick)) {
             return;
