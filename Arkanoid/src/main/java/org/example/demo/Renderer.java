@@ -89,12 +89,15 @@ public class Renderer {
         drawHUD(this, gameManager);
     }
     private void drawHUD(Renderer renderer, GameManager gameManager) {
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, 50 );
+
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font("Arial", 16));
-        gc.fillText("Score: " + gameManager.getScore(), 10, 20);
-        gc.fillText("Lives: " + gameManager.getLives(), 10, 40);
-        gc.fillText("Level: " + gameManager.getLevelManager().getCurrentNumberLevel(), 10, 60);
-        gc.fillText("Difficulty: "+ gameManager.getLevelManager().getCurrentLevel().getDifficulty(),10,80);
+        gc.setFont(new Font("Arial", 30));
+        gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH/2 - 15, 30);
+        gc.fillText("Lives: " + gameManager.getLives(), 10, 30);
+        gc.fillText("Level: " + gameManager.getLevelManager().getCurrentNumberLevel(), 150, 30);
+        gc.fillText("Difficulty: "+ gameManager.getLevelManager().getCurrentLevel().getDifficulty(),840,30);
     }
     public void draw(PausedState pausedState, GameManager gameManager){
         // Vẽ game ở trạng thái hiện tại (để làm nền)
