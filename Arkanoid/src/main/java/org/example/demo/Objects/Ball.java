@@ -186,13 +186,13 @@ public class Ball extends MoveableObject {
             dx = -dx;
         }
 
-//        if (y < 0) {
-//            y = 0;
-//            dy = -dy;
-//        } else if (y > GameManager.WINDOW_HEIGHT - height) {
-//            y = GameManager.WINDOW_HEIGHT - height;
-//            dy = -dy;
-//        }
+        if (y < 50) {
+            y = 50;
+            dy = -dy;
+        } else if (y > GameManager.WINDOW_HEIGHT - height) {
+            y = GameManager.WINDOW_HEIGHT - height;
+            dy = -dy;
+        }
     }
 
 
