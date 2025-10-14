@@ -1,18 +1,22 @@
 package org.example.demo.Objects;
 
 import javafx.scene.image.Image;
-import org.example.demo.*;
+import org.example.demo.GameManager;
 import org.example.demo.Objects.Bricks.Brick;
+import org.example.demo.Renderer;
 
 public class Ball extends MoveableObject {
+
     public static final int RADIUS = 11;
     public static final int SPEED = 500;
     public static final int DAMAGE_DEFAULT = 1;
 
     private int speed;
     private int damage;
+    private boolean isWaiting = true;
 
-    public Ball(double x, double y, double width, double height, double dx, double dy, int speed, int damage) {
+    public Ball(double x, double y, double width, double height, double dx, double dy, int speed,
+            int damage) {
         super(x, y, width, height);
         this.speed = speed;
         this.dx = dx;
@@ -23,16 +27,23 @@ public class Ball extends MoveableObject {
 
 
     public boolean checkCollision(GameObject gameObject) {
-        return this.x < gameObject.getX() + gameObject.getWidth() && this.x + this.width > gameObject.getX() && this.y < gameObject.getY() + gameObject.getHeight() && this.y + this.height > gameObject.getY();
+        return this.x < gameObject.getX() + gameObject.getWidth()
+                && this.x + this.width > gameObject.getX()
+                && this.y < gameObject.getY() + gameObject.getHeight()
+                && this.y + this.height > gameObject.getY();
     }
 
     // Va chạm với paddle
     public void bounceOffPaddle(Paddle paddle) {
         // Chỉ xử lý khi đang rơi xuống
-        if (dy < 0) return;
+        if (dy < 0) {
+            return;
+        }
 
         // Không va chạm thì thôi
-        if (!checkCollision(paddle)) return;
+        if (!checkCollision(paddle)) {
+            return;
+        }
 
         // Tính overlap theo từng hướng
         // Kiểm tra độ va chạm với các cạnh bên của paddle
@@ -42,7 +53,8 @@ public class Ball extends MoveableObject {
         double overlapBottom = (paddle.getY() + paddle.getHeight()) - this.y;
 
         // Tìm overlap nhỏ nhất
-        double minOverlap = Math.min(Math.min(overlapLeft, overlapRight), Math.min(overlapTop, overlapBottom));
+        double minOverlap = Math.min(Math.min(overlapLeft, overlapRight),
+                Math.min(overlapTop, overlapBottom));
 
         // Ngưỡng để coi là "chạm góc"
         double epsilon = 0.5;
@@ -105,7 +117,9 @@ public class Ball extends MoveableObject {
 
     public void bounceOffBrick(Brick brick) {
         // Không va chạm bỏ qua
-        if (!checkCollision(brick)) return;
+        if (!checkCollision(brick)) {
+            return;
+        }
 
         // Kiểm tra độ va chạm với các cạnh của Brick
         // Tính overlap theo từng hướng
@@ -115,16 +129,21 @@ public class Ball extends MoveableObject {
         double overlapBottom = (brick.getY() + brick.getHeight()) - this.y;
 
         // Tìm overlap nhỏ nhất
-        double minOverlap = Math.min(Math.min(overlapLeft, overlapRight), Math.min(overlapTop, overlapBottom));
+        double minOverlap = Math.min(Math.min(overlapLeft, overlapRight),
+                Math.min(overlapTop, overlapBottom));
 
         // Ngưỡng để coi là "chạm góc"
         double epsilon = 0.5;
 
         // Kiểm tra chạm góc
-        boolean cornerTopLeft = Math.abs(overlapTop - overlapLeft) <= epsilon && this.dx > 0 && this.dy > 0;
-        boolean cornerTopRight = Math.abs(overlapTop - overlapRight) <= epsilon && this.dx < 0 && this.dy > 0;
-        boolean cornerBottomLeft = Math.abs(overlapBottom - overlapLeft) <= epsilon && this.dx > 0 && this.dy < 0;
-        boolean cornerBottomRight = Math.abs(overlapBottom - overlapRight) <= epsilon && this.dx < 0 && this.dy < 0;
+        boolean cornerTopLeft =
+                Math.abs(overlapTop - overlapLeft) <= epsilon && this.dx > 0 && this.dy > 0;
+        boolean cornerTopRight =
+                Math.abs(overlapTop - overlapRight) <= epsilon && this.dx < 0 && this.dy > 0;
+        boolean cornerBottomLeft =
+                Math.abs(overlapBottom - overlapLeft) <= epsilon && this.dx > 0 && this.dy < 0;
+        boolean cornerBottomRight =
+                Math.abs(overlapBottom - overlapRight) <= epsilon && this.dx < 0 && this.dy < 0;
 
         if (cornerTopLeft || cornerTopRight || cornerBottomLeft || cornerBottomRight) {
             // Va chạm góc và hướng cùng chiều với brick → đảo cả dx, dy
@@ -167,11 +186,10 @@ public class Ball extends MoveableObject {
             dx = -dx;
         }
 
-        if (y < 0) {
-            y = 0;
+        if (y < 50) {
+            y = 50;
             dy = -dy;
-        }
-        else if (y > GameManager.WINDOW_HEIGHT - height) {
+        } else if (y > GameManager.WINDOW_HEIGHT - height) {
             y = GameManager.WINDOW_HEIGHT - height;
             dy = -dy;
         }
@@ -188,8 +206,12 @@ public class Ball extends MoveableObject {
 
     @Override
     public void update(double dt) {
-        bounceOffWall();
-        move(dt);
+        if (isWaiting == false) {
+            bounceOffWall();
+            move(dt);
+        } else {
+            return;
+        }
     }
 
 
@@ -214,5 +236,11 @@ public class Ball extends MoveableObject {
         this.damage = damage;
     }
 
+    public void setWaiting(boolean waiting) {
+        isWaiting = waiting;
+    }
 
+    public boolean isWaiting() {
+        return isWaiting;
+    }
 }
