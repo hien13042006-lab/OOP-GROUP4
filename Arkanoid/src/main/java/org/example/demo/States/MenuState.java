@@ -5,13 +5,14 @@ import javafx.scene.input.KeyCode;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.GameObject;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class MenuState implements GameState {
 
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Menu State");
-        //GameObject.soundManager.playSoundEffect("BackgroundSoundtrack");
+        //SoundManager.playSoundEffect("BackgroundSoundtrack");
         return true;
     }
 

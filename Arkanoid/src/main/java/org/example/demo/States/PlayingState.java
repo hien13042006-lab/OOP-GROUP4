@@ -2,6 +2,7 @@ package org.example.demo.States;
 
 import java.util.List;
 import java.util.Random;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.example.demo.GameManager;
@@ -12,6 +13,7 @@ import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class PlayingState implements GameState {
 
