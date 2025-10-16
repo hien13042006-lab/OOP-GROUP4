@@ -4,6 +4,7 @@ import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public abstract class PowerUp extends GameObject {
     }
 
     public void applyEffect(Paddle paddle, List<Ball> balls) {
-        soundManager.playSoundEffect("PowerUpApply");
+        SoundManager.playSoundEffect("PowerUpApply");
     }
 
 

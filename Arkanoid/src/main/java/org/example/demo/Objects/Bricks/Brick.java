@@ -5,6 +5,7 @@ import org.example.demo.GameManager;
 import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class Brick extends GameObject {
     public static final int brickWidth = 80;
@@ -19,23 +20,24 @@ public class Brick extends GameObject {
     protected int powerUpDropChance;
 
     public void takeHit(int damage) {
-        hitPoints-=damage;
+        hitPoints -= damage;
     }
 
     public boolean isDestroyed() {
-        return hitPoints <= 0;
+        if (hitPoints <= 0) {
+            SoundManager.playSoundEffect("BrickDestroyed");
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void update(double dt) {
-        if(hitPoints == 3)
-        {
+        if (hitPoints == 3) {
             image = threePoint;
-        } else if(hitPoints == 2)
-        {
+        } else if (hitPoints == 2) {
             image = twoPoint;
-        }
-        else{
+        } else {
             image = onePoint;
         }
     }

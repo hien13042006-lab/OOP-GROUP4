@@ -5,6 +5,7 @@ import javafx.scene.media.AudioClip;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class Ball extends MoveableObject {
 
@@ -35,7 +36,7 @@ public class Ball extends MoveableObject {
 
     // Va chạm với paddle
     public void bounceOffPaddle(Paddle paddle) {
-        soundManager.playSoundEffect("paddleAndBall");
+        SoundManager.playSoundEffect("paddleAndBall");
         // Chỉ xử lý khi đang rơi xuống
         if (dy < 0) {
             return;
@@ -117,7 +118,7 @@ public class Ball extends MoveableObject {
 
 
     public void bounceOffBrick(Brick brick) {
-        soundManager.playSoundEffect("BrickAndBall");
+        SoundManager.playSoundEffect("BrickAndBall");
         // Không va chạm bỏ qua
         if (!checkCollision(brick)) {
             return;
