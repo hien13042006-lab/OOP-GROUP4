@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
 
+import java.util.List;
+
 public class UnbreakableBrick extends Brick {
     public UnbreakableBrick(double x, double y, double width, double height) {
         this.hitPoints = 1;
@@ -21,11 +23,11 @@ public class UnbreakableBrick extends Brick {
 
     @Override
     public void render(Renderer r) {
-        r.draw(this,image);
+        r.draw(this, image);
     }
 
     @Override
-    public void takeHit(int damage) {
+    public void takeHit(int damage, List<Brick> bricks) {
         return;
     }
 
@@ -33,6 +35,5 @@ public class UnbreakableBrick extends Brick {
     public void update(double dt) {
         return;
     }
-
 
 }

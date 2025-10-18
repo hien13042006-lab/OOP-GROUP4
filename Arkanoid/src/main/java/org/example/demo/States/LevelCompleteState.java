@@ -22,6 +22,7 @@ public class LevelCompleteState implements GameState {
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
+
         if (event.getCode() == KeyCode.ENTER) {
             LevelManager levelManager = gameManager.getLevelManager();
             if (levelManager.hasNextLevel()) {

@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
+import org.example.demo.Objects.Bricks.ExplodeBrick;
 import org.example.demo.Objects.Bricks.UnbreakableBrick;
 import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.Paddle;
@@ -61,8 +62,6 @@ public class PlayingState implements GameState {
 
     @Override
     public void update(double dt, GameManager gameManager) {
-        //System.out.println("GameStateMachine size: " + gameManager.getGameStateMachine().getGameStateList().size());
-        //System.out.println("LevelManager size: " + gameManager.getLevelManager().getLevels().size());
         // Kiểm tra va chạm với gạch
         for (int i = bricks.size() - 1; i >= 0; i--) {
             bricks.get(i).update(dt);
@@ -72,25 +71,25 @@ public class PlayingState implements GameState {
             for (Ball ball : balls) {
                 if (ball.checkCollision(brick)) {
                     //brick nhận damage
-                    brick.takeHit(ball.getDamage());
+                    brick.takeHit(ball.getDamage(), bricks);
                     //nếu mà ball mạnh quá làm máu brick tụt sâu thì ball không nảy mà đi xuyên
                     if (brick.getHitPoints() >= -100) {
                         ball.bounceOffBrick(brick);
                     }
                     //kiểm tra brick bị phá hủy
-                    if (brick.isDestroyed()) {
-                        // random xac suat ra powerup hay khong
-                        int chance = rand.nextInt(100);
-                        if (chance < bricks.get(i).getPowerUpDropChance()) {
-                            fallingPowerUps.add(bricks.get(i).makePowerUp());
-                        }
 
-                        bricks.remove(i);
-                        gameManager.addScore(10);
-                    }
                 }
             }
+            if (brick.isDestroyed()) {
+                // random xac suat ra powerup hay khong
+                int chance = rand.nextInt(100);
+                if (chance < bricks.get(i).getPowerUpDropChance()) {
+                    fallingPowerUps.add(bricks.get(i).makePowerUp());
+                }
 
+                bricks.remove(i);
+                gameManager.addScore(10);
+            }
         }
 
         // Kiểm tra hoàn thành level

@@ -39,7 +39,7 @@ public class LevelManager {
     }
 
     public void resetLevel() {
-        currentNumberLevel = 1;
+        currentNumberLevel = 4;
     }
 
     public List<Level> getLevels() {

@@ -23,7 +23,7 @@ public class FireBallPowerUp extends PowerUp {
         this.height = height;
         isFalling = true;
         isActive = false;
-        image = new Image(getClass().getResourceAsStream("/asset/FireBallPowerUp.png"));
+        image = new Image(getClass().getResourceAsStream("/asset/FireBallPowerUp.jpg"));
     }
 
     @Override
