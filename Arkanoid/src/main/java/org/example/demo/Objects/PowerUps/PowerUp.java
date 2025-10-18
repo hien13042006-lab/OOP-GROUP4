@@ -5,6 +5,7 @@ import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 import java.util.List;
 

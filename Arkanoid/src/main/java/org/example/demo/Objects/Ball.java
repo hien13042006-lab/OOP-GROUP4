@@ -5,6 +5,7 @@ import javafx.scene.media.AudioClip;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class Ball extends MoveableObject {
 
@@ -14,7 +15,7 @@ public class Ball extends MoveableObject {
 
     private int speed;
     private int damage;
-    private boolean isWaiting = true;
+    private boolean isWaiting;
 
     public Ball(double x, double y, double width, double height, double dx, double dy, int speed, int damage) {
         super(x, y, width, height);
@@ -23,6 +24,17 @@ public class Ball extends MoveableObject {
         this.dy = dy;
         image = new Image(getClass().getResourceAsStream("/asset/ball.png"));
         this.damage = damage;
+        isWaiting = true;
+    }
+
+    public Ball(double x, double y, double width, double height, double dx, double dy, int speed, int damage, boolean isWaiting) {
+        super(x, y, width, height);
+        this.speed = speed;
+        this.dx = dx;
+        this.dy = dy;
+        image = new Image(getClass().getResourceAsStream("/asset/ball.png"));
+        this.damage = damage;
+        this.isWaiting = isWaiting;
     }
 
 

@@ -5,6 +5,7 @@ import javafx.scene.input.KeyCode;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.GameObject;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class MenuState implements GameState {
 
