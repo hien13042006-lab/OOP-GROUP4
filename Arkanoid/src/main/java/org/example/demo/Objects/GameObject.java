@@ -10,6 +10,8 @@ public abstract class GameObject {
     protected double width;
     protected double height;
     protected Image image;
+    public static final SoundManager soundManager = new SoundManager();
+
     public GameObject() {
     }
 

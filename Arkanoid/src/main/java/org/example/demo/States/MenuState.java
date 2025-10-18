@@ -12,13 +12,14 @@ public class MenuState implements GameState {
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Menu State");
-        //SoundManager.playSoundEffect("BackgroundSoundtrack");
+        SoundManager.playSoundEffect("BackgroundSoundtrack");
         return true;
     }
 
     @Override
     public boolean exit(GameManager gameManager) {
         System.out.println("Exiting Menu State");
+        SoundManager.stopSoundEffect("BackgroundSoundtrack");
         return true;
     }
 
