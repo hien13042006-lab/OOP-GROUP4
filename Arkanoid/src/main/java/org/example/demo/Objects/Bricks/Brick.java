@@ -7,6 +7,8 @@ import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
+import java.util.List;
+
 public class Brick extends GameObject {
     public static final int brickWidth = 80;
     public static final int brickHeight = 30;
@@ -19,7 +21,7 @@ public class Brick extends GameObject {
     //ti le roi ra powerUp (theo %)
     protected int powerUpDropChance;
 
-    public void takeHit(int damage) {
+    public void takeHit(int damage, List<Brick> bricks) {
         hitPoints -= damage;
     }
 

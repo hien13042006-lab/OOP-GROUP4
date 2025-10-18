@@ -25,7 +25,7 @@ public class Level1 extends Level {
                 int y = 50 + row * Brick.brickHeight;
 
                 if ((row + col) % 2 == 0) {
-                    bricks.add(new NormalBrick(x, y, Brick.brickWidth, Brick.brickHeight));
+                    bricks.add(new ExplodeBrick(x, y, Brick.brickWidth, Brick.brickHeight));
                 } else {
                     bricks.add(new StrongBrick(x, y, Brick.brickWidth, Brick.brickHeight));
                 }
