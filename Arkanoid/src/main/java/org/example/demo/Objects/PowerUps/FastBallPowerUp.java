@@ -23,7 +23,7 @@ public class FastBallPowerUp extends PowerUp {
         this.height = height;
         isFalling = true;
         isActive = false;
-        image = new Image(getClass().getResourceAsStream("/asset/FastBallPowerUp.png"));
+        image = new Image(getClass().getResourceAsStream("/asset/FastBallPowerUp.jpg"));
     }
 
     @Override

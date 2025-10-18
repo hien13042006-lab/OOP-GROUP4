@@ -15,6 +15,9 @@ import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.States.GameStateMachine;
 import org.example.demo.States.MenuState;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -32,6 +35,7 @@ public class GameManager {
     private List<PowerUp> fallingPowerUps; //các powerUp đang rơi
     private GameStateMachine gameStateMachine; //quản lí state
     private LevelManager levelManager; // quản lí level
+
 
     private int score;
     private int lives;
@@ -53,7 +57,6 @@ public class GameManager {
         gameStateMachine = new GameStateMachine();
         gameStateMachine.pushState(this, new MenuState());
     }
-
 
 
     private void initializeCanvas(Group root) {
@@ -84,18 +87,18 @@ public class GameManager {
                 Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 1, 0, 800);
 
         // THONG SO BALL
-        if(balls!=null) balls.clear();
+        if (balls != null) balls.clear();
         balls = new ArrayList<>();
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
                 Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED, Ball.DAMAGE_DEFAULT));
 
 
-        if(bricks!=null) bricks.clear();
+        if (bricks != null) bricks.clear();
         bricks = currentLevel.createBricks();
 
         //powerUp
-        if(fallingPowerUps!=null) fallingPowerUps.clear();
-        if(activePowerUps!=null) activePowerUps.clear();
+        if (fallingPowerUps != null) fallingPowerUps.clear();
+        if (activePowerUps != null) activePowerUps.clear();
         activePowerUps = new ArrayList<>();// các powerUp đang rơi
         fallingPowerUps = new ArrayList<>();// các powerUp đang tác dụng
 

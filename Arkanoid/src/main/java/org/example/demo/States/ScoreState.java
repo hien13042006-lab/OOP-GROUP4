@@ -3,20 +3,23 @@ package org.example.demo.States;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import org.example.demo.GameManager;
+import org.example.demo.Objects.GameObject;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
-public class GameCompleteState implements GameState {
-    boolean isHighScore;
+public class ScoreState implements GameState {
+
+    private ArrayList<Integer> scores = new ArrayList<>();
 
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Game Complete State");
-        ArrayList<Integer> scores = new ArrayList<>();
-        int newScore = gameManager.getScore();
         try {
             BufferedReader reader = new BufferedReader(new FileReader("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\src\\main\\resources\\scores.txt"));
             String line;
@@ -25,24 +28,7 @@ public class GameCompleteState implements GameState {
             }
         } catch (IOException e) {
         }
-        if (scores.size() >= 10 && newScore <= scores.get(scores.size() - 1)) {
-            isHighScore = false;
-        } else {
-            isHighScore = true;
-            scores.add(newScore);
-            scores.sort(Collections.reverseOrder());
-
-            try (BufferedWriter writer = new BufferedWriter(
-                    new FileWriter("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\src\\main\\resources\\scores.txt"))) {
-                for (int i = 0; i < Math.min(10, scores.size()); i++) {
-                    writer.write(String.valueOf(scores.get(i)));
-                    writer.newLine();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
+        SoundManager.stopSoundEffect("BackgroundSoundtrack");
         return true;
     }
 
@@ -62,7 +48,7 @@ public class GameCompleteState implements GameState {
 
     @Override
     public void update(double dt, GameManager gameManager) {
-        // Không cập nhật gì khi game complete
+        // Không cập nhật gì khi game over
     }
 
     @Override
@@ -70,7 +56,7 @@ public class GameCompleteState implements GameState {
         renderer.draw(this, gameManager);
     }
 
-    public boolean isHighScore() {
-        return isHighScore;
+    public ArrayList<Integer> getScores() {
+        return scores;
     }
 }
