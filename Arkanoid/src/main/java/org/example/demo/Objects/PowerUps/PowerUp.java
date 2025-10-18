@@ -22,7 +22,7 @@ public abstract class PowerUp extends GameObject {
     }
 
     public void applyEffect(Paddle paddle, List<Ball> balls) {
-        GameManager.soundManager.playSoundEffect("PowerUpApply");
+        SoundManager.playSoundEffect("PowerUpApply");
     }
 
 

@@ -25,7 +25,6 @@ import java.util.Random;
 public class GameManager {
     public static final int WINDOW_WIDTH = 1040;
     public static final int WINDOW_HEIGHT = 800;
-    public static final SoundManager soundManager = new SoundManager();
 
     private Renderer renderer;
     private Paddle paddle;
