@@ -61,7 +61,7 @@ public class ExplodeBrick extends Brick {
                 }
                 if ((brick.getY() == this.getY() && Math.abs(brick.getX() - this.getX()) == Brick.brickWidth) ||
                         (brick.getX() == this.getX() && Math.abs(brick.getY() - this.getY()) == Brick.brickHeight)) {
-                    brick.takeHit(brick.getHitPoints(), bricks);
+                    brick.takeHit(1, bricks);
                 }
             }
         }
