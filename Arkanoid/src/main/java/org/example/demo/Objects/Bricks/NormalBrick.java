@@ -37,7 +37,7 @@ public class NormalBrick extends Brick {
         if(chance < EXPEND_DROP_CHANCE) {
             return new ExpandPaddlePowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         } else {
-            return new FireBallPowerUp(this.getX(),this.getY(),this.getWidth(),this.getHeight());
+            return new FastBallPowerUp(this.getX(),this.getY(),this.getWidth(),this.getHeight());
         }
     }
 }

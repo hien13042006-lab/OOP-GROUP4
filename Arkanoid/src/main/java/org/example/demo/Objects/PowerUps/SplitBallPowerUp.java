@@ -37,10 +37,10 @@ public class SplitBallPowerUp extends PowerUp {
             Ball ball = balls.get(i);
             // 90 do sang trai
             balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
-                    -ball.getDx(),ball.getDy(),ball.getSpeed(), ball.getDamage()));
+                    -ball.getDx(),ball.getDy(),ball.getSpeed(), ball.getDamage(), ball.isWaiting()));
             //90 do sang phai
             balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
-                    ball.getDy(),-ball.getDx(),ball.getSpeed(), ball.getDamage()));
+                    ball.getDy(),-ball.getDx(),ball.getSpeed(), ball.getDamage(), ball.isWaiting()));
         }
     }
 
