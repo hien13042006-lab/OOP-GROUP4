@@ -22,7 +22,7 @@ public class SplitBallPowerUp extends PowerUp {
         this.height = height;
         isFalling = true;
         isActive = false;
-        image = new Image(getClass().getResourceAsStream("/asset/nitro.png"));
+        image = new Image(getClass().getResourceAsStream("/asset/SplitBallPowerUp.png"));
     }
 
     @Override

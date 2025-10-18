@@ -1,6 +1,7 @@
 package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
+import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
 
 public class UnbreakableBrick extends Brick {
@@ -11,6 +12,7 @@ public class UnbreakableBrick extends Brick {
         this.width = width;
         this.height = height;
         image = new Image(getClass().getResourceAsStream("/asset/unbreakableBrick.png"));
+        powerUpDropChance = 0;
     }
 
     public UnbreakableBrick() {
@@ -31,4 +33,6 @@ public class UnbreakableBrick extends Brick {
     public void update(double dt) {
         image = new Image(getClass().getResourceAsStream("/asset/unbreakableBrick.png"));
     }
+
+
 }

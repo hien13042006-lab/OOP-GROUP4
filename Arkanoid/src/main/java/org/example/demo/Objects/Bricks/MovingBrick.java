@@ -1,11 +1,14 @@
 package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
+import org.example.demo.Objects.PowerUps.FireBallPowerUp;
+import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
 
 import static org.example.demo.GameManager.WINDOW_WIDTH;
 
 public class MovingBrick extends Brick {
+    int DROP_CHANCE_MOVING_BRICK = 30;
     double speed = 100;
     double dx = 1;
 
@@ -16,6 +19,7 @@ public class MovingBrick extends Brick {
         this.width = width;
         this.height = height;
         image = new Image(getClass().getResourceAsStream("/asset/movingBrick.png"));
+        powerUpDropChance = DROP_CHANCE_MOVING_BRICK;
     }
 
     public MovingBrick() {
@@ -39,5 +43,10 @@ public class MovingBrick extends Brick {
     @Override
     public void render(Renderer r) {
         r.draw(this, image);
+    }
+
+    @Override
+    public PowerUp makePowerUp() {
+        return new FireBallPowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 }

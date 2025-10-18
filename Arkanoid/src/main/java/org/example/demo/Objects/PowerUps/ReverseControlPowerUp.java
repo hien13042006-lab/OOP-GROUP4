@@ -21,7 +21,7 @@ public class ReverseControlPowerUp extends PowerUp {
         this.height = height;
         isFalling = true;
         isActive = false;
-        image = new Image(getClass().getResourceAsStream("/asset/nitro.png"));
+        image = new Image(getClass().getResourceAsStream("/asset/ReverseControlPowerUp.png"));
     }
 
     @Override
