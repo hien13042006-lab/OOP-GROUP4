@@ -81,7 +81,7 @@ public class GameManager {
 
         paddle = new Paddle((WINDOW_WIDTH - Paddle.PADDLE_WIDTH) / 2,
                 WINDOW_HEIGHT - Paddle.PADDLE_HEIGHT - Paddle.MARGIN_BOTTOM,
-                Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 1, 1, 800);
+                Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 1, 0, 800);
 
         // THONG SO BALL
         if(balls!=null) balls.clear();

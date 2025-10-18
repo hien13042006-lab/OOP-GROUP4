@@ -23,7 +23,7 @@ public class FireBallPowerUp extends PowerUp {
         this.height = height;
         isFalling = true;
         isActive = false;
-        image = new Image(getClass().getResourceAsStream("/asset/nitro.png"));
+        image = new Image(getClass().getResourceAsStream("/asset/FireBallPowerUp.png"));
     }
 
     @Override
@@ -34,7 +34,7 @@ public class FireBallPowerUp extends PowerUp {
 
         for (Ball ball : balls) {
             ball.setDamage(FIRE_DAMAGE);
-            ball.setImage(new Image(getClass().getResourceAsStream("/asset/fireball.png")));
+            ball.setImage(new Image(getClass().getResourceAsStream("/asset/FireBall.png")));
         }
     }
 
