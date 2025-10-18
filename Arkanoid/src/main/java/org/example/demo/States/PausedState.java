@@ -21,8 +21,11 @@ public class PausedState implements GameState {
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
-        if (event.getCode() == KeyCode.ESCAPE) {
+        if (event.getCode() == KeyCode.ENTER) {
             gameManager.getGameStateMachine().popState(gameManager);
+        } else  if (event.getCode() == KeyCode.ESCAPE) {
+            gameManager.restartGame();
+            gameManager.getGameStateMachine().changeState(gameManager, new MenuState() );
         }
     }
 

@@ -15,8 +15,8 @@ public class FireBallPowerUp extends PowerUp {
     //khởi tạo.
     public FireBallPowerUp(double x, double y, double width, double height) {
         super();
-        speed =  FIRE_BALL_SPEED;
-        duration =  FIRE_BALL_DURATION;
+        speed = FIRE_BALL_SPEED;
+        duration = FIRE_BALL_DURATION;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -27,20 +27,21 @@ public class FireBallPowerUp extends PowerUp {
     }
 
     @Override
-    public void applyEffect(Paddle paddle, List<Ball> balls){
+    public void applyEffect(Paddle paddle, List<Ball> balls) {
+        super.applyEffect(paddle, balls);
         isFalling = false;
         isActive = true;
 
-        for(Ball ball : balls) {
+        for (Ball ball : balls) {
             ball.setDamage(FIRE_DAMAGE);
             ball.setImage(new Image(getClass().getResourceAsStream("/asset/FireBall.png")));
         }
     }
 
     @Override
-    public void removeEffect(Paddle paddle, List<Ball> balls){
+    public void removeEffect(Paddle paddle, List<Ball> balls) {
         isActive = false;
-        for(Ball ball : balls) {
+        for (Ball ball : balls) {
             ball.setDamage(Ball.DAMAGE_DEFAULT);
             ball.setImage(new Image(getClass().getResourceAsStream("/asset/ball.png")));
         }

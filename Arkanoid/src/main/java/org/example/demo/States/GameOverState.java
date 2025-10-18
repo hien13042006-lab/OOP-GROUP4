@@ -3,13 +3,16 @@ package org.example.demo.States;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import org.example.demo.GameManager;
+import org.example.demo.Objects.GameObject;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class GameOverState implements GameState {
 
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Game Complete State");
+        SoundManager.stopSoundEffect("BackgroundSoundtrack");
         return true;
     }
 

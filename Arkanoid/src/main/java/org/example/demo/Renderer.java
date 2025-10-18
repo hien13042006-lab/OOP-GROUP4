@@ -1,5 +1,6 @@
 package org.example.demo;
 
+import java.awt.Button;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -13,6 +14,7 @@ import org.example.demo.States.*;
 public class Renderer {
     private GraphicsContext gc;
     private Image background;
+    private Button btm =  new Button("Start");
     public Renderer(GraphicsContext gc) {
         this.gc = gc;
         background = new Image(getClass().getResourceAsStream("/asset/background.png"));
@@ -44,7 +46,7 @@ public class Renderer {
         // Vẽ tiêu đề
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 36));
-        gc.fillText("BREAKOUT GAME",
+        gc.fillText("ARKANOID GAME",
                 GameManager.WINDOW_WIDTH / 2 - 150,
                 GameManager.WINDOW_HEIGHT / 2 - 50);
 
@@ -87,13 +89,15 @@ public class Renderer {
         drawHUD(this, gameManager);
     }
     private void drawHUD(Renderer renderer, GameManager gameManager) {
-        GraphicsContext gc = renderer.getGc();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, 50 );
+
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font("Arial", 16));
-        gc.fillText("Score: " + gameManager.getScore(), 10, 20);
-        gc.fillText("Lives: " + gameManager.getLives(), 10, 40);
-        gc.fillText("Level: " + gameManager.getLevelManager().getCurrentNumberLevel(), 10, 60);
-        gc.fillText("Difficulty: "+ gameManager.getLevelManager().getCurrentLevel().getDifficulty(),10,80);
+        gc.setFont(new Font("Arial", 30));
+        gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH/2 - 15, 30);
+        gc.fillText("Lives: " + gameManager.getLives(), 10, 30);
+        gc.fillText("Level: " + gameManager.getLevelManager().getCurrentNumberLevel(), 150, 30);
+        gc.fillText("Difficulty: "+ gameManager.getLevelManager().getCurrentLevel().getDifficulty(),840,30);
     }
     public void draw(PausedState pausedState, GameManager gameManager){
         // Vẽ game ở trạng thái hiện tại (để làm nền)
@@ -109,7 +113,9 @@ public class Renderer {
         gc.fillText("PAUSED", GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2);
 
         gc.setFont(new Font("Arial", 18));
-        gc.fillText("Press ESC to Resume", GameManager.WINDOW_WIDTH / 2 - 100, GameManager.WINDOW_HEIGHT / 2 + 40);
+        gc.fillText("Press ENTER to Resume", GameManager.WINDOW_WIDTH / 2 - 100, GameManager.WINDOW_HEIGHT / 2 + 40);
+        gc.fillText("Press ESC to Play again",GameManager.WINDOW_WIDTH / 2 - 100, GameManager.WINDOW_HEIGHT / 2 + 90);
+
     }
     public void draw (LevelCompleteState levelCompleteState, GameManager gameManager){
         gc.setFill(Color.BLACK);

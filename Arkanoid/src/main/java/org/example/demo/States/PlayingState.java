@@ -1,19 +1,22 @@
 package org.example.demo.States;
 
+import java.util.List;
+import java.util.Random;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Objects.Bricks.UnbreakableBrick;
+import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
-
-import java.util.List;
-import java.util.Random;
+import org.example.demo.SoundManager;
 
 public class PlayingState implements GameState {
+
     private Paddle paddle;
     private List<Ball> balls;
     private List<Brick> bricks;
@@ -25,6 +28,7 @@ public class PlayingState implements GameState {
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Playing State");
 
+        //GameObject.soundManager.stopSoundEffect("BackgroundSoundtrack");
         gameManager.initializeLevel();
         paddle = gameManager.getPaddle();
         balls = gameManager.getBalls();
@@ -46,8 +50,11 @@ public class PlayingState implements GameState {
     public void handleInput(KeyEvent event, GameManager gameManager) {
         if (event.getCode() == KeyCode.ESCAPE) {
             gameManager.getGameStateMachine().pushState(gameManager, new PausedState());
-        } else {
-            // Chuyển input cho paddle
+        } else if (event.getCode() == KeyCode.SPACE) {
+            for (Ball ball : balls) {
+                ball.setWaiting(false);
+            }
+        } else {// Chuyển input cho paddle
             paddle.getKeyPressHandler().handle(event);
         }
     }
@@ -88,14 +95,15 @@ public class PlayingState implements GameState {
 
         // Kiểm tra hoàn thành level
         int countUnbreakableBrick = 0;
-        for(Brick brick : bricks) {
-            if(brick instanceof UnbreakableBrick) {
+        for (Brick brick : bricks) {
+            if (brick instanceof UnbreakableBrick) {
                 countUnbreakableBrick++;
             }
         }
         if (countUnbreakableBrick == bricks.size()) {
             if (gameManager.getLevelManager().hasNextLevel()) {
-                gameManager.getGameStateMachine().changeState(gameManager, new LevelCompleteState());
+                gameManager.getGameStateMachine()
+                        .changeState(gameManager, new LevelCompleteState());
             } else {
                 // ⭐ NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
                 gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
@@ -106,15 +114,20 @@ public class PlayingState implements GameState {
         // Cập nhật vật lý
         paddle.update(dt);
         for (int i = balls.size() - 1; i >= 0; i--) {
-            balls.get(i).update(dt);
-            // Kiểm tra va chạm với paddle
-            if (balls.get(i).checkCollision(paddle)) {
-                balls.get(i).bounceOffPaddle(paddle);
-            }
+            if (balls.get(i).isWaiting()) {
+                balls.get(i).setX(paddle.getX() + paddle.getWidth() / 2 - Ball.RADIUS);
+                balls.get(i).setY(paddle.getY() - Ball.RADIUS * 2);
+            } else {
+                balls.get(i).update(dt);
+                // Kiểm tra va chạm với paddle
+                if (balls.get(i).checkCollision(paddle)) {
+                    balls.get(i).bounceOffPaddle(paddle);
+                }
 
-            // kiểm tra rớt khỏi màn hình
-            if (balls.get(i).getY() > gameManager.WINDOW_HEIGHT) {
-                balls.remove(i);
+                // kiểm tra rớt khỏi màn hình
+                if (balls.get(i).getY() > gameManager.WINDOW_HEIGHT) {
+                    balls.remove(i);
+                }
             }
         }
         // Kiểm tra mất mạng
