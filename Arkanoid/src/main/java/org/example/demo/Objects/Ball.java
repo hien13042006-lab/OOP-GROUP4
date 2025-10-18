@@ -35,7 +35,7 @@ public class Ball extends MoveableObject {
 
     // Va chạm với paddle
     public void bounceOffPaddle(Paddle paddle) {
-        soundManager.playSoundEffect("paddleAndBall");
+        GameManager.soundManager.playSoundEffect("paddleAndBall");
         // Chỉ xử lý khi đang rơi xuống
         if (dy < 0) {
             return;
@@ -117,7 +117,7 @@ public class Ball extends MoveableObject {
 
 
     public void bounceOffBrick(Brick brick) {
-        soundManager.playSoundEffect("BrickAndBall");
+        GameManager.soundManager.playSoundEffect("BrickAndBall");
         // Không va chạm bỏ qua
         if (!checkCollision(brick)) {
             return;
@@ -191,10 +191,11 @@ public class Ball extends MoveableObject {
         if (y < 50) {
             y = 50;
             dy = -dy;
-        } else if (y > GameManager.WINDOW_HEIGHT - height) {
-            y = GameManager.WINDOW_HEIGHT - height;
-            dy = -dy;
         }
+//        else if (y > GameManager.WINDOW_HEIGHT - height) {
+//            y = GameManager.WINDOW_HEIGHT - height;
+//            dy = -dy;
+//        }
     }
 
 

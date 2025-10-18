@@ -11,7 +11,7 @@ public class GameOverState implements GameState {
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Game Complete State");
-        GameObject.soundManager.stopSoundEffect("BackgroundSoundtrack");
+        GameManager.soundManager.stopSoundEffect("BackgroundSoundtrack");
         return true;
     }
 
