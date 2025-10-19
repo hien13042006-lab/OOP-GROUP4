@@ -4,8 +4,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
-import org.example.demo.Objects.Button;
-import org.example.demo.Objects.StartButton;
+import org.example.demo.Objects.Button.Button;
+import org.example.demo.Objects.Button.StartButton;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 

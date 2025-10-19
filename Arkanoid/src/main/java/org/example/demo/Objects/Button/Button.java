@@ -1,9 +1,10 @@
-package org.example.demo.Objects;
+package org.example.demo.Objects.Button;
 
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
+import org.example.demo.Objects.GameObject;
 import org.example.demo.Renderer;
 
 public class Button extends GameObject {
