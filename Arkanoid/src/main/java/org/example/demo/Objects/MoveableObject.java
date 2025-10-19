@@ -31,7 +31,4 @@ public abstract class MoveableObject extends GameObject {
         this.dx = dx;
     }
 
-    public void setDy(double dy) {
-        this.dy = dy;
-    }
 }

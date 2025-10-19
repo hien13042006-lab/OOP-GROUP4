@@ -3,7 +3,6 @@ package org.example.demo.States;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import org.example.demo.GameManager;
-import org.example.demo.Objects.GameObject;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
@@ -11,7 +10,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ScoreState implements GameState {
 
@@ -27,6 +25,7 @@ public class ScoreState implements GameState {
                 scores.add(Integer.parseInt(line));
             }
         } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
         SoundManager.stopSoundEffect("BackgroundSoundtrack");
         return true;

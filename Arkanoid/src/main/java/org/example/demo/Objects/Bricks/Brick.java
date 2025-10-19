@@ -1,7 +1,6 @@
 package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
-import org.example.demo.GameManager;
 import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;

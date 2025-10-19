@@ -46,6 +46,7 @@ public class GameOverState implements GameState {
                     writer.newLine();
                 }
             } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
         }
 

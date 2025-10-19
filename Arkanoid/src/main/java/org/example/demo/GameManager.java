@@ -15,9 +15,6 @@ import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.States.GameStateMachine;
 import org.example.demo.States.MenuState;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

@@ -3,7 +3,6 @@ package org.example.demo.Levels;
 import java.util.ArrayList;
 import java.util.List;
 import org.example.demo.Objects.Bricks.Brick;
-import org.example.demo.Objects.Bricks.MovingBrick;
 import org.example.demo.Objects.Bricks.NormalBrick;
 import org.example.demo.Objects.Bricks.StrongBrick;
 import org.example.demo.Objects.Bricks.UnbreakableBrick;

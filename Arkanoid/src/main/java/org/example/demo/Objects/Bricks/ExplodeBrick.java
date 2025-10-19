@@ -1,6 +1,5 @@
 package org.example.demo.Objects.Bricks;
 
-import java.security.PublicKey;
 
 import javafx.scene.image.Image;
 import org.example.demo.Objects.PowerUps.PowerUp;
@@ -69,6 +68,5 @@ public class ExplodeBrick extends Brick {
 
     @Override
     public void update(double dt) {
-        return;
     }
 }

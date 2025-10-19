@@ -1,7 +1,6 @@
 package org.example.demo.Objects.Bricks;
 
 import javafx.scene.image.Image;
-import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
 
 import java.util.List;
@@ -28,12 +27,10 @@ public class UnbreakableBrick extends Brick {
 
     @Override
     public void takeHit(int damage, List<Brick> bricks) {
-        return;
     }
 
     @Override
     public void update(double dt) {
-        return;
     }
 
 }
