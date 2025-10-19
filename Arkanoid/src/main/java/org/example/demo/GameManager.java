@@ -5,6 +5,7 @@ import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import org.example.demo.Levels.Level;
 import org.example.demo.Levels.*;
 import org.example.demo.Levels.LevelManager;
@@ -39,6 +40,9 @@ public class GameManager {
 
     private Random rand = new Random(); // random
 
+    private double mouseX;
+    private double mouseY;
+
     void startGame(Group root) {
         // Khởi tạo game state
         score = 0;
@@ -65,6 +69,23 @@ public class GameManager {
             @Override
             public void handle(KeyEvent event) {
                 gameStateMachine.handleInput(event, GameManager.this);
+            }
+        });
+        //vị trí chuột
+        canvas.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                mouseX = event.getX();
+                mouseY = event.getY();
+
+                System.out.println("Chuột đang ở: " + mouseX + ", " + mouseY);
+            }
+        });
+        //xử lí click chuột
+        canvas.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                gameStateMachine.handleMouseInput(event, GameManager.this);
             }
         });
 
@@ -138,6 +159,15 @@ public class GameManager {
         score = 0;
         lives = 3;
         levelManager.resetLevel();
+    }
+
+    //lấy vị trí của chuột
+    public double getMouseX() {
+        return mouseX;
+    }
+
+    public double getMouseY() {
+        return mouseY;
     }
 
 

@@ -1,6 +1,7 @@
 package org.example.demo.States;
 
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Renderer;
 
@@ -52,4 +53,9 @@ public class GameStateMachine {
         }
     }
 
+    public void handleMouseInput(MouseEvent event, GameManager gameManager) {
+        if (!gameStateList.isEmpty()) {
+            gameStateList.getLast().handleMouseInput(event, gameManager);
+        }
+    }
 }

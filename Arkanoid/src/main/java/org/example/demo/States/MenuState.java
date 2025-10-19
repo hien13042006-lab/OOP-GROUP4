@@ -2,12 +2,15 @@ package org.example.demo.States;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
+import org.example.demo.Objects.Button;
+import org.example.demo.Objects.StartButton;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
 public class MenuState implements GameState {
-
+    private Button startButton = new StartButton(GameManager.WINDOW_WIDTH/2 - 50, GameManager.WINDOW_HEIGHT/2 - 10, 100, 20);
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Menu State");
@@ -32,12 +35,22 @@ public class MenuState implements GameState {
     }
 
     @Override
+    public void handleMouseInput(MouseEvent event, GameManager gameManager) {
+        if(startButton.isClicked(event)) {
+            gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());
+            System.out.println("moi");
+        }
+    }
+
+    @Override
     public void update(double dt, GameManager gameManager) {
         // Menu không cần update logic vật lý
+        startButton.update(gameManager);
     }
 
     @Override
     public void render(Renderer renderer, GameManager gameManager) {
         renderer.draw(this, gameManager);
+        startButton.render(renderer);
     }
 }
