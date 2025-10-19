@@ -22,4 +22,6 @@ module org.example.demo {
     opens org.example.demo.Objects.PowerUps to javafx.fxml;
     exports org.example.demo.Objects.Bricks;
     opens org.example.demo.Objects.Bricks to javafx.fxml;
+    exports org.example.demo.Objects.Button;
+    opens org.example.demo.Objects.Button to javafx.fxml;
 }

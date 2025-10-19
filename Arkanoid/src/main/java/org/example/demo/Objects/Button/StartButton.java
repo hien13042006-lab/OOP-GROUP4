@@ -1,4 +1,4 @@
-package org.example.demo.Objects;
+package org.example.demo.Objects.Button;
 
 import javafx.scene.image.Image;
 
