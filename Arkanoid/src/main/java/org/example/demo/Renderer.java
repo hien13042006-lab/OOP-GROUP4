@@ -1,7 +1,5 @@
 package org.example.demo;
 
-import java.awt.Button;
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -10,12 +8,18 @@ import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.PowerUps.PowerUp;
-import org.example.demo.States.*;
+import org.example.demo.States.GameCompleteState;
+import org.example.demo.States.GameOverState;
+import org.example.demo.States.LevelCompleteState;
+import org.example.demo.States.MenuState;
+import org.example.demo.States.PausedState;
+import org.example.demo.States.PlayingState;
+import org.example.demo.States.ScoreState;
 
 public class Renderer {
+
     private GraphicsContext gc;
     private Image background;
-    private Button btm = new Button("Start");
 
     public Renderer(GraphicsContext gc) {
         this.gc = gc;
@@ -64,16 +68,15 @@ public class Renderer {
 
         gc.setFill(Color.RED);
         gc.setFont(new Font("Arial", 36));
-        gc.fillText("GAME OVER", GameManager.WINDOW_WIDTH / 2 - 100, GameManager.WINDOW_HEIGHT / 2 - 50);
+        gc.fillText("GAME OVER", GameManager.WINDOW_WIDTH / 2 - 100,
+                GameManager.WINDOW_HEIGHT / 2 - 50);
 
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 24));
-        if (gameOverState.isHighScore()) {
-            gc.fillText("High Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2);
-        } else {
-            gc.fillText("Final Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2);
-        }
-        gc.fillText("Press ENTER for Main Menu", GameManager.WINDOW_WIDTH / 2 - 140, GameManager.WINDOW_HEIGHT / 2 + 50);
+        gc.fillText("Final Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80,
+                GameManager.WINDOW_HEIGHT / 2);
+        gc.fillText("Press ENTER for Main Menu", GameManager.WINDOW_WIDTH / 2 - 140,
+                GameManager.WINDOW_HEIGHT / 2 + 50);
     }
 
     public void draw(PlayingState playingState, GameManager gameManager) {
@@ -97,11 +100,21 @@ public class Renderer {
         gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, 50);
 
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font("Arial", 30));
-        gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 15, 30);
-        gc.fillText("Lives: " + gameManager.getLives(), 10, 30);
-        gc.fillText("Level: " + gameManager.getLevelManager().getCurrentNumberLevel(), 150, 30);
-        gc.fillText("Difficulty: " + gameManager.getLevelManager().getCurrentLevel().getDifficulty(), 840, 30);
+        Font fontHUD = Font.loadFont(
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                30
+        );
+        gc.setFont(fontHUD);
+
+        gc.fillText("Score " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 15, 30);
+
+        Image lives = new Image(getClass().getResourceAsStream("/asset/life.png"));
+        for (int i = 0; i < gameManager.getLives(); i++) {
+            gc.drawImage(lives, 30 * i, 10, 30, 30);
+        }
+
+        gc.fillText("Level " + gameManager.getLevelManager().getCurrentNumberLevel(), 150, 30);
+        gc.fillText(gameManager.getLevelManager().getCurrentLevel().getDifficulty(), 930, 30);
     }
 
     public void draw(PausedState pausedState, GameManager gameManager) {
@@ -118,8 +131,11 @@ public class Renderer {
         gc.fillText("PAUSED", GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2);
 
         gc.setFont(new Font("Arial", 18));
-        gc.fillText("Press ENTER to Resume", GameManager.WINDOW_WIDTH / 2 - 100, GameManager.WINDOW_HEIGHT / 2 + 40);
-        gc.fillText("Press ESC to Play again", GameManager.WINDOW_WIDTH / 2 - 100, GameManager.WINDOW_HEIGHT / 2 + 90);
+        gc.fillText("Press ENTER to Resume", GameManager.WINDOW_WIDTH / 2 - 100,
+                GameManager.WINDOW_HEIGHT / 2 + 40);
+        gc.fillText("Press ESC to Play again", GameManager.WINDOW_WIDTH / 2 - 100,
+                GameManager.WINDOW_HEIGHT / 2 + 90);
+
     }
 
     public void draw(LevelCompleteState levelCompleteState, GameManager gameManager) {
@@ -128,12 +144,15 @@ public class Renderer {
 
         gc.setFill(Color.GREEN);
         gc.setFont(new Font("Arial", 36));
-        gc.fillText("LEVEL COMPLETE!", GameManager.WINDOW_WIDTH / 2 - 150, GameManager.WINDOW_HEIGHT / 2 - 50);
+        gc.fillText("LEVEL COMPLETE!", GameManager.WINDOW_WIDTH / 2 - 150,
+                GameManager.WINDOW_HEIGHT / 2 - 50);
 
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 24));
-        gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 50, GameManager.WINDOW_HEIGHT / 2);
-        gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 140, GameManager.WINDOW_HEIGHT / 2 + 50);
+        gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 50,
+                GameManager.WINDOW_HEIGHT / 2);
+        gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 140,
+                GameManager.WINDOW_HEIGHT / 2 + 50);
     }
 
     public void draw(GameCompleteState gameCompleteState, GameManager gameManager) {
@@ -166,8 +185,7 @@ public class Renderer {
                     GameManager.WINDOW_WIDTH / 2 - 100,
                     GameManager.WINDOW_HEIGHT / 2 + 60);
         }
-
-
+   
         // Hướng dẫn
         gc.fillText("Nhấn ENTER để về Menu",
                 GameManager.WINDOW_WIDTH / 2 - 120,

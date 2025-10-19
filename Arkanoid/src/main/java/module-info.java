@@ -8,7 +8,6 @@ module org.example.demo {
     requires java.sql;
     requires eu.hansolo.tilesfx;
     requires javafx.media;
-    //requires org.example.demo;
 
 
     opens org.example.demo to javafx.fxml;

@@ -131,7 +131,7 @@ public class Ball extends MoveableObject {
     public void bounceOffBrick(Brick brick) {
         SoundManager.playSoundEffect("BrickAndBall");
         // Không va chạm bỏ qua
-        if (!checkCollision(brick)) {
+        if (!checkCollision(brick)) { 
             return;
         }
 
@@ -203,7 +203,8 @@ public class Ball extends MoveableObject {
         if (y < 50) {
             y = 50;
             dy = -dy;
-        } else if (y > GameManager.WINDOW_HEIGHT - height) {
+        }
+        else if (y > GameManager.WINDOW_HEIGHT - height) {
             y = GameManager.WINDOW_HEIGHT - height;
             dy = -dy;
         }
