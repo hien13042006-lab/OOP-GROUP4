@@ -2,6 +2,7 @@ package org.example.demo.States;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Levels.LevelManager;
 import org.example.demo.Renderer;
@@ -32,6 +33,11 @@ public class LevelCompleteState implements GameState {
                 gameManager.getGameStateMachine().pushState(gameManager, new GameCompleteState());
             }
         }
+    }
+
+    @Override
+    public void handleMouseInput(MouseEvent event, GameManager gameManager) {
+
     }
 
     @Override

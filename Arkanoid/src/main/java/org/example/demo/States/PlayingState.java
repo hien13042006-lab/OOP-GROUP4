@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
@@ -55,6 +56,11 @@ public class PlayingState implements GameState {
         } else {// Chuyển input cho paddle
             paddle.getKeyPressHandler().handle(event);
         }
+    }
+
+    @Override
+    public void handleMouseInput(MouseEvent event, GameManager gameManager) {
+
     }
 
     @Override

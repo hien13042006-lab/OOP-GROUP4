@@ -2,6 +2,7 @@ package org.example.demo.States;
 
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Renderer;
 
@@ -27,6 +28,11 @@ public class PausedState implements GameState {
             gameManager.restartGame();
             gameManager.getGameStateMachine().changeState(gameManager, new MenuState() );
         }
+    }
+
+    @Override
+    public void handleMouseInput(MouseEvent event, GameManager gameManager) {
+
     }
 
     @Override
