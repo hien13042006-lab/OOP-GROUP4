@@ -42,7 +42,4 @@ public class LevelManager {
         currentNumberLevel = 4;
     }
 
-    public List<Level> getLevels() {
-        return levels;
-    }
 }

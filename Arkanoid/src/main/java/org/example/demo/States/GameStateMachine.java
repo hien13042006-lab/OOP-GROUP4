@@ -40,21 +40,16 @@ public class GameStateMachine {
         }
     }
 
-
     public void render(GameManager gameManager, Renderer renderer) {
         if (!gameStateList.isEmpty()) {
             gameStateList.getLast().render(renderer, gameManager);
         }
     }
 
-    public void handleInput(KeyEvent event, GameManager gameManager)
-    {
+    public void handleInput(KeyEvent event, GameManager gameManager) {
         if (!gameStateList.isEmpty()) {
             gameStateList.getLast().handleInput(event, gameManager);
         }
     }
 
-    public List<GameState> getGameStateList() {
-        return gameStateList;
-    }
 }

@@ -2,7 +2,6 @@ package org.example.demo.Objects;
 
 import javafx.scene.image.Image;
 import org.example.demo.Renderer;
-import org.example.demo.SoundManager;
 
 public abstract class GameObject {
     protected double x;

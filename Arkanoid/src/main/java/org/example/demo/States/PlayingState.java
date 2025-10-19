@@ -8,13 +8,10 @@ import javafx.scene.input.KeyEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
-import org.example.demo.Objects.Bricks.ExplodeBrick;
 import org.example.demo.Objects.Bricks.UnbreakableBrick;
-import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
-import org.example.demo.SoundManager;
 
 public class PlayingState implements GameState {
 
@@ -124,7 +121,7 @@ public class PlayingState implements GameState {
                 }
 
                 // kiểm tra rớt khỏi màn hình
-                if (balls.get(i).getY() > gameManager.WINDOW_HEIGHT) {
+                if (balls.get(i).getY() > GameManager.WINDOW_HEIGHT) {
                     balls.remove(i);
                 }
             }
