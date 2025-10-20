@@ -79,8 +79,6 @@ public class PlayingState implements GameState {
                     if (brick.getHitPoints() >= -100) {
                         ball.bounceOffBrick(brick);
                     }
-                    //kiểm tra brick bị phá hủy
-
                 }
             }
             if (brick.isDestroyed()) {
@@ -89,7 +87,6 @@ public class PlayingState implements GameState {
                 if (chance < bricks.get(i).getPowerUpDropChance()) {
                     fallingPowerUps.add(bricks.get(i).makePowerUp());
                 }
-
                 bricks.remove(i);
                 gameManager.addScore(10);
             }
