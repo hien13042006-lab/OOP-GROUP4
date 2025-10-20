@@ -4,18 +4,18 @@
 * Tuần 4
   - Duy: làm paddle, thêm di chuyển cho paddle
   - Dũng: xây dựng ball
-  - Huy: làm gameManager
+  - Huy: tạo 2 power up và logic sinh power up
   - Hiển: làm hàm renderer vẽ ball, paddle, brick cơ bản
 * Tuần 5
    - Duy: xây dựng brick
    - Dũng: xử lí va chạm ở ball
-   - Huy: thêm logic khi chạm gạch
-   - Hiển: chuyển gameManager thành các state để có xây dựng các trạng thái của game, thêm mạng, điểm,, vẽ các state
+   - Huy: tạo 3 power up và va chạm với powerup
+   - Hiển: chuyển gameManager thành các state để xây dựng các trạng thái của game, thêm mạng, điểm, vẽ các state
 * Tuần 6
    - Duy: xây dựng các brick đặc biệt
    - Dũng: viết test Junit
-   - Huy: Xây dựng các powerUp
-   - Hiển: Xây dựng các level
+   - Huy: tỉ lệ rơi và thêm ảnh power up
+   - Hiển: Xây dựng các level, sửa các bug nhỏ
 * Tuần 7:
     - Duy: tìm ảnh và chèn ảnh background, brick, paddle, soundmanager
     - Huy: chèn ảnh powerUp và xây dựng Button
