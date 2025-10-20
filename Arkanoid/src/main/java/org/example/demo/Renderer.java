@@ -19,11 +19,12 @@ import org.example.demo.States.ScoreState;
 public class Renderer {
 
     private GraphicsContext gc;
-    private Image background;
+    private Image background = new Image(getClass().getResourceAsStream("/asset/background.png"));;
+    private Image gameOver = new Image(getClass().getResourceAsStream("/asset/gameover.png"));;
 
     public Renderer(GraphicsContext gc) {
         this.gc = gc;
-        background = new Image(getClass().getResourceAsStream("/asset/background.png"));
+
     }
 
     public GraphicsContext getGc() {
@@ -66,17 +67,14 @@ public class Renderer {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
-        gc.setFill(Color.RED);
-        gc.setFont(new Font("Arial", 36));
-        gc.fillText("GAME OVER", GameManager.WINDOW_WIDTH / 2 - 100,
-                GameManager.WINDOW_HEIGHT / 2 - 50);
+        gc.drawImage(gameOver, 0,GameManager.WINDOW_HEIGHT/2-300 ,GameManager.WINDOW_WIDTH ,600 );
 
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 24));
         gc.fillText("Final Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80,
-                GameManager.WINDOW_HEIGHT / 2);
+                GameManager.WINDOW_HEIGHT / 2+340);
         gc.fillText("Press ENTER for Main Menu", GameManager.WINDOW_WIDTH / 2 - 140,
-                GameManager.WINDOW_HEIGHT / 2 + 50);
+                GameManager.WINDOW_HEIGHT / 2 + 300);
     }
 
     public void draw(PlayingState playingState, GameManager gameManager) {
@@ -139,8 +137,7 @@ public class Renderer {
     }
 
     public void draw(LevelCompleteState levelCompleteState, GameManager gameManager) {
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
+        clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         gc.setFill(Color.GREEN);
         gc.setFont(new Font("Arial", 36));
@@ -158,9 +155,7 @@ public class Renderer {
     public void draw(GameCompleteState gameCompleteState, GameManager gameManager) {
         GraphicsContext gc = this.getGc();
 
-        // Nền vàng
-        gc.setFill(Color.GOLD);
-        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
+        clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         // Tiêu đề
         gc.setFill(Color.DARKBLUE);
