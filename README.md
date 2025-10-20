@@ -20,4 +20,4 @@
     - Duy: tìm ảnh và chèn ảnh background, brick, paddle, soundmanager
     - Huy: chèn ảnh powerUp và xây dựng Button
     - Dũng: chèn âm thanh vào các state
-    - Hiển: tìm và chèn ảnh những state còn lại
+    - Hiển: tìm và chèn ảnh những state còn lại, vẽ các state
