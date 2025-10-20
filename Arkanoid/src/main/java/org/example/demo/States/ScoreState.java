@@ -1,5 +1,6 @@
 package org.example.demo.States;
 
+import java.io.InputStreamReader;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +21,7 @@ public class ScoreState implements GameState {
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Game Complete State");
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\src\\main\\resources\\scores.txt"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/scores.txt")));
             String line;
             while ((line = reader.readLine()) != null) {
                 scores.add(Integer.parseInt(line));

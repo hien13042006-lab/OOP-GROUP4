@@ -7,7 +7,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.Levels.Level;
-import org.example.demo.Levels.*;
 import org.example.demo.Levels.LevelManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
