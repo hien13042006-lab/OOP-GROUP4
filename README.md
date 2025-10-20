@@ -10,7 +10,7 @@
    - Duy: xây dựng brick
    - Dũng: xử lí va chạm ở ball
    - Huy: thêm logic khi chạm gạch
-   - Hiển: chuyển gameManager thành các state để có xây dựng các trạng thái của game, thêm mạng, điểm
+   - Hiển: chuyển gameManager thành các state để có xây dựng các trạng thái của game, thêm mạng, điểm,, vẽ các state
 * Tuần 6
    - Duy: xây dựng các brick đặc biệt
    - Dũng: viết test Junit
@@ -20,4 +20,4 @@
     - Duy: tìm ảnh và chèn ảnh background, brick, paddle, soundmanager
     - Huy: chèn ảnh powerUp và xây dựng Button
     - Dũng: chèn âm thanh vào các state
-    - Hiển: tìm và chèn ảnh những state còn lại, vẽ các state
+    - Hiển: tìm và chèn ảnh những state còn lại
