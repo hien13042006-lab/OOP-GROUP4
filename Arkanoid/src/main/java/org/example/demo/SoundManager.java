@@ -22,6 +22,9 @@ public class SoundManager {
         AudioClip BallHitBrick = new AudioClip(SoundManager.class.getResource("/asset/SoundEffect/BallHitBrick.wav").toExternalForm());
         AudioClip PowerUpApply = new AudioClip(SoundManager.class.getResource("/asset/SoundEffect/PowerUpApply.wav").toExternalForm());
         AudioClip SoundClick = new AudioClip(SoundManager.class.getResource("/asset/SoundEffect/SoundClick.mp3").toExternalForm());
+        AudioClip GameOver = new AudioClip(SoundManager.class.getResource("/asset/SoundEffect/GameOver.mp3").toExternalForm());
+        AudioClip GameWin = new AudioClip(SoundManager.class.getResource("/asset/SoundEffect/GameWin.mp3").toExternalForm());
+        AudioClip NextStage = new AudioClip(SoundManager.class.getResource("/asset/SoundEffect/NextStage.wav").toExternalForm());
         BackGround.setCycleCount(AudioClip.INDEFINITE);
 
         effect.put("BackGround", BackGround);
@@ -35,6 +38,9 @@ public class SoundManager {
         effect.put("BallHitBrick", BallHitBrick);
         effect.put("PowerUpApply", PowerUpApply);
         effect.put("SoundClick", SoundClick);
+        effect.put("GameOver", GameOver);
+        effect.put("GameWin", GameWin);
+        effect.put("NextStage", NextStage);
     }
 
 
@@ -45,5 +51,13 @@ public class SoundManager {
 
     public static void stopSoundEffect(String Key) {
         effect.get(Key).stop();
+    }
+
+    //Chỉnh volumn
+    public static void setVolume(String key, double volume) {
+        AudioClip clip = effect.get(key);
+        if (clip != null) {
+            clip.setVolume(volume);
+        }
     }
 }

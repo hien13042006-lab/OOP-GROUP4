@@ -9,6 +9,7 @@ import org.example.demo.Objects.Button.Button;
 import org.example.demo.Objects.Button.HomeButton;
 import org.example.demo.Objects.Button.RestartButton;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class PausedState implements GameState {
 
@@ -44,12 +45,15 @@ public class PausedState implements GameState {
     @Override
     public void handleMouseInput(MouseEvent event, GameManager gameManager) {
         if (restartButton.isClicked(event)) {
+            SoundManager.playSoundEffect("SoundClick");
             gameManager.restartGame();
             gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());
         } else if (homeButton.isClicked(event)) {
+            SoundManager.playSoundEffect("SoundClick");
             gameManager.restartGame();
             gameManager.getGameStateMachine().changeState(gameManager, new MenuState());
         } else if (backButton.isClicked(event)) {
+            SoundManager.playSoundEffect("SoundClick");
             gameManager.getGameStateMachine().popState(gameManager);
         }
     }
