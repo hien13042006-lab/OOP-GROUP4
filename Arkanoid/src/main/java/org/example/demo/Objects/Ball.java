@@ -47,7 +47,7 @@ public class Ball extends MoveableObject {
 
     // Va chạm với paddle
     public void bounceOffPaddle(Paddle paddle) {
-        SoundManager.playSoundEffect("BrickHitPaddle");
+        SoundManager.playSoundEffect("BallHitPaddle");
         // Chỉ xử lý khi đang rơi xuống
         if (dy < 0) {
             return;

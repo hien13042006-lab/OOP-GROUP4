@@ -40,7 +40,6 @@ public class SoundManager {
 
 
     public static void playSoundEffect(String Key) {
-
         effect.get(Key).play();
     }
 
