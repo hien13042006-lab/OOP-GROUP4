@@ -150,6 +150,7 @@ public class GameManager {
 
     public void resetBallAndPaddle() {
         paddle.setX((WINDOW_WIDTH - paddle.getWidth()) / 2);
+        balls.clear();
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
                 Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED, Ball.DAMAGE_DEFAULT));
     }
