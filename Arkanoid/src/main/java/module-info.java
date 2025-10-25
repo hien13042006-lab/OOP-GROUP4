@@ -8,7 +8,7 @@ module org.example.demo {
     requires java.sql;
     requires eu.hansolo.tilesfx;
     requires javafx.media;
-
+    requires com.almasb.fxgl.entity;
 
     opens org.example.demo to javafx.fxml;
     exports org.example.demo;

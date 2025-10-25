@@ -10,7 +10,7 @@ import org.example.demo.SoundManager;
 public class Ball extends MoveableObject {
 
     public static final int RADIUS = 11;
-    public static final int SPEED = 500;
+    public static final int SPEED = 300;
     public static final int DAMAGE_DEFAULT = 1;
 
     private int speed;

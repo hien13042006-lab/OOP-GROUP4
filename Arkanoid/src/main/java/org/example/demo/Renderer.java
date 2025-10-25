@@ -52,15 +52,6 @@ public class Renderer {
         gc.fillText("ARKANOID GAME",
                 GameManager.WINDOW_WIDTH / 2 - 150,
                 GameManager.WINDOW_HEIGHT / 2 - 50);
-
-        // Vẽ hướng dẫn
-        gc.setFont(new Font("Arial", 24));
-        gc.fillText("Press ENTER to Start",
-                GameManager.WINDOW_WIDTH / 2 - 120,
-                GameManager.WINDOW_HEIGHT / 2 + 20);
-        gc.fillText("A/D to Move, ESC to Pause",
-                GameManager.WINDOW_WIDTH / 2 - 140,
-                GameManager.WINDOW_HEIGHT / 2 + 60);
     }
 
     public void draw(GameOverState gameOverState, GameManager gameManager) {
@@ -112,7 +103,7 @@ public class Renderer {
         }
 
         gc.fillText("Level " + gameManager.getLevelManager().getCurrentNumberLevel(), 150, 30);
-        gc.fillText(gameManager.getLevelManager().getCurrentLevel().getDifficulty(), 930, 30);
+
     }
 
     public void draw(PausedState pausedState, GameManager gameManager) {
@@ -126,13 +117,8 @@ public class Renderer {
 
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 36));
-        gc.fillText("PAUSED", GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2);
+        gc.fillText("PAUSED", GameManager.WINDOW_WIDTH / 2 - 75, GameManager.WINDOW_HEIGHT / 2);
 
-        gc.setFont(new Font("Arial", 18));
-        gc.fillText("Press ENTER to Resume", GameManager.WINDOW_WIDTH / 2 - 100,
-                GameManager.WINDOW_HEIGHT / 2 + 40);
-        gc.fillText("Press ESC to Play again", GameManager.WINDOW_WIDTH / 2 - 100,
-                GameManager.WINDOW_HEIGHT / 2 + 90);
 
     }
 
