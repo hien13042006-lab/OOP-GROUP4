@@ -146,7 +146,6 @@ public class PlayingState implements GameState {
                 gameManager.resetBallAndPaddle();
             }
         }
-        System.out.println("speed: " + balls.getFirst().getSpeed());
 
         //update fallingPowerUps
         for (int i = fallingPowerUps.size() - 1; i >= 0; i--) {

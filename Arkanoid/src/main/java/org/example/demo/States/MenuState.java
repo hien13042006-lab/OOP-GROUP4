@@ -20,14 +20,12 @@ public class MenuState implements GameState {
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Menu State");
-        SoundManager.playSoundEffect("BackgroundSoundtrack");
         return true;
     }
 
     @Override
     public boolean exit(GameManager gameManager) {
         System.out.println("Exiting Menu State");
-        SoundManager.stopSoundEffect("BackgroundSoundtrack");
         return true;
     }
 
@@ -43,10 +41,12 @@ public class MenuState implements GameState {
     @Override
     public void handleMouseInput(MouseEvent event, GameManager gameManager) {
         if (playButton.isClicked(event)) {
+            SoundManager.playSoundEffect("SoundClick");
             gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());
             System.out.println("moi");
         }
         if(leaderboardButton.isClicked(event)) {
+            SoundManager.playSoundEffect("SoundClick");
             gameManager.getGameStateMachine().changeState(gameManager, new ScoreState());
         }
     }

@@ -9,7 +9,9 @@ import javafx.scene.paint.Color;
 
 
 public class Main extends Application {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+        SoundManager.playSoundEffect("BackGround");
         launch(args);
     }
 

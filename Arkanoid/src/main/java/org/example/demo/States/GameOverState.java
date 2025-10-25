@@ -51,7 +51,7 @@ public class GameOverState implements GameState {
             }
         }
 
-        SoundManager.stopSoundEffect("BackgroundSoundtrack");
+        SoundManager.stopSoundEffect("BackGround");
         return true;
     }
 
