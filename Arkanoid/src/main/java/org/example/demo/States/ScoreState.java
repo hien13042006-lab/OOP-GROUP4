@@ -24,7 +24,7 @@ public class ScoreState implements GameState {
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Game Complete State");
-        File scoreFile = new File("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\datas\\scores.txt");
+        File scoreFile = new File("datas/scores.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -33,7 +33,6 @@ public class ScoreState implements GameState {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        SoundManager.stopSoundEffect("BackgroundSoundtrack");
         return true;
     }
 
