@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Random;
 
 public class ExplodeBrick extends Brick {
-    int DROP_CHANCE_STRONG_BRICK = 50;
-    int SPLIT_BALL_DROP_CHANCE = 30;
+    int DROP_CHANCE_STRONG_BRICK = 20;
+    int SPLIT_BALL_DROP_CHANCE = 10;
     int REVERSE_CONTROL_DROP_CHANCE = 20;
     private boolean exploded = false;
 
