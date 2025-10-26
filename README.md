@@ -19,5 +19,10 @@
 * Tuần 7:
     - Duy: tìm ảnh và chèn ảnh background, brick, paddle, soundmanager
     - Huy: chèn ảnh powerUp và xây dựng Button
-    - Dũng: chèn âm thanh vào các state
+    - Dũng: xây dựng âm thanh
     - Hiển: tìm và chèn ảnh những state còn lại
+* Tuần 8
+    - Duy: xây dựng bxh
+    - Huy: update tỉ lệ của các powerUp
+    - Dũng: chèn âm thanh vào các sự kiện của game
+    - Hiển: tìm và chèn các button vào các state
