@@ -4,7 +4,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
-import org.example.demo.Objects.GameObject;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
@@ -19,41 +18,45 @@ import java.util.Collections;
 public class GameOverState implements GameState {
     boolean isHighScore;
 
+
     @Override
     public boolean enter(GameManager gameManager) {
-        System.out.println("Entering Game Complete State");
+        System.out.println("Entering Game Over State");
         ArrayList<Integer> scores = new ArrayList<>();
         int newScore = gameManager.getScore();
+
+        File scoreFile = new File("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\datas\\scores.txt");
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/scores.txt")));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                scores.add(Integer.parseInt(line));
-            }
-        } catch (IOException e) {
-        }
-
-        if (scores.size() >= 10 && newScore <= scores.get(scores.size() - 1)) {
-            isHighScore = false;
-        } else {
-            isHighScore = true;
-            scores.add(newScore);
-            scores.sort(Collections.reverseOrder());
-
-            try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\src\\main\\resources\\scores.txt"));
-                for (int i = 0; i < Math.min(10, scores.size()); i++) {
-                    writer.write(String.valueOf(scores.get(i)));
-                    writer.newLine();
+            try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    scores.add(Integer.parseInt(line));
                 }
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
             }
+
+            if (scores.size() >= 10 && newScore <= scores.get(scores.size() - 1)) {
+                isHighScore = false;
+            } else {
+                isHighScore = true;
+                scores.add(newScore);
+                scores.sort(Collections.reverseOrder());
+
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(scoreFile))) {
+                    for (int i = 0; i < Math.min(10, scores.size()); i++) {
+                        writer.write(String.valueOf(scores.get(i)));
+                        writer.newLine();
+                    }
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("File error");
         }
 
         SoundManager.stopSoundEffect("BackGround");
         return true;
     }
+
 
     @Override
     public boolean exit(GameManager gameManager) {

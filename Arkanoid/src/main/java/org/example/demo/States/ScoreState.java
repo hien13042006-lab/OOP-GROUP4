@@ -1,10 +1,13 @@
 package org.example.demo.States;
 
-import java.io.InputStreamReader;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
+import org.example.demo.Objects.Button.Button;
+import org.example.demo.Objects.Button.HomeButton;
+import org.example.demo.Objects.Button.LeaderboardButton;
+import org.example.demo.Objects.Button.PlayButton;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
@@ -15,11 +18,14 @@ public class ScoreState implements GameState {
 
     private ArrayList<Integer> scores = new ArrayList<>();
 
+    private Button homeButton = new HomeButton(GameManager.WINDOW_WIDTH / 2 - 75,
+           GameManager.WINDOW_HEIGHT / 2 + 230, 150, 60);
+
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Game Complete State");
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/scores.txt")));
+        File scoreFile = new File("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\datas\\scores.txt");
+        try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 scores.add(Integer.parseInt(line));
@@ -39,25 +45,26 @@ public class ScoreState implements GameState {
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
-        if (event.getCode() == KeyCode.ENTER) {
-            gameManager.restartGame();
-            gameManager.getGameStateMachine().changeState(gameManager, new MenuState());
-        }
     }
 
     @Override
     public void handleMouseInput(MouseEvent event, GameManager gameManager) {
-
+        if (homeButton.isClicked(event)) {
+            SoundManager.playSoundEffect("SoundClick");
+            gameManager.getGameStateMachine().changeState(gameManager, new MenuState());
+            System.out.println("moi");
+        }
     }
 
     @Override
     public void update(double dt, GameManager gameManager) {
-        // Không cập nhật gì khi game over
+        homeButton.update(gameManager);
     }
 
     @Override
     public void render(Renderer renderer, GameManager gameManager) {
         renderer.draw(this, gameManager);
+        homeButton.render(renderer);
     }
 
     public ArrayList<Integer> getScores() {
