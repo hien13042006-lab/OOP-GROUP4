@@ -7,9 +7,7 @@ import org.example.demo.GameManager;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ScoreState implements GameState {
@@ -20,7 +18,7 @@ public class ScoreState implements GameState {
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Game Complete State");
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\src\\main\\resources\\scores.txt"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/scores.txt")));
             String line;
             while ((line = reader.readLine()) != null) {
                 scores.add(Integer.parseInt(line));

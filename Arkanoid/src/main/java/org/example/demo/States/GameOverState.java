@@ -25,7 +25,7 @@ public class GameOverState implements GameState {
         ArrayList<Integer> scores = new ArrayList<>();
         int newScore = gameManager.getScore();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\src\\main\\resources\\scores.txt"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/scores.txt")));
             String line;
             while ((line = reader.readLine()) != null) {
                 scores.add(Integer.parseInt(line));
@@ -40,8 +40,8 @@ public class GameOverState implements GameState {
             scores.add(newScore);
             scores.sort(Collections.reverseOrder());
 
-            try (BufferedWriter writer = new BufferedWriter(
-                    new FileWriter("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\src\\main\\resources\\scores.txt"))) {
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\src\\main\\resources\\scores.txt"));
                 for (int i = 0; i < Math.min(10, scores.size()); i++) {
                     writer.write(String.valueOf(scores.get(i)));
                     writer.newLine();
