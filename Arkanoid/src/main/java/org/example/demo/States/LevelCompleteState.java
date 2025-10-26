@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Levels.LevelManager;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class LevelCompleteState implements GameState {
 

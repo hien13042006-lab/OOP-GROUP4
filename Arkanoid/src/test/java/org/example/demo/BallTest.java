@@ -16,7 +16,7 @@ class BallTest {
     @Test
     void  testCheckCollision() {
         //Test va chạm
-        Ball ball = new Ball(100, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED);
+        Ball ball = new Ball(100, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED, 1);
         Paddle paddle = new Paddle(102, 102, Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 1, 1, Paddle.PADDLE_SPEED);
         assertTrue(ball.checkCollision(paddle));
     }
@@ -24,8 +24,8 @@ class BallTest {
     @Test
     void testMove() {
         //Test di chuyển
-        Ball ball1 = new Ball(100, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED);
-        Ball ball2 = new Ball(100, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED);
+        Ball ball1 = new Ball(100, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED, 1);
+        Ball ball2 = new Ball(100, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED, 1);
         ball1.move(10);
         assertNotEquals(ball1.getX(), ball2.getX());
         assertNotEquals(ball1.getY(), ball2.getY());
@@ -34,7 +34,7 @@ class BallTest {
     @Test
     void testbounceOffWall_leftSide() {
         //Test chạm trái (đặt x = 0, đổi chiều dx)
-        Ball ballLeft = new Ball(-5, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED);
+        Ball ballLeft = new Ball(-5, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED, 1);
         ballLeft.bounceOffWall();
         assertEquals(0, ballLeft.getX());
         assertEquals(-1, ballLeft.getDx());
@@ -43,7 +43,7 @@ class BallTest {
     @Test
     void testbounceOffWall_rightSide() {
         //Test chạm phải (đặt x = vtr bên phải WINDOW - Width, đổi chiều dx)
-        Ball ballRight = new Ball(GameManager.WINDOW_WIDTH, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED);
+        Ball ballRight = new Ball(GameManager.WINDOW_WIDTH, 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED, 1);
         ballRight.bounceOffWall();
 
         assertEquals(GameManager.WINDOW_WIDTH - ballRight.getWidth(), ballRight.getX());
@@ -52,18 +52,18 @@ class BallTest {
 
     @Test
     void testbounceOffWall_topSide() {
-        //Test chaạm trần( đặt y = 0, đổi chiều dy)
-        Ball ballTop = new Ball(100, -1, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED);
+        //Test chaạm trần( đặt y = 50, đổi chiều dy)
+        Ball ballTop = new Ball(100, 0, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, -1, Ball.SPEED, 1);
         ballTop.bounceOffWall();
 
-        assertEquals(0, ballTop.getY());
-        assertEquals(-1, ballTop.getDy());
+        assertEquals(50, ballTop.getY());
+        assertEquals(1, ballTop.getDy());
     }
 
     @Test
     void testbounceOffWall_middleSide() {
         //Test bóng khi ko chạm gì(không làm gì)
-        Ball ballMiddle = new Ball( 100 , 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED);
+        Ball ballMiddle = new Ball( 100 , 100, 2 * Ball.RADIUS, 2 * Ball.RADIUS, 1, 1, Ball.SPEED, 1);
         ballMiddle.bounceOffWall();
 
         assertEquals (100, ballMiddle.getX());
@@ -77,7 +77,7 @@ class BallTest {
         //Cho vị trí bóng hơi lấn ở trên gạch (minOverlap = overlapTop)
         //Vị trí bóng trên gạch và đi lên (dy = -abs(dy))
         NormalBrick brick = new NormalBrick(200, 100, 200, 100);
-        Ball ball = new Ball(210, 90, 20, 20, 1, 1, Ball.SPEED);
+        Ball ball = new Ball(210, 90, 20, 20, 1, 1, Ball.SPEED, 1);
         ball.bounceOffBrick(brick);
 
         assertEquals(brick.getY() - ball.getHeight(), ball.getY());
@@ -89,7 +89,7 @@ class BallTest {
         //Cho vị trí bóng hơi lấn ở dưới gạch (minOverlap = overlapBot)
         //Vị trí bóng dưới gạch và đi xuống (dy = abs(dy))
         NormalBrick brick = new NormalBrick(200, 100, 200, 100);
-        Ball ball = new Ball(210, 190, 20, 20, 1, -1, Ball.SPEED);
+        Ball ball = new Ball(210, 190, 20, 20, 1, -1, Ball.SPEED, 1);
         ball.bounceOffBrick(brick);
 
         assertEquals(brick.getY() + brick.getHeight(), ball.getY());
@@ -101,7 +101,7 @@ class BallTest {
         //Cho vị trí bóng hơi lấn ở trên trái (minOverlap = overlapLeft)
         //Vị trí bóng trái gạch và sang trái (dx = -abs(dx))
         NormalBrick brick = new NormalBrick(200, 100, 200, 100);
-        Ball ball = new Ball(200, 150, 20, 20, 1, 1, Ball.SPEED);
+        Ball ball = new Ball(200, 150, 20, 20, 1, 1, Ball.SPEED, 1);
         ball.bounceOffBrick(brick);
 
         assertEquals(brick.getX() - ball.getWidth(), ball.getX());
@@ -113,7 +113,7 @@ class BallTest {
         //Cho vị trí bóng hơi lấn ở trên phải (minOverlap = overlapRight)
         //Vị trí bóng phải gạch và sang phải (dx = -dx)
         NormalBrick brick = new NormalBrick(200, 100, 200, 100);
-        Ball ball = new Ball(390, 150, 20, 20, -1, 1, Ball.SPEED);
+        Ball ball = new Ball(390, 150, 20, 20, -1, 1, Ball.SPEED, 1);
         ball.bounceOffBrick(brick);
 
         assertEquals(brick.getX() + brick.getWidth(), ball.getX());
@@ -126,11 +126,11 @@ class BallTest {
         //Cho overlapTop - overlapLeft = 0
         //Khi đó đổi chiều dx, dy
         NormalBrick brick = new NormalBrick(200, 100, 200, 100);
-        Ball ball = new Ball(190, 90, 20, 20, 1, 1, Ball.SPEED);
+        Ball ball = new Ball(190, 90, 20, 20, 1, 1, Ball.SPEED, 1);
         ball.bounceOffBrick(brick);
 
         assertEquals(-1, ball.getDx());
-        assertEquals(1, ball.getDy());
+        assertEquals(-1, ball.getDy());
     }
 
     @Test
@@ -138,7 +138,7 @@ class BallTest {
         //Đặt bóng hơi lấn trái paddle
         //Khi đó đặt bóng ở bên trái paddle, bóng sẽ tiếp tục di chuyển xuống dươi và đổi chiều dx
         Paddle paddle = new Paddle(200, 800, 100, 40, 10, 10, Paddle.PADDLE_SPEED);
-        Ball ball = new Ball(190, 800, 20, 20, 1, 1, Ball.SPEED);
+        Ball ball = new Ball(190, 800, 20, 20, 1, 1, Ball.SPEED, 1);
         ball.bounceOffPaddle(paddle);
 
         assertEquals(paddle.getX() - ball.getWidth(), ball.getX());
@@ -151,7 +151,7 @@ class BallTest {
         //Đặt bóng hơi lấn phải paddle
         //Khi đó đặt bóng ở bên phải paddle, bóng sẽ tiếp tục di chuyển xuống dươi và đổi chiều dx
         Paddle paddle = new Paddle(200, 800, 100, 40, 10, 10, Paddle.PADDLE_SPEED);
-        Ball ball = new Ball(290, 800, 20, 20, -1, 1, Ball.SPEED);
+        Ball ball = new Ball(290, 800, 20, 20, -1, 1, Ball.SPEED, 1);
         ball.bounceOffPaddle(paddle);
 
         assertEquals(paddle.getX() + paddle.getWidth(), ball.getX());
@@ -165,7 +165,7 @@ class BallTest {
         //Cho overlapTop - overlapLeft = 0
         //Khi đó đổi chiều dx, dy
         Paddle paddle = new Paddle(200, 800, 100, 40, 10, 10, Paddle.PADDLE_SPEED);
-        Ball ball = new Ball(190, 790, 20, 20, 1, 1, Ball.SPEED);
+        Ball ball = new Ball(190, 790, 20, 20, 1, 1, Ball.SPEED, 1);
         ball.bounceOffPaddle(paddle);
 
         assertEquals(-1, ball.getDx());
@@ -178,7 +178,7 @@ class BallTest {
         //Cho overlapTop - overlapLeft = 0
         //Khi đó đổi chiều dx, dy
         Paddle paddle = new Paddle(200, 800, 100, 40, 10, 10, Paddle.PADDLE_SPEED);
-        Ball ball = new Ball(290, 790, 20, 20, -1, 1, Ball.SPEED);
+        Ball ball = new Ball(290, 790, 20, 20, -1, 1, Ball.SPEED, 1);
         ball.bounceOffPaddle(paddle);
 
         assertEquals(1, ball.getDx());
@@ -194,7 +194,7 @@ class BallTest {
         //Sau va chạm dx = v * sin(angle) = -2.033683
         //            dy = -abs(v * cos(angle)) = -4.567727
         Paddle paddle = new Paddle(200, 800, 100, 40, 10, 10, Paddle.PADDLE_SPEED);
-        Ball ball = new Ball(220, 790, 20, 20, 3, 4, Ball.SPEED);
+        Ball ball = new Ball(220, 790, 20, 20, 3, 4, Ball.SPEED, 1);
         ball.bounceOffPaddle(paddle);
 
         //Đặt bóng ngay trên paddle
@@ -215,7 +215,7 @@ class BallTest {
         //Sau va chạm dx = v * sin(angle) = -2,938926
         //            dy = -abs(v * cos(angle)) = -4,045084
         Paddle paddle = new Paddle(200, 800, 100, 40, 10, 10, Paddle.PADDLE_SPEED);
-        Ball ball = new Ball(270, 790, 20, 20, 3, 4, Ball.SPEED);
+        Ball ball = new Ball(270, 790, 20, 20, 3, 4, Ball.SPEED, 1);
         ball.bounceOffPaddle(paddle);
 
         //Đặt bóng ngay trên paddle

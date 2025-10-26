@@ -10,7 +10,7 @@ import org.example.demo.SoundManager;
 public class Ball extends MoveableObject {
 
     public static final int RADIUS = 11;
-    public static final int SPEED = 500;
+    public static final int SPEED = 300;
     public static final int DAMAGE_DEFAULT = 1;
 
     private int speed;
@@ -47,7 +47,7 @@ public class Ball extends MoveableObject {
 
     // Va chạm với paddle
     public void bounceOffPaddle(Paddle paddle) {
-        SoundManager.playSoundEffect("paddleAndBall");
+        SoundManager.playSoundEffect("BallHitPaddle");
         // Chỉ xử lý khi đang rơi xuống
         if (dy < 0) {
             return;
@@ -129,7 +129,7 @@ public class Ball extends MoveableObject {
 
 
     public void bounceOffBrick(Brick brick) {
-        SoundManager.playSoundEffect("BrickAndBall");
+        SoundManager.playSoundEffect("BallHitBrick");
         // Không va chạm bỏ qua
         if (!checkCollision(brick)) { 
             return;
@@ -204,10 +204,10 @@ public class Ball extends MoveableObject {
             y = 50;
             dy = -dy;
         }
-        else if (y > GameManager.WINDOW_HEIGHT - height) {
-            y = GameManager.WINDOW_HEIGHT - height;
-            dy = -dy;
-        }
+//        else if (y > GameManager.WINDOW_HEIGHT - height) {
+//            y = GameManager.WINDOW_HEIGHT - height;
+//            dy = -dy;
+//        }
     }
 
 

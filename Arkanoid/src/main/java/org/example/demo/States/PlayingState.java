@@ -10,11 +10,16 @@ import org.example.demo.GameManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
 import org.example.demo.Objects.Bricks.UnbreakableBrick;
+import org.example.demo.Objects.Button.Button;
+import org.example.demo.Objects.Button.PauseButton;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Renderer;
+import org.example.demo.SoundManager;
 
 public class PlayingState implements GameState {
+
+    Button pauseButton = new PauseButton(GameManager.WINDOW_WIDTH-70,0,70,40);
 
     private Paddle paddle;
     private List<Ball> balls;
@@ -60,11 +65,15 @@ public class PlayingState implements GameState {
 
     @Override
     public void handleMouseInput(MouseEvent event, GameManager gameManager) {
-
+        if(pauseButton.isClicked(event)) {
+            gameManager.getGameStateMachine().pushState(gameManager, new PausedState());
+        }
     }
 
     @Override
     public void update(double dt, GameManager gameManager) {
+        pauseButton.update(gameManager);
+
         // Kiểm tra va chạm với gạch
         for (int i = bricks.size() - 1; i >= 0; i--) {
             bricks.get(i).update(dt);
@@ -79,8 +88,6 @@ public class PlayingState implements GameState {
                     if (brick.getHitPoints() >= -100) {
                         ball.bounceOffBrick(brick);
                     }
-                    //kiểm tra brick bị phá hủy
-
                 }
             }
             if (brick.isDestroyed()) {
@@ -89,7 +96,6 @@ public class PlayingState implements GameState {
                 if (chance < bricks.get(i).getPowerUpDropChance()) {
                     fallingPowerUps.add(bricks.get(i).makePowerUp());
                 }
-
                 bricks.remove(i);
                 gameManager.addScore(10);
             }
@@ -104,10 +110,13 @@ public class PlayingState implements GameState {
         }
         if (countUnbreakableBrick == bricks.size()) {
             if (gameManager.getLevelManager().hasNextLevel()) {
+                SoundManager.playSoundEffect("NextStage");
                 gameManager.getGameStateMachine()
                         .changeState(gameManager, new LevelCompleteState());
             } else {
                 // ⭐ NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
+                SoundManager.setVolume("GameWin", 0.3);
+                SoundManager.playSoundEffect("GameWin");
                 gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
             }
             return;
@@ -136,12 +145,14 @@ public class PlayingState implements GameState {
         if (balls.isEmpty()) {
             gameManager.loseLife();
             if (gameManager.getLives() <= 0) {
+                SoundManager.playSoundEffect("GameOver");
                 gameManager.getGameStateMachine().changeState(gameManager, new GameOverState());
             } else {
+                SoundManager.setVolume("BallWhenDie", 0.2);
+                SoundManager.playSoundEffect("BallWhenDie");
                 gameManager.resetBallAndPaddle();
             }
         }
-        System.out.println("speed: " + balls.getFirst().getSpeed());
 
         //update fallingPowerUps
         for (int i = fallingPowerUps.size() - 1; i >= 0; i--) {
@@ -186,5 +197,6 @@ public class PlayingState implements GameState {
     public void render(Renderer renderer, GameManager gameManager) {
         // Vẽ các đối tượng game
         renderer.draw(this, gameManager);
+        pauseButton.render(renderer);
     }
 }
