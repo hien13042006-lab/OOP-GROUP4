@@ -31,11 +31,6 @@ public class MenuState implements GameState {
 
     @Override
     public void handleInput(KeyEvent event, GameManager gameManager) {
-        if (event.getCode() == KeyCode.ENTER) {
-            gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());
-        } else if (event.getCode() == KeyCode.S) {
-            gameManager.getGameStateMachine().changeState(gameManager, new ScoreState());
-        }
     }
 
     @Override

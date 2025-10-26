@@ -32,7 +32,6 @@ public class Main extends Application {
         AnimationTimer gameLoop = new AnimationTimer() {
             private long lastTime = 0;
 
-
             @Override
             public void handle(long now) {
                 if (lastTime > 0) {

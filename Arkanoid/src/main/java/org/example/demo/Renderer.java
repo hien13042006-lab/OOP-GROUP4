@@ -19,8 +19,9 @@ import org.example.demo.States.ScoreState;
 public class Renderer {
 
     private GraphicsContext gc;
-    private Image background = new Image(getClass().getResourceAsStream("/asset/background.png"));;
-    private Image gameOver = new Image(getClass().getResourceAsStream("/asset/gameover.png"));;
+    private Image background = new Image(getClass().getResourceAsStream("/asset/background.png"));
+    private Image gameOver = new Image(getClass().getResourceAsStream("/asset/gameover.png"));
+    private Image ScoreState = new Image(getClass().getResourceAsStream("/asset/ScoreState.png"));
 
     public Renderer(GraphicsContext gc) {
         this.gc = gc;
@@ -47,10 +48,10 @@ public class Renderer {
         clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         // Vẽ tiêu đề
+        gc.setFont(new Font("Arial", 70));
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font("Arial", 36));
-        gc.fillText("ARKANOID GAME",
-                GameManager.WINDOW_WIDTH / 2 - 150,
+        gc.fillText("ARKANOID",
+                GameManager.WINDOW_WIDTH / 2 - 180,
                 GameManager.WINDOW_HEIGHT / 2 - 50);
     }
 
@@ -58,12 +59,17 @@ public class Renderer {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
-        gc.drawImage(gameOver, 0,GameManager.WINDOW_HEIGHT/2-300 ,GameManager.WINDOW_WIDTH ,600 );
+        gc.drawImage(gameOver, 0, GameManager.WINDOW_HEIGHT / 2 - 300, GameManager.WINDOW_WIDTH, 600);
 
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 24));
-        gc.fillText("Final Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80,
-                GameManager.WINDOW_HEIGHT / 2+340);
+        if (gameOverState.isHighScore()) {
+            gc.fillText("High Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2);
+        } else {
+            gc.fillText("Final Score: " + gameManager.getScore(),
+                    GameManager.WINDOW_WIDTH / 2 - 100,
+                    GameManager.WINDOW_HEIGHT / 2 + 60);
+        }
         gc.fillText("Press ENTER for Main Menu", GameManager.WINDOW_WIDTH / 2 - 140,
                 GameManager.WINDOW_HEIGHT / 2 + 300);
     }
@@ -166,7 +172,7 @@ public class Renderer {
                     GameManager.WINDOW_WIDTH / 2 - 100,
                     GameManager.WINDOW_HEIGHT / 2 + 60);
         }
-   
+
         // Hướng dẫn
         gc.fillText("Nhấn ENTER để về Menu",
                 GameManager.WINDOW_WIDTH / 2 - 120,
@@ -176,17 +182,18 @@ public class Renderer {
     public void draw(ScoreState scoreState, GameManager gameManager) {
         gc.setFill(Color.CYAN);
         gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
+        gc.drawImage(ScoreState, 0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
         Font BoldPixels70 = Font.loadFont(
                 getClass().getResourceAsStream("/asset/BoldPixels.ttf"), 70
         );
 
         gc.setFont(BoldPixels70);
-        gc.setFill(Color.WHITE);
-        gc.fillText("HIGH SCORE", GameManager.WINDOW_WIDTH / 2 - 195, 170);
+        gc.setFill(Color.rgb(104,198,224));
+        gc.fillText("HIGH SCORE", GameManager.WINDOW_WIDTH / 2 - 195, 150);
         Font BoldPixels48 = Font.font(BoldPixels70.getName(), 48);
         gc.setFont(BoldPixels48);
         for (int i = 0; i < scoreState.getScores().size(); i++) {
-            gc.fillText(String.format("%d: %s", i + 1, scoreState.getScores().get(i)), GameManager.WINDOW_WIDTH / 2 - 80, 250 + i * 50);
+            gc.fillText(String.format("%d: %s", i + 1, scoreState.getScores().get(i)), GameManager.WINDOW_WIDTH / 2 - 60, 230 + i * 40);
         }
     }
 }
