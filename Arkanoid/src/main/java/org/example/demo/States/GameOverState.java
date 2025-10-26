@@ -25,7 +25,7 @@ public class GameOverState implements GameState {
         ArrayList<Integer> scores = new ArrayList<>();
         int newScore = gameManager.getScore();
 
-        File scoreFile = new File("D:\\OOP_Project\\OOP-GROUP4\\Arkanoid\\datas\\scores.txt");
+        File scoreFile = new File("datas/scores.txt");
         try {
             try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
                 String line;
