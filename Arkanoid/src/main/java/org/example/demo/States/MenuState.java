@@ -43,7 +43,6 @@ public class MenuState implements GameState {
         if (playButton.isClicked(event)) {
             SoundManager.playSoundEffect("SoundClick");
             gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());
-            System.out.println("moi");
         }
         if(leaderboardButton.isClicked(event)) {
             SoundManager.playSoundEffect("SoundClick");
