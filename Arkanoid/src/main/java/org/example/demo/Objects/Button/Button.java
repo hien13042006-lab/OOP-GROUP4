@@ -20,7 +20,7 @@ public class Button extends GameObject {
     public void update(GameManager gameManager) {
         double mouseX = gameManager.getMouseX();
         double mouseY = gameManager.getMouseY();
-        System.out.println("mouseX: " + mouseX + " mouseY: " + mouseY);
+        //System.out.println("mouseX: " + mouseX + " mouseY: " + mouseY);
         isHovered = mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height;
     }
 

@@ -10,7 +10,7 @@ import java.util.List;
 public class FastBallPowerUp extends PowerUp {
     public static final double FAST_BALL_DURATION = 5.0;
     public static final int FAST_BALL_SPEED = 200;
-    protected int SPEED_INCREMENT = 300;
+    protected int SPEED_INCREMENT = 150;
 
     //khởi tạo .
     public FastBallPowerUp(double x, double y, double width, double height) {

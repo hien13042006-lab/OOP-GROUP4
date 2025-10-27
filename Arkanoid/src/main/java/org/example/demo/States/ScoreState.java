@@ -12,8 +12,6 @@ import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class ScoreState implements GameState {

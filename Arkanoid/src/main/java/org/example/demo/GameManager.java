@@ -77,7 +77,7 @@ public class GameManager {
                 mouseX = event.getX();
                 mouseY = event.getY();
 
-                System.out.println("Chuột đang ở: " + mouseX + ", " + mouseY);
+                //System.out.println("Chuột đang ở: " + mouseX + ", " + mouseY);
             }
         });
         //xử lí click chuột

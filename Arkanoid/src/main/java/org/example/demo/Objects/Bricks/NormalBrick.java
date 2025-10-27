@@ -7,9 +7,10 @@ import org.example.demo.Renderer;
 import java.util.Random;
 
 public class NormalBrick extends Brick {
-    int DROP_CHANCE_NORMAL_BRICK = 90;
-    int EXPEND_DROP_CHANCE = 50;
-    int FAST_BALL_DROP_CHANCE = 40;
+    int DROP_CHANCE_NORMAL_BRICK = 20;
+    int EXPEND_DROP_CHANCE = 10;
+    int FAST_BALL_DROP_CHANCE = 15;
+    int SPLIT_BALL_DROP_CHANCE = 20;
     public NormalBrick(double x, double y, double width, double height) {
         this.hitPoints = 1;
         this.x = x;
@@ -36,8 +37,10 @@ public class NormalBrick extends Brick {
         int chance = rand.nextInt(powerUpDropChance);
         if(chance < EXPEND_DROP_CHANCE) {
             return new ExpandPaddlePowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        } else {
+        } else if (chance < FAST_BALL_DROP_CHANCE) {
             return new FastBallPowerUp(this.getX(),this.getY(),this.getWidth(),this.getHeight());
+        } else {
+            return new SplitBallPowerUp(this.getX(),this.getY(),this.getWidth(),this.getHeight());
         }
     }
 }
