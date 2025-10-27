@@ -10,7 +10,7 @@ import java.util.List;
 public class Level1 extends Level {
 
     public Level1() {
-        super(1,"Basic Grid" , "easy");
+        super(1 , "easy");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class Level1 extends Level {
                 int y = 50 + row * Brick.brickHeight;
 
                 if ((row + col) % 2 == 0) {
-                    bricks.add(new ExplodeBrick(x, y, Brick.brickWidth, Brick.brickHeight));
+                    bricks.add(new NormalBrick(x, y, Brick.brickWidth, Brick.brickHeight));
                 } else {
                     bricks.add(new StrongBrick(x, y, Brick.brickWidth, Brick.brickHeight));
                 }

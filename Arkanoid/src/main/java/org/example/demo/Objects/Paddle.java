@@ -14,6 +14,23 @@ public class Paddle extends MoveableObject {
     public static final double PADDLE_SPEED = 800;
     public static final double MARGIN_BOTTOM = 50;
 
+    private static Paddle instance;
+
+    private Paddle(double x, double y, double width, double height, double dx, double dy, double speed) {
+        super(x, y, width, height, dx, dy);
+        this.speed = speed;
+        image = new Image(getClass().getResourceAsStream("/asset/paddle.png"));
+    }
+
+    public static Paddle getInstance() {
+        if (instance == null) {
+            instance = new Paddle((GameManager.WINDOW_WIDTH - PADDLE_WIDTH) / 2,
+                    GameManager.WINDOW_HEIGHT - PADDLE_HEIGHT - MARGIN_BOTTOM,
+                    PADDLE_WIDTH, PADDLE_HEIGHT, 1, 0, 800);
+        }
+        return instance;
+    }
+
     private double speed;
     private boolean movingRight = false;
     private boolean movingLeft = false;
@@ -63,11 +80,7 @@ public class Paddle extends MoveableObject {
         this.speed = speed;
     }
 
-    public Paddle(double x, double y, double width, double height, double dx, double dy, double speed) {
-        super(x, y, width, height, dx, dy);
-        this.speed = speed;
-        image = new Image(getClass().getResourceAsStream("/asset/paddle.png"));
-    }
+
 
     void moveLeft(double dt) {
         this.x -= this.speed * dx * dt;

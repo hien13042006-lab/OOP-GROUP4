@@ -1,21 +1,22 @@
 package org.example.demo.States;
 
-import javafx.scene.input.KeyEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
-
-import java.io.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class GameOverState implements GameState {
+
     boolean isHighScore;
 
 

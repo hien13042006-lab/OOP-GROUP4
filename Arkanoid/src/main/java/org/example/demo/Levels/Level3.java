@@ -8,7 +8,7 @@ import org.example.demo.Objects.Bricks.MovingBrick;
 public class Level3 extends Level {
 
     public Level3() {
-        super(3, "Checkerboard", "hard");
+        super(3, "hard");
     }
 
     @Override

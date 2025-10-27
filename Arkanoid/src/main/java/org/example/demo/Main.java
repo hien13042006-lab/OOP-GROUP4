@@ -26,7 +26,7 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
 
-        GameManager gameManager = new GameManager();
+        GameManager gameManager = GameManager.getInstance();
         gameManager.startGame(root);
 
         AnimationTimer gameLoop = new AnimationTimer() {

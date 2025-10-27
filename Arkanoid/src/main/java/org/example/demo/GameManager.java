@@ -7,6 +7,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.Levels.Level;
+import org.example.demo.Levels.Level5;
 import org.example.demo.Levels.LevelManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
@@ -20,6 +21,17 @@ import java.util.List;
 import java.util.Random;
 
 public class GameManager {
+    private static GameManager instance;
+
+    private GameManager(){};
+
+    public static GameManager getInstance() {
+        if (instance == null) {
+            instance = new GameManager();
+        }
+        return instance;
+    }
+
     public static final int WINDOW_WIDTH = 1040;
     public static final int WINDOW_HEIGHT = 800;
 
@@ -99,9 +111,7 @@ public class GameManager {
 
         Level currentLevel = levelManager.getCurrentLevel();
 
-        paddle = new Paddle((WINDOW_WIDTH - Paddle.PADDLE_WIDTH) / 2,
-                WINDOW_HEIGHT - Paddle.PADDLE_HEIGHT - Paddle.MARGIN_BOTTOM,
-                Paddle.PADDLE_WIDTH, Paddle.PADDLE_HEIGHT, 1, 0, 800);
+        paddle = Paddle.getInstance();
 
         // THONG SO BALL
         if (balls != null) balls.clear();

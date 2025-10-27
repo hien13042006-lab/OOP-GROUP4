@@ -10,7 +10,7 @@ import org.example.demo.Objects.Bricks.UnbreakableBrick;
 public class Level2 extends Level {
 
     public Level2() {
-        super(2, "Pyramid", "easy");
+        super(2, "medium");
     }
 
     @Override
