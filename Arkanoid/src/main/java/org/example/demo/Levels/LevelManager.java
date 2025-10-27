@@ -17,6 +17,7 @@ public class LevelManager {
         levels.add(new Level2());
         levels.add(new Level3());
         levels.add(new Level4());
+        levels.add(new Level5());
     }
 
     public Level getCurrentLevel() {

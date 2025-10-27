@@ -14,6 +14,26 @@ public class Paddle extends MoveableObject {
     public static final double PADDLE_SPEED = 800;
     public static final double MARGIN_BOTTOM = 50;
 
+    private static Paddle instance;
+
+    private Paddle() {
+        x = (GameManager.WINDOW_WIDTH - PADDLE_WIDTH) / 2;
+        y = GameManager.WINDOW_HEIGHT - PADDLE_HEIGHT - MARGIN_BOTTOM;
+        width = PADDLE_WIDTH;
+        height = PADDLE_HEIGHT;
+        dx = 1;
+        dy = 0;
+        speed = 800;
+        image = new Image(getClass().getResourceAsStream("/asset/paddle.png"));
+    }
+
+    public static Paddle getInstance() {
+        if (instance == null) {
+            instance = new Paddle();
+        }
+        return instance;
+    }
+
     private double speed;
     private boolean movingRight = false;
     private boolean movingLeft = false;
@@ -31,6 +51,12 @@ public class Paddle extends MoveableObject {
 
         }
     };
+
+    public Paddle(double x, double y, double width, double height, double dx, double dy, double speed) {
+        super(x, y, width, height, dx, dy);
+        this.speed = speed;
+        image = new Image(getClass().getResourceAsStream("/asset/paddle.png"));
+    }
 
     private EventHandler<KeyEvent> keyReleaseHandler = new EventHandler<KeyEvent>() {
         @Override
@@ -63,11 +89,7 @@ public class Paddle extends MoveableObject {
         this.speed = speed;
     }
 
-    public Paddle(double x, double y, double width, double height, double dx, double dy, double speed) {
-        super(x, y, width, height, dx, dy);
-        this.speed = speed;
-        image = new Image(getClass().getResourceAsStream("/asset/paddle.png"));
-    }
+
 
     void moveLeft(double dt) {
         this.x -= this.speed * dx * dt;

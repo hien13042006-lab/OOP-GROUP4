@@ -208,11 +208,10 @@ public class Ball extends MoveableObject {
             y = 50;
             dy = -dy;
         }
-        else if (y > GameManager.WINDOW_HEIGHT - height) {
-            SoundManager.playSoundEffect("BallHitWall");
-            y = GameManager.WINDOW_HEIGHT - height;
-            dy = -dy;
-        }
+//        else if (y > GameManager.WINDOW_HEIGHT - height) {
+//            y = GameManager.WINDOW_HEIGHT - height;
+//            dy = -dy;
+//        }
     }
 
 
