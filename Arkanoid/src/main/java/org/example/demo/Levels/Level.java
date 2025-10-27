@@ -6,12 +6,10 @@ import java.util.List;
 
 public abstract class Level {
     protected String difficulty;
-    protected String levelName;
     protected int levelNumber;
 
-    public Level(int levelNumber, String levelName, String difficulty) {
+    public Level(int levelNumber, String difficulty) {
         this.levelNumber = levelNumber;
-        this.levelName = levelName;
         this.difficulty = difficulty;
     }
 

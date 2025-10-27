@@ -114,7 +114,7 @@ public class PlayingState implements GameState {
                 gameManager.getGameStateMachine()
                         .changeState(gameManager, new LevelCompleteState());
             } else {
-                // ⭐ NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
+                // NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
                 SoundManager.setVolume("GameWin", 0.3);
                 SoundManager.playSoundEffect("GameWin");
                 gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
