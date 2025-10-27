@@ -109,7 +109,7 @@ public class Renderer {
         }
 
         gc.fillText("Level " + gameManager.getLevelManager().getCurrentNumberLevel(), 150, 30);
-
+        gc.fillText(gameManager.getLevelManager().getCurrentLevel().getDifficulty(), 800,30);
     }
 
     public void draw(PausedState pausedState, GameManager gameManager) {
@@ -152,13 +152,13 @@ public class Renderer {
         // Tiêu đề
         gc.setFill(Color.DARKBLUE);
         gc.setFont(new Font("Arial", 48));
-        gc.fillText("CHÚC MỪNG!",
+        gc.fillText("CONGRATULATIONS!",
                 GameManager.WINDOW_WIDTH / 2 - 150,
                 GameManager.WINDOW_HEIGHT / 2 - 100);
 
         // Thông báo
         gc.setFont(new Font("Arial", 36));
-        gc.fillText("Bạn đã hoàn thành tất cả level!",
+        gc.fillText("You have completed all levels!",
                 GameManager.WINDOW_WIDTH / 2 - 250,
                 GameManager.WINDOW_HEIGHT / 2);
 
@@ -174,7 +174,7 @@ public class Renderer {
         }
 
         // Hướng dẫn
-        gc.fillText("Nhấn ENTER để về Menu",
+        gc.fillText("Press ENTER to return to Main Menu",
                 GameManager.WINDOW_WIDTH / 2 - 120,
                 GameManager.WINDOW_HEIGHT / 2 + 120);
     }
