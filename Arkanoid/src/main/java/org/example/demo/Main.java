@@ -11,8 +11,7 @@ import javafx.scene.paint.Color;
 public class Main extends Application {
     public static void main(String[] args)
     {
-        SoundManager.setVolume("BackGround", 0.3);
-        SoundManager.playSoundEffect("BackGround");
+        SoundManager.playBackground();
         launch(args);
     }
 

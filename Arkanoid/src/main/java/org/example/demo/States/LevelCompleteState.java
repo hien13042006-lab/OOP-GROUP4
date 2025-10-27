@@ -28,6 +28,7 @@ public class LevelCompleteState implements GameState {
         if (event.getCode() == KeyCode.ENTER) {
             LevelManager levelManager = gameManager.getLevelManager();
             if (levelManager.hasNextLevel()) {
+                SoundManager.playSoundEffect("NextStage");
                 levelManager.nextLevel();
                 gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());
             } else {
