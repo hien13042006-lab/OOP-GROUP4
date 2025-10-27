@@ -23,8 +23,10 @@ public class ScoreState implements GameState {
 
     @Override
     public boolean enter(GameManager gameManager) {
+
+        System.out.println("Working directory: " + System.getProperty("user.dir"));
         System.out.println("Entering Game Complete State");
-        File scoreFile = new File("datas/scores.txt");
+        File scoreFile = new File("Arkanoid/datas/scores.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -32,6 +34,10 @@ public class ScoreState implements GameState {
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+        for(int i = 0; i < scores.size(); i++)
+        {
+            System.out.println(scores.get(i));
         }
         return true;
     }

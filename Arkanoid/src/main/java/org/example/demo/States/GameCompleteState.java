@@ -20,7 +20,7 @@ public class GameCompleteState implements GameState {
         ArrayList<Integer> scores = new ArrayList<>();
         int newScore = gameManager.getScore();
 
-        File scoreFile = new File("datas/scores.txt");
+        File scoreFile = new File("Arkanoid/datas/scores.txt");
         try {
             try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
                 String line;
