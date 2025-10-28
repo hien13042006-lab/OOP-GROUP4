@@ -61,6 +61,21 @@ public class PlayingState implements GameState {
         } else {// Chuyển input cho paddle
             paddle.getKeyPressHandler().handle(event);
         }
+
+
+        //hack
+        if(event.getCode() == KeyCode.N) {
+            if (gameManager.getLevelManager().hasNextLevel()) {
+                SoundManager.playSoundEffect("NextStage");
+                gameManager.getGameStateMachine()
+                        .changeState(gameManager, new LevelCompleteState());
+            } else {
+                // NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
+                SoundManager.setVolume("GameWin", 0.3);
+                SoundManager.playSoundEffect("GameWin");
+                gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
+            }
+        }
     }
 
     @Override
@@ -118,6 +133,8 @@ public class PlayingState implements GameState {
             }
             return;
         }
+
+
 
         // Cập nhật vật lý
         paddle.update(dt);

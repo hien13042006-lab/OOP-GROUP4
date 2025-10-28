@@ -133,15 +133,15 @@ public class Renderer {
 
         gc.setFill(Color.GREEN);
         gc.setFont(new Font("Arial", 36));
-        gc.fillText("LEVEL COMPLETE!", GameManager.WINDOW_WIDTH / 2 - 150,
-                GameManager.WINDOW_HEIGHT / 2 - 50);
+        gc.fillText("LEVEL COMPLETE!", GameManager.WINDOW_WIDTH / 2 - 170,
+                GameManager.WINDOW_HEIGHT / 2 - 100);
 
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 24));
         gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 50,
-                GameManager.WINDOW_HEIGHT / 2);
-        gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 140,
-                GameManager.WINDOW_HEIGHT / 2 + 50);
+                GameManager.WINDOW_HEIGHT / 2-50);
+        gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 156,
+                GameManager.WINDOW_HEIGHT / 2 + 80);
     }
 
     public void draw(GameCompleteState gameCompleteState, GameManager gameManager) {
@@ -153,29 +153,29 @@ public class Renderer {
         gc.setFill(Color.DARKBLUE);
         gc.setFont(new Font("Arial", 48));
         gc.fillText("CONGRATULATIONS!",
-                GameManager.WINDOW_WIDTH / 2 - 150,
-                GameManager.WINDOW_HEIGHT / 2 - 100);
+                GameManager.WINDOW_WIDTH / 2 - 240,
+                GameManager.WINDOW_HEIGHT / 2 - 150);
 
         // Thông báo
         gc.setFont(new Font("Arial", 36));
         gc.fillText("You have completed all levels!",
-                GameManager.WINDOW_WIDTH / 2 - 250,
-                GameManager.WINDOW_HEIGHT / 2);
+                GameManager.WINDOW_WIDTH / 2 - 230,
+                GameManager.WINDOW_HEIGHT / 2 - 100);
 
         // Điểm số
         gc.setFill(Color.BLACK);
         gc.setFont(new Font("Arial", 24));
         if (gameCompleteState.isHighScore()) {
-            gc.fillText("High Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2);
+            gc.fillText("High Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2 + 60);
         } else {
             gc.fillText("Final Score: " + gameManager.getScore(),
-                    GameManager.WINDOW_WIDTH / 2 - 100,
+                    GameManager.WINDOW_WIDTH / 2 - 70,
                     GameManager.WINDOW_HEIGHT / 2 + 60);
         }
 
         // Hướng dẫn
         gc.fillText("Press ENTER to return to Main Menu",
-                GameManager.WINDOW_WIDTH / 2 - 120,
+                GameManager.WINDOW_WIDTH / 2 - 200,
                 GameManager.WINDOW_HEIGHT / 2 + 120);
     }
 

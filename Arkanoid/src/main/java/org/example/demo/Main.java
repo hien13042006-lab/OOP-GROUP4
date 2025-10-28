@@ -28,6 +28,8 @@ public class Main extends Application {
         GameManager gameManager = GameManager.getInstance();
         gameManager.startGame(root);
 
+        double maxDeltaTime = 0.25;
+
         AnimationTimer gameLoop = new AnimationTimer() {
             private long lastTime = 0;
 
@@ -35,6 +37,10 @@ public class Main extends Application {
             public void handle(long now) {
                 if (lastTime > 0) {
                     double dt = (now - lastTime) / 1e9; // giây
+                    //giới hạn dt tránh bị giật
+                    if(dt > maxDeltaTime) {
+                        dt = maxDeltaTime;
+                    }
                     gameManager.updateGame(dt);
                     gameManager.render();
                 }
