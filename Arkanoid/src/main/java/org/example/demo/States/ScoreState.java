@@ -26,7 +26,7 @@ public class ScoreState implements GameState {
 
         System.out.println("Working directory: " + System.getProperty("user.dir"));
         System.out.println("Entering Game Complete State");
-        File scoreFile = new File("Arkanoid/datas/scores.txt");
+        File scoreFile = new File("datas/scores.txt");
         try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
             String line;
             while ((line = reader.readLine()) != null) {

@@ -187,6 +187,20 @@ public class Ball extends MoveableObject {
         }
     }
 
+    public double computePenetrationDepth(Brick brick) {
+        // Kiểm tra độ va chạm với các cạnh của Brick
+        // Tính overlap theo từng hướng
+        double overlapLeft = (this.x + this.width) - brick.getX();
+        double overlapRight = (brick.getX() + brick.getWidth()) - this.x;
+        double overlapTop = (this.y + this.height) - brick.getY();
+        double overlapBottom = (brick.getY() + brick.getHeight()) - this.y;
+
+        // Tìm overlap nhỏ nhất
+        double minOverlap = Math.min(Math.min(overlapLeft, overlapRight),
+                Math.min(overlapTop, overlapBottom));
+        return minOverlap;
+    }
+
     // Nảy khi chạm tường
     public void bounceOffWall() {
         //chạm trái

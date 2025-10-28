@@ -93,18 +93,38 @@ public class PlayingState implements GameState {
         for (int i = bricks.size() - 1; i >= 0; i--) {
             bricks.get(i).update(dt);
         }
-        for (int i = bricks.size() - 1; i >= 0; i--) {
-            Brick brick = bricks.get(i);
-            for (Ball ball : balls) {
-                if (ball.checkCollision(brick)) {
-                    //brick nhận damage
+
+        for (Ball ball : balls) {
+            Brick bestBrick = null;
+            double bestDepth = -1;
+
+            for (Brick brick : bricks) {
+                if(ball.checkCollision(brick)) {
+                    // brick nhận damage
                     brick.takeHit(ball.getDamage(), bricks);
-                    //nếu mà ball mạnh quá làm máu brick tụt sâu thì ball không nảy mà đi xuyên
-                    if (brick.getHitPoints() >= -100) {
-                        ball.bounceOffBrick(brick);
+
+                    // Tính độ lấn sâu nhất
+                    double depth = ball.computePenetrationDepth(brick);
+
+                    // Chỉ chọn viên có độ lấn sâu nhất
+                    if (depth > bestDepth) {
+                        bestDepth = depth;
+                        bestBrick = brick;
                     }
                 }
             }
+
+            if(bestBrick != null) {
+                if (bestBrick.getHitPoints() >= -100) {
+                    ball.bounceOffBrick(bestBrick);
+                }
+            }
+        }
+
+
+        for (int i = bricks.size() - 1; i >= 0; i--) {
+            Brick brick = bricks.get(i);
+
             if (brick.isDestroyed()) {
                 // random xac suat ra powerup hay khong
                 int chance = rand.nextInt(100);
