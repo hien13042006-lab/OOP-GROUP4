@@ -26,6 +26,7 @@ public class Brick extends GameObject {
 
     public boolean isDestroyed() {
         if (hitPoints <= 0) {
+            SoundManager.setVolume("BrickDestroyed", 0.3);
             SoundManager.playSoundEffect("BrickDestroyed");
             return true;
         }

@@ -20,12 +20,14 @@ public class GameCompleteState implements GameState {
 
     @Override
     public boolean enter(GameManager gameManager) {
+
         System.out.println("Entering Game Complete State");
         ArrayList<Integer> scores = new ArrayList<>();
         int newScore = gameManager.getScore();
 
         File scoreFile = new File("Arkanoid/datas/scores.txt");
         try {
+            SoundManager.playSoundEffect("GameWin");
             try (BufferedReader reader = new BufferedReader(new FileReader(scoreFile))) {
                 String line;
                 while ((line = reader.readLine()) != null) {

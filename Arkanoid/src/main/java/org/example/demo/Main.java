@@ -4,14 +4,14 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 
 
 public class Main extends Application {
-    public static void main(String[] args) {
-        SoundManager.setVolume("BackGround", 0.3);
-        SoundManager.playSoundEffect("BackGround");
+    public static void main(String[] args)
+    {
+        SoundManager.playBackground();
         launch(args);
     }
 

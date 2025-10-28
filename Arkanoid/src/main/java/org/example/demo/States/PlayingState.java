@@ -125,13 +125,10 @@ public class PlayingState implements GameState {
         }
         if (countUnbreakableBrick == bricks.size()) {
             if (gameManager.getLevelManager().hasNextLevel()) {
-                SoundManager.playSoundEffect("NextStage");
                 gameManager.getGameStateMachine()
                         .changeState(gameManager, new LevelCompleteState());
             } else {
-                // NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
-                SoundManager.setVolume("GameWin", 0.3);
-                SoundManager.playSoundEffect("GameWin");
+                // ⭐ NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
                 gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
             }
             return;
@@ -162,11 +159,8 @@ public class PlayingState implements GameState {
         if (balls.isEmpty()) {
             gameManager.loseLife();
             if (gameManager.getLives() <= 0) {
-                SoundManager.playSoundEffect("GameOver");
                 gameManager.getGameStateMachine().changeState(gameManager, new GameOverState());
             } else {
-                SoundManager.setVolume("BallWhenDie", 0.2);
-                SoundManager.playSoundEffect("BallWhenDie");
                 gameManager.resetBallAndPaddle();
             }
         }

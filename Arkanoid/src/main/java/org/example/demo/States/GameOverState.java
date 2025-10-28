@@ -22,6 +22,7 @@ public class GameOverState implements GameState {
 
     @Override
     public boolean enter(GameManager gameManager) {
+        SoundManager.playSoundEffect("GameOver");
         System.out.println("Entering Game Over State");
         ArrayList<Integer> scores = new ArrayList<>();
         int newScore = gameManager.getScore();

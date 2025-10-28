@@ -47,7 +47,6 @@ public class Ball extends MoveableObject {
 
     // Va chạm với paddle
     public void bounceOffPaddle(Paddle paddle) {
-        SoundManager.playSoundEffect("BallHitPaddle");
         // Chỉ xử lý khi đang rơi xuống
         if (dy < 0) {
             return;
@@ -57,6 +56,8 @@ public class Ball extends MoveableObject {
         if (!checkCollision(paddle)) {
             return;
         }
+
+        SoundManager.playSoundEffect("BallHitPaddle");
 
         // Tính overlap theo từng hướng
         // Kiểm tra độ va chạm với các cạnh bên của paddle
@@ -129,12 +130,12 @@ public class Ball extends MoveableObject {
 
 
     public void bounceOffBrick(Brick brick) {
-        SoundManager.playSoundEffect("BallHitBrick");
         // Không va chạm bỏ qua
         if (!checkCollision(brick)) { 
             return;
         }
 
+        SoundManager.playSoundEffect("BallHitBrick");
         // Kiểm tra độ va chạm với các cạnh của Brick
         // Tính overlap theo từng hướng
         double overlapLeft = (this.x + this.width) - brick.getX();
@@ -190,24 +191,27 @@ public class Ball extends MoveableObject {
     public void bounceOffWall() {
         //chạm trái
         if (x < 0) {
+            SoundManager.playSoundEffect("BallHitWall");
             x = 0;
             dx = -dx;
         }
 
         // chạm phải
         else if (x > GameManager.WINDOW_WIDTH - width) {
+            SoundManager.playSoundEffect("BallHitWall");
             x = GameManager.WINDOW_WIDTH - width;
             dx = -dx;
         }
 
         if (y < 50) {
+            SoundManager.playSoundEffect("BallHitWall");
             y = 50;
             dy = -dy;
         }
-        else if (y > GameManager.WINDOW_HEIGHT - height) {
-            y = GameManager.WINDOW_HEIGHT - height;
-            dy = -dy;
-        }
+//        else if (y > GameManager.WINDOW_HEIGHT - height) {
+//            y = GameManager.WINDOW_HEIGHT - height;
+//            dy = -dy;
+//        }
     }
 
 

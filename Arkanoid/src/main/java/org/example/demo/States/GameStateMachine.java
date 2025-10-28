@@ -8,7 +8,7 @@ import org.example.demo.Renderer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameStateMachine {
+public class    GameStateMachine {
     List<GameState> gameStateList = new ArrayList<>();
 
     public void pushState(GameManager gameManager, GameState state) {
