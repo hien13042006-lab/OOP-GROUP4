@@ -59,6 +59,8 @@ public class GameManager {
         score = 0;
         lives = 3;
 
+        SoundManager.playBackground();
+
         levelManager = new LevelManager();
 
 
