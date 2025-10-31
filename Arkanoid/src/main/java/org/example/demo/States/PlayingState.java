@@ -76,6 +76,9 @@ public class PlayingState implements GameState {
                 gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
             }
         }
+        if(event.getCode() == KeyCode.T) {
+            gameManager.getGameStateMachine().changeState(gameManager, new GameOverState());
+        }
     }
 
     @Override
@@ -181,6 +184,8 @@ public class PlayingState implements GameState {
             if (gameManager.getLives() <= 0) {
                 gameManager.getGameStateMachine().changeState(gameManager, new GameOverState());
             } else {
+                SoundManager.setVolume("BallWhenDie", 0.2);
+                SoundManager.playSoundEffect("BallWhenDie");
                 gameManager.resetBallAndPaddle();
             }
         }

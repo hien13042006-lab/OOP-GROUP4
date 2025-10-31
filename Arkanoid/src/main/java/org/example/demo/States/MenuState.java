@@ -20,6 +20,7 @@ public class MenuState implements GameState {
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Menu State");
+        SoundManager.playBackground();
         return true;
     }
 

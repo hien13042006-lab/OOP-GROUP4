@@ -59,13 +59,9 @@ public class GameManager {
         score = 0;
         lives = 3;
 
-        SoundManager.playBackground();
-
         levelManager = new LevelManager();
 
-
         initializeCanvas(root);
-        initializeLevel();
 
         // Bắt đầu với menu state
         gameStateMachine = new GameStateMachine();
@@ -161,14 +157,13 @@ public class GameManager {
     }
 
     public void resetBallAndPaddle() {
-        SoundManager.setVolume("BallWhenDie", 0.2);
-        SoundManager.playSoundEffect("BallWhenDie");
         paddle.setX((WINDOW_WIDTH - paddle.getWidth()) / 2);
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
                 Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED, Ball.DAMAGE_DEFAULT));
     }
 
     public void restartGame() {
+        resetBallAndPaddle();
         score = 0;
         lives = 3;
         levelManager.resetLevel();
