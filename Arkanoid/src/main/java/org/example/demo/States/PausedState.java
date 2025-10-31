@@ -23,7 +23,7 @@ public class PausedState implements GameState {
     @Override
     public boolean enter(GameManager gameManager) {
         SoundManager.playSoundEffect("SoundClick");
-        System.out.println("Entering Menu State");
+        System.out.println("Entering Paused State");
         return true;
     }
 

@@ -59,16 +59,17 @@ public class Renderer {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
-        gc.drawImage(gameOver, 0, GameManager.WINDOW_HEIGHT / 2 - 300, GameManager.WINDOW_WIDTH, 600);
+        gc.drawImage(gameOver, 0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 24));
         if (gameOverState.isHighScore()) {
-            gc.fillText("High Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2);
+            gc.fillText("High Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 75,
+                    GameManager.WINDOW_HEIGHT / 2 + 270);
         } else {
             gc.fillText("Final Score: " + gameManager.getScore(),
-                    GameManager.WINDOW_WIDTH / 2 - 100,
-                    GameManager.WINDOW_HEIGHT / 2 + 60);
+                    GameManager.WINDOW_WIDTH / 2 - 75,
+                    GameManager.WINDOW_HEIGHT / 2 + 270);
         }
         gc.fillText("Press ENTER for Main Menu", GameManager.WINDOW_WIDTH / 2 - 140,
                 GameManager.WINDOW_HEIGHT / 2 + 300);
@@ -132,8 +133,12 @@ public class Renderer {
         clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         gc.setFill(Color.GREEN);
-        gc.setFont(new Font("Arial", 36));
-        gc.fillText("LEVEL COMPLETE!", GameManager.WINDOW_WIDTH / 2 - 170,
+        Font fontHUD = Font.loadFont(
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                36
+        );
+        gc.setFont(fontHUD);
+        gc.fillText("LEVEL COMPLETE!", GameManager.WINDOW_WIDTH / 2 - 190,
                 GameManager.WINDOW_HEIGHT / 2 - 100);
 
         gc.setFill(Color.WHITE);
@@ -150,20 +155,24 @@ public class Renderer {
         clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         // Tiêu đề
-        gc.setFill(Color.DARKBLUE);
-        gc.setFont(new Font("Arial", 48));
+        gc.setFill(Color.GREEN);
+        gc.setFont(Font.loadFont(
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                48));
         gc.fillText("CONGRATULATIONS!",
-                GameManager.WINDOW_WIDTH / 2 - 240,
+                GameManager.WINDOW_WIDTH / 2 - 300,
                 GameManager.WINDOW_HEIGHT / 2 - 150);
 
         // Thông báo
-        gc.setFont(new Font("Arial", 36));
+        gc.setFont(Font.loadFont(
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                36));
         gc.fillText("You have completed all levels!",
-                GameManager.WINDOW_WIDTH / 2 - 230,
+                GameManager.WINDOW_WIDTH / 2 - 400,
                 GameManager.WINDOW_HEIGHT / 2 - 100);
 
         // Điểm số
-        gc.setFill(Color.BLACK);
+        gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 24));
         if (gameCompleteState.isHighScore()) {
             gc.fillText("High Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2 + 60);
