@@ -35,5 +35,9 @@
     - SplitBallPowerUp <img src="https://github.com/user-attachments/assets/4c076412-df51-46a2-b566-131448d5e536" width = "40"> : phân bóng làm 3
     - ReverseControlPowerUp <img src="https://github.com/user-attachments/assets/892a87d6-104a-4cf6-adfb-d76505250de3" width = "40"> : đảo ngược chiều di chuyển paddle
     - FireBallPowerUp <img src="https://github.com/user-attachments/assets/7fd7e5ad-9e96-4c9d-8c25-387aa043c6c8" width = "40"> : quả bóng rực lửa và tăng sát thương
-
-
+*Bricks:
+    - NormalBrick <img src="Arkanoid/src/main/resources/asset/normalBrick.png" width = "40" : có 1 máu
+    - StrongBrick <img src="Arkanoid/src/main/resources/asset/strongBrick.png" width = "40" : có 2 máu
+    - MovingBrick <img src="Arkanoid/src/main/resources/asset/movingBrick.png" width = "40" : có 3 máu và có thể di chuyển
+    - UnbreakableBrick <img src="Arkanoid/src/main/resources/asset/unbreakableBrick.png" width = "40" : không thể phá hủy
+    - ExplodeBrick <img src="Arkanoid/src/main/resources/asset/ExplodeBrick.png" width = "40" : có 1 máu và khi biến mất gây 1 sát thương cho gạch xung quanh theo hình dấu cộng
