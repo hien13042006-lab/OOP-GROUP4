@@ -29,3 +29,4 @@
 * Thiết kế:
  https://drive.google.com/file/d/1cJgev7vtDqnF1FRk2NOgUXWHBDOzFrQo/view?usp=sharing
 * Video:
+* https://youtu.be/uIZv3c897I4
