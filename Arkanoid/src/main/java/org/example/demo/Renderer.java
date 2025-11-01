@@ -68,7 +68,7 @@ public class Renderer {
                 getClass().getResourceAsStream("/asset/fontHUD.ttf"),
                 24));
         if (gameOverState.isHighScore()) {
-            gc.fillText("High Score  " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 100,
+            gc.fillText("High Score  " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 125,
                     GameManager.WINDOW_HEIGHT / 2 + 270);
         } else {
             gc.fillText("Final Score  " + gameManager.getScore(),
@@ -127,8 +127,10 @@ public class Renderer {
         gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font("Arial", 36));
-        gc.fillText("PAUSED", GameManager.WINDOW_WIDTH / 2 - 75, GameManager.WINDOW_HEIGHT / 2);
+        gc.setFont(Font.loadFont(
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                36));
+        gc.fillText("PAUSED", GameManager.WINDOW_WIDTH / 2 - 95, GameManager.WINDOW_HEIGHT / 2);
 
 
     }
