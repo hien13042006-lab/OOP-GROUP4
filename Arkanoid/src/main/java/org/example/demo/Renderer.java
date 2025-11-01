@@ -20,9 +20,8 @@ public class Renderer {
 
     private GraphicsContext gc;
     private Image background = new Image(getClass().getResourceAsStream("/asset/bg.png"));
-    private Image gameOver = new Image(getClass().getResourceAsStream("/asset/gameover.png"));
-    private Image ScoreState = new Image(getClass().getResourceAsStream("/asset/ScoreState.png"));
-
+    private Image gameOver = new Image(getClass().getResourceAsStream("/asset/gameOver.png"));
+    private Image gameComplete = new Image(getClass().getResourceAsStream("/asset/gameComplete.png"));
     public Renderer(GraphicsContext gc) {
         this.gc = gc;
 
@@ -56,11 +55,8 @@ public class Renderer {
     }
 
     public void draw(GameOverState gameOverState, GameManager gameManager) {
-        gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
-
-        gc.drawImage(gameOver, 0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
-
+        clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
+        gc.drawImage(gameOver, 0, 0);
         gc.setFill(Color.WHITE);
         gc.setFont(new Font("Arial", 24));
         if (gameOverState.isHighScore()) {
@@ -131,7 +127,6 @@ public class Renderer {
 
     public void draw(LevelCompleteState levelCompleteState, GameManager gameManager) {
         clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
-
         gc.setFill(Color.GREEN);
         Font fontHUD = Font.loadFont(
                 getClass().getResourceAsStream("/asset/fontHUD.ttf"),
@@ -152,6 +147,7 @@ public class Renderer {
     public void draw(GameCompleteState gameCompleteState, GameManager gameManager) {
         GraphicsContext gc = this.getGc();
 
+        gc.drawImage(gameComplete, 50, 500);
         clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         // Tiêu đề
@@ -191,7 +187,6 @@ public class Renderer {
     public void draw(ScoreState scoreState, GameManager gameManager) {
         gc.setFill(Color.CYAN);
         gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
-        gc.drawImage(ScoreState, 0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
         Font BoldPixels70 = Font.loadFont(
                 getClass().getResourceAsStream("/asset/BoldPixels.ttf"), 70
         );
