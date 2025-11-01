@@ -48,10 +48,12 @@ public class Renderer {
         clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         // Vẽ tiêu đề
-        gc.setFont(new Font("Arial", 70));
-        gc.setFill(Color.WHITE);
+        gc.setFont(Font.loadFont(
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                80));
+        gc.setFill(Color.PINK);
         gc.fillText("ARKANOID",
-                GameManager.WINDOW_WIDTH / 2 - 180,
+                GameManager.WINDOW_WIDTH / 2 - 270,
                 GameManager.WINDOW_HEIGHT / 2 - 50);
     }
 
@@ -62,17 +64,19 @@ public class Renderer {
         gc.drawImage(gameOver, 0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font("Arial", 24));
+        gc.setFont(Font.loadFont(
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                24));
         if (gameOverState.isHighScore()) {
-            gc.fillText("High Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 75,
+            gc.fillText("High Score  " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 100,
                     GameManager.WINDOW_HEIGHT / 2 + 270);
         } else {
-            gc.fillText("Final Score: " + gameManager.getScore(),
-                    GameManager.WINDOW_WIDTH / 2 - 75,
+            gc.fillText("Final Score  " + gameManager.getScore(),
+                    GameManager.WINDOW_WIDTH / 2 - 125,
                     GameManager.WINDOW_HEIGHT / 2 + 270);
         }
-        gc.fillText("Press ENTER for Main Menu", GameManager.WINDOW_WIDTH / 2 - 140,
-                GameManager.WINDOW_HEIGHT / 2 + 300);
+//        gc.fillText("Press ENTER for Main Menu", GameManager.WINDOW_WIDTH / 2 - 140,
+//                GameManager.WINDOW_HEIGHT / 2 + 300);
     }
 
     public void draw(PlayingState playingState, GameManager gameManager) {
@@ -133,20 +137,20 @@ public class Renderer {
         clear(GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
 
         gc.setFill(Color.GREEN);
-        Font fontHUD = Font.loadFont(
+        gc.setFont(Font.loadFont(
                 getClass().getResourceAsStream("/asset/fontHUD.ttf"),
-                36
-        );
-        gc.setFont(fontHUD);
-        gc.fillText("LEVEL COMPLETE!", GameManager.WINDOW_WIDTH / 2 - 190,
+                48));
+        gc.fillText("LEVEL COMPLETE!", GameManager.WINDOW_WIDTH / 2 - 270,
                 GameManager.WINDOW_HEIGHT / 2 - 100);
 
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font("Arial", 24));
-        gc.fillText("Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 50,
+        gc.setFont(Font.loadFont(
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                24));
+        gc.fillText("Score  " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 70,
                 GameManager.WINDOW_HEIGHT / 2-50);
-        gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 156,
-                GameManager.WINDOW_HEIGHT / 2 + 80);
+//        gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 176,
+//                GameManager.WINDOW_HEIGHT / 2 + 80);
     }
 
     public void draw(GameCompleteState gameCompleteState, GameManager gameManager) {
@@ -173,19 +177,21 @@ public class Renderer {
 
         // Điểm số
         gc.setFill(Color.WHITE);
-        gc.setFont(new Font("Arial", 24));
+        gc.setFont(Font.loadFont(
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                24));
         if (gameCompleteState.isHighScore()) {
-            gc.fillText("High Score: " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 80, GameManager.WINDOW_HEIGHT / 2 + 60);
+            gc.fillText("High Score  " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 120, GameManager.WINDOW_HEIGHT / 2 + 60);
         } else {
-            gc.fillText("Final Score: " + gameManager.getScore(),
-                    GameManager.WINDOW_WIDTH / 2 - 70,
+            gc.fillText("Final Score  " + gameManager.getScore(),
+                    GameManager.WINDOW_WIDTH / 2 - 120,
                     GameManager.WINDOW_HEIGHT / 2 + 60);
         }
 
         // Hướng dẫn
-        gc.fillText("Press ENTER to return to Main Menu",
-                GameManager.WINDOW_WIDTH / 2 - 200,
-                GameManager.WINDOW_HEIGHT / 2 + 120);
+//        gc.fillText("Press ENTER to return to Main Menu",
+//                GameManager.WINDOW_WIDTH / 2 - 200,
+//                GameManager.WINDOW_HEIGHT / 2 + 120);
     }
 
     public void draw(ScoreState scoreState, GameManager gameManager) {
@@ -193,16 +199,17 @@ public class Renderer {
         gc.fillRect(0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
         gc.drawImage(ScoreState, 0, 0, GameManager.WINDOW_WIDTH, GameManager.WINDOW_HEIGHT);
         Font BoldPixels70 = Font.loadFont(
-                getClass().getResourceAsStream("/asset/BoldPixels.ttf"), 70
+                getClass().getResourceAsStream("/asset/fontHUD.ttf"),
+                70
         );
 
         gc.setFont(BoldPixels70);
         gc.setFill(Color.rgb(104,198,224));
-        gc.fillText("HIGH SCORE", GameManager.WINDOW_WIDTH / 2 - 195, 150);
+        gc.fillText("HIGH SCORE", GameManager.WINDOW_WIDTH / 2 - 250, 150);
         Font BoldPixels48 = Font.font(BoldPixels70.getName(), 48);
         gc.setFont(BoldPixels48);
         for (int i = 0; i < scoreState.getScores().size(); i++) {
-            gc.fillText(String.format("%d: %s", i + 1, scoreState.getScores().get(i)), GameManager.WINDOW_WIDTH / 2 - 60, 230 + i * 40);
+            gc.fillText(String.format("%d: %s", i + 1, scoreState.getScores().get(i)), GameManager.WINDOW_WIDTH / 2 - 80, 230 + i * 40);
         }
     }
 }
