@@ -10,6 +10,7 @@ import java.util.List;
 public class SplitBallPowerUp extends PowerUp {
     public static final int SPLIT_BALL_SPEED = 200;
     public static final double SPLIT_BALL_DURATION = 0.0;
+    public static final int ANGLE_SPLIT = 60;
 
     //khởi tạo.
     public SplitBallPowerUp(double x, double y, double width, double height) {
@@ -35,12 +36,21 @@ public class SplitBallPowerUp extends PowerUp {
         int n = balls.size();
         for(int i = 0; i < n; i++){
             Ball ball = balls.get(i);
-            // 90 do sang trai
-            balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
-                    -ball.getDx(),ball.getDy(),ball.getSpeed(), ball.getDamage(), ball.isWaiting()));
-            //90 do sang phai
-            balls.add(new Ball(ball.getX(),ball.getY(),ball.getWidth(),ball.getHeight(),
-                    ball.getDy(),-ball.getDx(),ball.getSpeed(), ball.getDamage(), ball.isWaiting()));
+            double dx = ball.getDx();
+            double dy = ball.getDy();
+            double angle = Math.toRadians(ANGLE_SPLIT);
+
+            // Xoay sang trái 60 độ
+            double leftDx = dx * Math.cos(angle) - dy * Math.sin(angle);
+            double leftDy = dx * Math.sin(angle) + dy * Math.cos(angle);
+            balls.add(new Ball(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight(),
+                    leftDx, leftDy, ball.getSpeed(), ball.getDamage(), ball.isWaiting()));
+
+            // Xoay sang phải 60 độ (góc âm)
+            double rightDx = dx * Math.cos(-angle) - dy * Math.sin(-angle);
+            double rightDy = dx * Math.sin(-angle) + dy * Math.cos(-angle);
+            balls.add(new Ball(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight(),
+                    rightDx, rightDy, ball.getSpeed(), ball.getDamage(), ball.isWaiting()));
         }
     }
 
