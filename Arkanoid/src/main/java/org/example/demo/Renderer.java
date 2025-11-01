@@ -19,7 +19,7 @@ import org.example.demo.States.ScoreState;
 public class Renderer {
 
     private GraphicsContext gc;
-    private Image background = new Image(getClass().getResourceAsStream("/asset/background.png"));
+    private Image background = new Image(getClass().getResourceAsStream("/asset/bg.png"));
     private Image gameOver = new Image(getClass().getResourceAsStream("/asset/gameover.png"));
     private Image ScoreState = new Image(getClass().getResourceAsStream("/asset/ScoreState.png"));
 

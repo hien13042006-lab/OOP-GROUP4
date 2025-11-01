@@ -32,7 +32,7 @@ public class GameManager {
         return instance;
     }
 
-    public static final int WINDOW_WIDTH = 1040;
+    public static final int WINDOW_WIDTH = 1048;
     public static final int WINDOW_HEIGHT = 800;
 
     private Renderer renderer;
