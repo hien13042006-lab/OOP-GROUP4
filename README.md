@@ -29,3 +29,11 @@
 * Thiết kế:
  https://drive.google.com/file/d/1cJgev7vtDqnF1FRk2NOgUXWHBDOzFrQo/view?usp=sharing
 * Video: https://youtu.be/uIZv3c897I4
+* PowerUps:
+    - ExpandPaddlePowerUp <img src="https://github.com/user-attachments/assets/8124df69-454b-4597-acb5-e21e740c9d2e" width = "40"> :  làm tăng chiều dài paddle
+    - FastBallPowerUp <img src="https://github.com/user-attachments/assets/6b85231c-dcc1-40f1-97ec-57a6a60efdf4" width = "40"> : tăng tốc độ di chuyển của bóng
+    - SplitBallPowerUp <img src="https://github.com/user-attachments/assets/4c076412-df51-46a2-b566-131448d5e536" width = "40"> : phân bóng làm 3
+    - ReverseControlPowerUp <img src="https://github.com/user-attachments/assets/892a87d6-104a-4cf6-adfb-d76505250de3" width = "40"> : đảo ngược chiều di chuyển paddle
+    - FireBallPowerUp <img src="https://github.com/user-attachments/assets/7fd7e5ad-9e96-4c9d-8c25-387aa043c6c8" width = "40"> : quả bóng rực lửa và tăng sát thương
+
+
