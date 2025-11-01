@@ -10,7 +10,7 @@
    - Duy: xây dựng brick
    - Dũng: xử lí va chạm ở ball
    - Huy: tạo 3 power up và va chạm với powerup
-   - Hiển: chuyển gameManager thành các state để xây dựng các trạng thái của game, thêm mạng, điểm, vẽ các state
+   - Hiển: chuyển gameManager thành 2 state để xây dựng các trạng thái của game, thêm mạng, điểm, vẽ các state
 * Tuần 6
    - Duy: xây dựng các brick đặc biệt
    - Dũng: viết test Junit
@@ -20,13 +20,12 @@
     - Duy: tìm ảnh và chèn ảnh background, brick, paddle, soundmanager
     - Huy: chèn ảnh powerUp và xây dựng Button
     - Dũng: xây dựng âm thanh
-    - Hiển: tìm và chèn ảnh những state còn lại
+    - Hiển: thêm các state còn lại để thành game hoàn chỉnh
 * Tuần 8 
     - Duy: xây dựng bxh
     - Huy: update tỉ lệ của các powerUp
     - Dũng: chèn âm thanh vào các sự kiện của game
-    - Hiển: tìm và chèn các button vào các state
+    - Hiển: chèn ảnh, các button, font các state
 * Thiết kế:
  https://drive.google.com/file/d/1cJgev7vtDqnF1FRk2NOgUXWHBDOzFrQo/view?usp=sharing
-* Video:
-* https://youtu.be/uIZv3c897I4
+* Video: https://youtu.be/uIZv3c897I4
