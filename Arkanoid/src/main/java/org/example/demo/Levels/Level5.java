@@ -33,7 +33,7 @@ public class Level5 extends Level {
                 }
             }
         }
-        for(int col = 0; col < COLS; col++) {
+        for (int col = 0; col < COLS; col++) {
             int x = col * Brick.brickWidth;
             int y = 50 + ROWS * Brick.brickHeight;
             bricks.add(new MovingBrick(x, y, Brick.brickWidth, Brick.brickHeight));

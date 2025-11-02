@@ -1,16 +1,15 @@
 package org.example.demo.Levels;
 
-import org.example.demo.Objects.Bricks.Brick;
-import org.example.demo.Objects.Bricks.*;
-
-
 import java.util.ArrayList;
 import java.util.List;
+import org.example.demo.Objects.Bricks.Brick;
+import org.example.demo.Objects.Bricks.NormalBrick;
+import org.example.demo.Objects.Bricks.StrongBrick;
 
 public class Level1 extends Level {
 
     public Level1() {
-        super(1 , "easy");
+        super(1, "easy");
     }
 
     @Override

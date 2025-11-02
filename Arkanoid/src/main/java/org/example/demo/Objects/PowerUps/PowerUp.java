@@ -1,15 +1,14 @@
 package org.example.demo.Objects.PowerUps;
 
-import org.example.demo.GameManager;
+import java.util.List;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.GameObject;
 import org.example.demo.Objects.Paddle;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
-import java.util.List;
-
 public abstract class PowerUp extends GameObject {
+
     protected double duration;
     protected boolean isFalling;
     protected boolean isActive;

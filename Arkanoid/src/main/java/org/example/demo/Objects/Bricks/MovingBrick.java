@@ -1,14 +1,19 @@
 package org.example.demo.Objects.Bricks;
 
-import javafx.scene.image.Image;
-import org.example.demo.Objects.PowerUps.*;
-import org.example.demo.Renderer;
-
-import java.util.Random;
-
 import static org.example.demo.GameManager.WINDOW_WIDTH;
 
+import java.util.Random;
+import javafx.scene.image.Image;
+import org.example.demo.Objects.PowerUps.ExpandPaddlePowerUp;
+import org.example.demo.Objects.PowerUps.FastBallPowerUp;
+import org.example.demo.Objects.PowerUps.FireBallPowerUp;
+import org.example.demo.Objects.PowerUps.PowerUp;
+import org.example.demo.Objects.PowerUps.ReverseControlPowerUp;
+import org.example.demo.Objects.PowerUps.SplitBallPowerUp;
+import org.example.demo.Renderer;
+
 public class MovingBrick extends Brick {
+
     int DROP_CHANCE_MOVING_BRICK = 30;
     int EXPEND_DROP_CHANCE = 10;
     int FAST_BALL_DROP_CHANCE = 15;
@@ -56,13 +61,16 @@ public class MovingBrick extends Brick {
         Random rand = new Random();
         int chance = rand.nextInt(powerUpDropChance);
         if (chance < EXPEND_DROP_CHANCE) {
-            return new ExpandPaddlePowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        } else if(chance < FAST_BALL_DROP_CHANCE) {
+            return new ExpandPaddlePowerUp(this.getX(), this.getY(), this.getWidth(),
+                    this.getHeight());
+        } else if (chance < FAST_BALL_DROP_CHANCE) {
             return new FastBallPowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        } else if(chance < SPLIT_BALL_DROP_CHANCE) {
-            return new SplitBallPowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        } else if(chance < REVERSE_CONTROL_DROP_CHANCE) {
-            return new ReverseControlPowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+        } else if (chance < SPLIT_BALL_DROP_CHANCE) {
+            return new SplitBallPowerUp(this.getX(), this.getY(), this.getWidth(),
+                    this.getHeight());
+        } else if (chance < REVERSE_CONTROL_DROP_CHANCE) {
+            return new ReverseControlPowerUp(this.getX(), this.getY(), this.getWidth(),
+                    this.getHeight());
         } else {
             return new FireBallPowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
         }

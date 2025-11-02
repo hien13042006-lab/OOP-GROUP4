@@ -8,6 +8,7 @@ import org.example.demo.Objects.GameObject;
 import org.example.demo.Renderer;
 
 public class Button extends GameObject {
+
     protected Image imageDefault;
     protected Image imageHover;
 
@@ -31,7 +32,7 @@ public class Button extends GameObject {
 
     @Override
     public void render(Renderer r) {
-        if(isHovered){
+        if (isHovered) {
             r.draw(this, imageHover);
         } else {
             r.draw(this, imageDefault);

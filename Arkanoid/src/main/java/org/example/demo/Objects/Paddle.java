@@ -8,6 +8,7 @@ import org.example.demo.GameManager;
 import org.example.demo.Renderer;
 
 public class Paddle extends MoveableObject {
+
     //cac thong so toan cuc cua paddle
     public static final double PADDLE_WIDTH = 100;
     public static final double PADDLE_HEIGHT = 20;
@@ -52,7 +53,8 @@ public class Paddle extends MoveableObject {
         }
     };
 
-    public Paddle(double x, double y, double width, double height, double dx, double dy, double speed) {
+    public Paddle(double x, double y, double width, double height, double dx, double dy,
+            double speed) {
         super(x, y, width, height, dx, dy);
         this.speed = speed;
         image = new Image(getClass().getResourceAsStream("/asset/paddle.png"));
@@ -90,7 +92,6 @@ public class Paddle extends MoveableObject {
     }
 
 
-
     void moveLeft(double dt) {
         this.x -= this.speed * dx * dt;
     }
@@ -110,8 +111,12 @@ public class Paddle extends MoveableObject {
         }
 
         // Clamp to screen
-        if (x < 0) x = 0;
-        if (x + width > GameManager.WINDOW_WIDTH) x = GameManager.WINDOW_WIDTH - width;
+        if (x < 0) {
+            x = 0;
+        }
+        if (x + width > GameManager.WINDOW_WIDTH) {
+            x = GameManager.WINDOW_WIDTH - width;
+        }
     }
 
     @Override

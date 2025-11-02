@@ -1,14 +1,14 @@
 package org.example.demo.States;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Renderer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GameStateMachine {
+
     List<GameState> gameStateList = new ArrayList<>();
 
     public void pushState(GameManager gameManager, GameState state) {

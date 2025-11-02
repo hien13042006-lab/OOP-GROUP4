@@ -1,10 +1,9 @@
 package org.example.demo.Objects.PowerUps;
 
+import java.util.List;
 import javafx.scene.image.Image;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Paddle;
-
-import java.util.List;
 
 public class ExpandPaddlePowerUp extends PowerUp {
 

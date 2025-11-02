@@ -2,7 +2,6 @@ package org.example.demo.States;
 
 import java.util.List;
 import java.util.Random;
-
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -19,7 +18,7 @@ import org.example.demo.SoundManager;
 
 public class PlayingState implements GameState {
 
-    Button pauseButton = new PauseButton(GameManager.WINDOW_WIDTH-70,0,70,40);
+    Button pauseButton = new PauseButton(GameManager.WINDOW_WIDTH - 70, 0, 70, 40);
 
     private Paddle paddle;
     private List<Ball> balls;
@@ -58,13 +57,12 @@ public class PlayingState implements GameState {
             for (Ball ball : balls) {
                 ball.setWaiting(false);
             }
-        } else {// Chuyển input cho paddle
+        } else {
             paddle.getKeyPressHandler().handle(event);
         }
 
-
         //hack
-        if(event.getCode() == KeyCode.N) {
+        if (event.getCode() == KeyCode.N) {
             if (gameManager.getLevelManager().hasNextLevel()) {
                 SoundManager.playSoundEffect("NextStage");
                 gameManager.getGameStateMachine()
@@ -76,14 +74,14 @@ public class PlayingState implements GameState {
                 gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
             }
         }
-        if(event.getCode() == KeyCode.T) {
+        if (event.getCode() == KeyCode.T) {
             gameManager.getGameStateMachine().changeState(gameManager, new GameOverState());
         }
     }
 
     @Override
     public void handleMouseInput(MouseEvent event, GameManager gameManager) {
-        if(pauseButton.isClicked(event)) {
+        if (pauseButton.isClicked(event)) {
             gameManager.getGameStateMachine().pushState(gameManager, new PausedState());
         }
     }
@@ -102,7 +100,7 @@ public class PlayingState implements GameState {
             double bestDepth = -1;
 
             for (Brick brick : bricks) {
-                if(ball.checkCollision(brick)) {
+                if (ball.checkCollision(brick)) {
                     // brick nhận damage
                     brick.takeHit(ball.getDamage(), bricks);
 
@@ -117,13 +115,12 @@ public class PlayingState implements GameState {
                 }
             }
 
-            if(bestBrick != null) {
+            if (bestBrick != null) {
                 if (bestBrick.getHitPoints() >= -100) {
                     ball.bounceOffBrick(bestBrick);
                 }
             }
         }
-
 
         for (int i = bricks.size() - 1; i >= 0; i--) {
             Brick brick = bricks.get(i);
@@ -151,13 +148,11 @@ public class PlayingState implements GameState {
                 gameManager.getGameStateMachine()
                         .changeState(gameManager, new LevelCompleteState());
             } else {
-                // ⭐ NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
+                //NẾU KHÔNG CÒN LEVEL NÀO → GAME COMPLETE
                 gameManager.getGameStateMachine().changeState(gameManager, new GameCompleteState());
             }
             return;
         }
-
-
 
         // Cập nhật vật lý
         paddle.update(dt);
