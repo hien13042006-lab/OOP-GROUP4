@@ -5,6 +5,7 @@ import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
 public abstract class GameObject {
+
     protected double x;
     protected double y;
     protected double width;

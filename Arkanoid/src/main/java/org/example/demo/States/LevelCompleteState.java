@@ -1,7 +1,7 @@
 package org.example.demo.States;
 
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Levels.LevelManager;
@@ -11,15 +11,17 @@ import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
 public class LevelCompleteState implements GameState {
+
     private Button nextButton = new NextButton(GameManager.WINDOW_WIDTH / 2 - 75,
             GameManager.WINDOW_HEIGHT / 2 - 30, 150, 60);
+
     @Override
     public boolean enter(GameManager gameManager) {
         System.out.println("Entering Menu State");
         return true;
     }
 
-      @Override
+    @Override
     public boolean exit(GameManager gameManager) {
         System.out.println("Exiting Menu State");
         return true;
@@ -42,7 +44,7 @@ public class LevelCompleteState implements GameState {
 
     @Override
     public void handleMouseInput(MouseEvent event, GameManager gameManager) {
-        if(nextButton.isClicked(event)){
+        if (nextButton.isClicked(event)) {
             SoundManager.playSoundEffect("SoundClick");
             LevelManager levelManager = gameManager.getLevelManager();
             if (levelManager.hasNextLevel()) {
@@ -56,13 +58,12 @@ public class LevelCompleteState implements GameState {
 
     @Override
     public void update(double dt, GameManager gameManager) {
-        // Không cập nhật gì khi level complete
         nextButton.update(gameManager);
     }
 
     @Override
     public void render(Renderer renderer, GameManager gameManager) {
-        renderer.draw(this,gameManager);
+        renderer.draw(this, gameManager);
         nextButton.render(renderer);
     }
 }

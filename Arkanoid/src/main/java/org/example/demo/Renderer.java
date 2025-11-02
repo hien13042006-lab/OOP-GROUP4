@@ -114,7 +114,7 @@ public class Renderer {
         }
 
         gc.fillText("Level " + gameManager.getLevelManager().getCurrentNumberLevel(), 150, 30);
-        gc.fillText(gameManager.getLevelManager().getCurrentLevel().getDifficulty(), 800,30);
+        gc.fillText(gameManager.getLevelManager().getCurrentLevel().getDifficulty(), 800, 30);
     }
 
     public void draw(PausedState pausedState, GameManager gameManager) {
@@ -150,7 +150,7 @@ public class Renderer {
                 getClass().getResourceAsStream("/asset/fontHUD.ttf"),
                 24));
         gc.fillText("Score  " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 70,
-                GameManager.WINDOW_HEIGHT / 2-50);
+                GameManager.WINDOW_HEIGHT / 2 - 50);
 //        gc.fillText("Press ENTER for Next Level", GameManager.WINDOW_WIDTH / 2 - 176,
 //                GameManager.WINDOW_HEIGHT / 2 + 80);
     }
@@ -183,7 +183,8 @@ public class Renderer {
                 getClass().getResourceAsStream("/asset/fontHUD.ttf"),
                 24));
         if (gameCompleteState.isHighScore()) {
-            gc.fillText("High Score  " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 120, GameManager.WINDOW_HEIGHT / 2 + 60);
+            gc.fillText("High Score  " + gameManager.getScore(), GameManager.WINDOW_WIDTH / 2 - 120,
+                    GameManager.WINDOW_HEIGHT / 2 + 60);
         } else {
             gc.fillText("Final Score  " + gameManager.getScore(),
                     GameManager.WINDOW_WIDTH / 2 - 120,
@@ -206,12 +207,13 @@ public class Renderer {
         );
 
         gc.setFont(BoldPixels70);
-        gc.setFill(Color.rgb(104,198,224));
+        gc.setFill(Color.rgb(104, 198, 224));
         gc.fillText("HIGH SCORE", GameManager.WINDOW_WIDTH / 2 - 250, 150);
         Font BoldPixels48 = Font.font(BoldPixels70.getName(), 48);
         gc.setFont(BoldPixels48);
         for (int i = 0; i < scoreState.getScores().size(); i++) {
-            gc.fillText(String.format("%d: %s", i + 1, scoreState.getScores().get(i)), GameManager.WINDOW_WIDTH / 2 - 80, 230 + i * 40);
+            gc.fillText(String.format("%d: %s", i + 1, scoreState.getScores().get(i)),
+                    GameManager.WINDOW_WIDTH / 2 - 80, 230 + i * 40);
         }
     }
 }

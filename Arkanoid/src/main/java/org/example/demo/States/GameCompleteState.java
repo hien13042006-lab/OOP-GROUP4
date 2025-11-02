@@ -1,7 +1,15 @@
 package org.example.demo.States;
 
-import javafx.scene.input.KeyEvent;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Button.Button;
@@ -9,11 +17,8 @@ import org.example.demo.Objects.Button.HomeButton;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-
 public class GameCompleteState implements GameState {
+
     boolean isHighScore;
     private Button homeButton = new HomeButton(GameManager.WINDOW_WIDTH / 2 - 75,
             GameManager.WINDOW_HEIGHT / 2 - 30, 150, 60);

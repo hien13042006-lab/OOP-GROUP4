@@ -6,6 +6,7 @@ import org.example.demo.GameManager;
 import org.example.demo.Renderer;
 
 public interface GameState {
+
     void handleInput(KeyEvent event, GameManager gameManager);
 
     void handleMouseInput(MouseEvent event, GameManager gameManager);

@@ -1,11 +1,11 @@
 package org.example.demo.Objects.Bricks;
 
+import java.util.List;
 import javafx.scene.image.Image;
 import org.example.demo.Renderer;
 
-import java.util.List;
-
 public class UnbreakableBrick extends Brick {
+
     public UnbreakableBrick(double x, double y, double width, double height) {
         this.hitPoints = 1;
         this.x = x;

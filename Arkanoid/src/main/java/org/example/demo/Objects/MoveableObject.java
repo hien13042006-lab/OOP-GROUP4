@@ -1,6 +1,7 @@
 package org.example.demo.Objects;
 
 public abstract class MoveableObject extends GameObject {
+
     protected double dx;
     protected double dy;
 

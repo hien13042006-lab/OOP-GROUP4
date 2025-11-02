@@ -31,8 +31,7 @@ public class Level4 extends Level {
                 int y = 50 + row * Brick.brickHeight;
                 if (row == 0 || row == ROWS - 1) {
                     bricks.add(new UnbreakableBrick(x, y, Brick.brickWidth, Brick.brickHeight));
-                }
-                else if (row == centerRow) {
+                } else if (row == centerRow) {
                     bricks.add(new StrongBrick(x, y, Brick.brickWidth, Brick.brickHeight));
                 } else {
                     bricks.add(new NormalBrick(x, y, Brick.brickWidth, Brick.brickHeight));

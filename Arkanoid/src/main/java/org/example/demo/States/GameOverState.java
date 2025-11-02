@@ -14,7 +14,6 @@ import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Button.Button;
 import org.example.demo.Objects.Button.HomeButton;
-import org.example.demo.Objects.Button.PauseButton;
 import org.example.demo.Objects.Button.RestartButton;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
@@ -84,11 +83,11 @@ public class GameOverState implements GameState {
 
     @Override
     public void handleMouseInput(MouseEvent event, GameManager gameManager) {
-        if(homeButton.isClicked(event)) {
+        if (homeButton.isClicked(event)) {
             SoundManager.playSoundEffect("SoundClick");
             gameManager.restartGame();
             gameManager.getGameStateMachine().changeState(gameManager, new MenuState());
-        } else if(restartButton.isClicked(event)) {
+        } else if (restartButton.isClicked(event)) {
             SoundManager.playSoundEffect("SoundClick");
             gameManager.restartGame();
             gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());

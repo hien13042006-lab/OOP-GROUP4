@@ -1,16 +1,16 @@
 package org.example.demo.Objects.Bricks;
 
 
+import java.util.List;
+import java.util.Random;
 import javafx.scene.image.Image;
 import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.Objects.PowerUps.ReverseControlPowerUp;
 import org.example.demo.Objects.PowerUps.SplitBallPowerUp;
 import org.example.demo.Renderer;
 
-import java.util.List;
-import java.util.Random;
-
 public class ExplodeBrick extends Brick {
+
     int DROP_CHANCE_STRONG_BRICK = 20;
     int SPLIT_BALL_DROP_CHANCE = 10;
     int REVERSE_CONTROL_DROP_CHANCE = 20;
@@ -42,13 +42,19 @@ public class ExplodeBrick extends Brick {
         Random rand = new Random();
         int chance = rand.nextInt(powerUpDropChance);
         if (chance < SPLIT_BALL_DROP_CHANCE) {
-            return new SplitBallPowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
-        } else return new ReverseControlPowerUp(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+            return new SplitBallPowerUp(this.getX(), this.getY(), this.getWidth(),
+                    this.getHeight());
+        } else {
+            return new ReverseControlPowerUp(this.getX(), this.getY(), this.getWidth(),
+                    this.getHeight());
+        }
     }
 
     @Override
     public void takeHit(int damage, List<Brick> bricks) {
-        if (exploded) return;
+        if (exploded) {
+            return;
+        }
         this.hitPoints -= damage;
         if (this.hitPoints <= 0) {
             exploded = true;
@@ -56,10 +62,14 @@ public class ExplodeBrick extends Brick {
                 Brick brick = bricks.get(i);
                 if (brick instanceof ExplodeBrick) {
                     ExplodeBrick ex = (ExplodeBrick) brick;
-                    if (ex.exploded) continue;
+                    if (ex.exploded) {
+                        continue;
+                    }
                 }
-                if ((brick.getY() == this.getY() && Math.abs(brick.getX() - this.getX()) == Brick.brickWidth) ||
-                        (brick.getX() == this.getX() && Math.abs(brick.getY() - this.getY()) == Brick.brickHeight)) {
+                if ((brick.getY() == this.getY()
+                        && Math.abs(brick.getX() - this.getX()) == Brick.brickWidth) ||
+                        (brick.getX() == this.getX()
+                                && Math.abs(brick.getY() - this.getY()) == Brick.brickHeight)) {
                     brick.takeHit(1, bricks);
                 }
             }

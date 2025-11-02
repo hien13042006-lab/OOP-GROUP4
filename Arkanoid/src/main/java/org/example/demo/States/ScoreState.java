@@ -1,25 +1,24 @@
 package org.example.demo.States;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
 import org.example.demo.Objects.Button.Button;
 import org.example.demo.Objects.Button.HomeButton;
-import org.example.demo.Objects.Button.LeaderboardButton;
-import org.example.demo.Objects.Button.PlayButton;
 import org.example.demo.Renderer;
 import org.example.demo.SoundManager;
-
-import java.io.*;
-import java.util.ArrayList;
 
 public class ScoreState implements GameState {
 
     private ArrayList<Integer> scores = new ArrayList<>();
 
     private Button homeButton = new HomeButton(GameManager.WINDOW_WIDTH / 2 - 75,
-           GameManager.WINDOW_HEIGHT / 2 + 230, 150, 60);
+            GameManager.WINDOW_HEIGHT / 2 + 230, 150, 60);
 
     @Override
     public boolean enter(GameManager gameManager) {
@@ -35,8 +34,7 @@ public class ScoreState implements GameState {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        for(int i = 0; i < scores.size(); i++)
-        {
+        for (int i = 0; i < scores.size(); i++) {
             System.out.println(scores.get(i));
         }
         return true;

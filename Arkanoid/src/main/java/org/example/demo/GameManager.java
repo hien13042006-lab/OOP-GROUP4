@@ -1,5 +1,8 @@
 package org.example.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
@@ -7,7 +10,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.Levels.Level;
-import org.example.demo.Levels.Level5;
 import org.example.demo.Levels.LevelManager;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Bricks.Brick;
@@ -16,14 +18,14 @@ import org.example.demo.Objects.PowerUps.PowerUp;
 import org.example.demo.States.GameStateMachine;
 import org.example.demo.States.MenuState;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class GameManager {
+
     private static GameManager instance;
 
-    private GameManager(){};
+    private GameManager() {
+    }
+
+    ;
 
     public static GameManager getInstance() {
         if (instance == null) {
@@ -63,7 +65,6 @@ public class GameManager {
 
         initializeCanvas(root);
 
-        // Bắt đầu với menu state
         gameStateMachine = new GameStateMachine();
         gameStateMachine.pushState(this, new MenuState());
     }
@@ -112,18 +113,25 @@ public class GameManager {
         paddle = Paddle.getInstance();
 
         // THONG SO BALL
-        if (balls != null) balls.clear();
+        if (balls != null) {
+            balls.clear();
+        }
         balls = new ArrayList<>();
         balls.add(new Ball(WINDOW_WIDTH / 2 - Ball.RADIUS, paddle.getY() - Ball.RADIUS * 2,
                 Ball.RADIUS * 2, Ball.RADIUS * 2, 1, 1, Ball.SPEED, Ball.DAMAGE_DEFAULT));
 
-
-        if (bricks != null) bricks.clear();
+        if (bricks != null) {
+            bricks.clear();
+        }
         bricks = currentLevel.createBricks();
 
         //powerUp
-        if (fallingPowerUps != null) fallingPowerUps.clear();
-        if (activePowerUps != null) activePowerUps.clear();
+        if (fallingPowerUps != null) {
+            fallingPowerUps.clear();
+        }
+        if (activePowerUps != null) {
+            activePowerUps.clear();
+        }
         activePowerUps = new ArrayList<>();// các powerUp đang rơi
         fallingPowerUps = new ArrayList<>();// các powerUp đang tác dụng
 

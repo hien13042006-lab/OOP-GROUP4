@@ -1,6 +1,5 @@
 package org.example.demo.States;
 
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
@@ -18,7 +17,7 @@ public class PausedState implements GameState {
     private Button homeButton = new HomeButton(GameManager.WINDOW_WIDTH / 2 - 75,
             GameManager.WINDOW_HEIGHT / 2 + 130, 150, 60);
     private Button backButton = new BackButton(GameManager.WINDOW_WIDTH / 2 - 75,
-            GameManager.WINDOW_HEIGHT / 2 +10, 150, 60);
+            GameManager.WINDOW_HEIGHT / 2 + 10, 150, 60);
 
     @Override
     public boolean enter(GameManager gameManager) {

@@ -1,6 +1,5 @@
 package org.example.demo.States;
 
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.example.demo.GameManager;
@@ -40,7 +39,7 @@ public class MenuState implements GameState {
             SoundManager.playSoundEffect("SoundClick");
             gameManager.getGameStateMachine().changeState(gameManager, new PlayingState());
         }
-        if(leaderboardButton.isClicked(event)) {
+        if (leaderboardButton.isClicked(event)) {
             SoundManager.playSoundEffect("SoundClick");
             gameManager.getGameStateMachine().changeState(gameManager, new ScoreState());
         }

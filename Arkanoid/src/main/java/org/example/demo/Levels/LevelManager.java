@@ -2,9 +2,11 @@ package org.example.demo.Levels;
 
 import java.util.ArrayList;
 import java.util.List;
+
 public class LevelManager {
+
     private int currentNumberLevel;
-    private List<Level>  levels;
+    private List<Level> levels;
 
     public LevelManager() {
         this.currentNumberLevel = 1;
@@ -12,7 +14,7 @@ public class LevelManager {
         initializeLevels();
     }
 
-    private void initializeLevels(){
+    private void initializeLevels() {
         levels.add(new Level1());
         levels.add(new Level2());
         levels.add(new Level3());

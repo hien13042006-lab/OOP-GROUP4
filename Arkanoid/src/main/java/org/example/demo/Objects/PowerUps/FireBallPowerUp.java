@@ -1,13 +1,13 @@
 package org.example.demo.Objects.PowerUps;
 
+import java.util.List;
 import javafx.scene.image.Image;
 import org.example.demo.Objects.Ball;
 import org.example.demo.Objects.Paddle;
 
-import java.util.List;
-
 //bóng lửa đi xuyên và phá hủy các gạch nó đi qua
 public class FireBallPowerUp extends PowerUp {
+
     public static final int FIRE_DAMAGE = 999;
     public static final int FIRE_BALL_SPEED = 200;
     public static final double FIRE_BALL_DURATION = 2.0;

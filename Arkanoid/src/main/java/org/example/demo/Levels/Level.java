@@ -1,10 +1,10 @@
 package org.example.demo.Levels;
 
+import java.util.List;
 import org.example.demo.Objects.Bricks.Brick;
 
-import java.util.List;
-
 public abstract class Level {
+
     protected String difficulty;
     protected int levelNumber;
 
