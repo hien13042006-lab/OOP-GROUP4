@@ -27,8 +27,9 @@
     - Dũng: chèn âm thanh vào các sự kiện của game
     - Hiển: chèn ảnh, các button, font các state
 * Thiết kế:
- https://drive.google.com/file/d/1cJgev7vtDqnF1FRk2NOgUXWHBDOzFrQo/view?usp=sharing
-* Video: https://youtu.be/uIZv3c897I4
+  [diagram](https://drive.google.com/file/d/1cJgev7vtDqnF1FRk2NOgUXWHBDOzFrQo/view?usp=drive_link)
+* Video:
+ [video demo](https://youtu.be/uIZv3c897I4)
 * PowerUps:
     - ExpandPaddlePowerUp <img src="https://github.com/user-attachments/assets/8124df69-454b-4597-acb5-e21e740c9d2e" width = "40"> :  làm tăng chiều dài paddle
     - FastBallPowerUp <img src="https://github.com/user-attachments/assets/6b85231c-dcc1-40f1-97ec-57a6a60efdf4" width = "40"> : tăng tốc độ di chuyển của bóng
